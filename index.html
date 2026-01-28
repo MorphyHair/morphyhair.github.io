@@ -40,7 +40,6 @@
     a{ color: inherit; text-decoration: none; }
     .wrap{ width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
 
-    /* Top bar */
     .topbar{
       position: sticky;
       top: 0;
@@ -49,6 +48,7 @@
       background: rgba(11,18,32,0.55);
       border-bottom: 1px solid var(--line);
     }
+
     .topbar-inner{
       display:flex;
       align-items:center;
@@ -56,389 +56,207 @@
       padding: 14px 0;
       gap: 14px;
     }
+
     .brand{
       display:flex;
       align-items:center;
       gap: 10px;
       font-weight: 800;
-      letter-spacing: 0.3px;
     }
-    .logo{
-      width: 34px; height: 34px;
-      border-radius: 12px;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.28), transparent 55%),
-        linear-gradient(135deg, rgba(167,139,250,1), rgba(34,197,94,1));
-      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-    }
-    .nav{
-      display:flex;
-      gap: 14px;
-      align-items:center;
-    }
-    .nav a{
-      color: var(--muted);
-      font-size: 14px;
-      padding: 8px 10px;
-      border-radius: 10px;
-    }
-    .nav a:hover{ background: rgba(255,255,255,0.06); color: var(--text); }
-    .cta{
-      display:flex;
-      gap: 10px;
-      align-items:center;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.06);
-      color: var(--text);
-      font-weight: 650;
-      font-size: 14px;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-    .btn:hover{ background: rgba(255,255,255,0.10); transform: translateY(-1px); }
-    .btn-primary{
-      background: linear-gradient(135deg, rgba(34,197,94,1), rgba(167,139,250,1));
-      border-color: transparent;
-      color: #071016;
-      box-shadow: 0 14px 35px rgba(34,197,94,0.18), 0 14px 35px rgba(167,139,250,0.10);
-    }
-    .btn-primary:hover{ transform: translateY(-1px) scale(1.01); }
 
-    /* Hero */
-    .hero{
-      padding: 46px 0 28px;
+    .logo{
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #a78bfa, #22c55e);
     }
+
+    .nav{ display:flex; gap:14px; }
+
+    .btn{
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      font-weight:600;
+    }
+
+    .btn-primary{
+      background: linear-gradient(135deg, #22c55e, #a78bfa);
+      border:none;
+      color:#071016;
+    }
+
+    .hero{ padding:50px 0; }
+
     .hero-grid{
       display:grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 22px;
-      align-items: start;
+      grid-template-columns: 1fr 1fr;
+      gap:20px;
     }
-    .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 8px 12px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.05);
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 14px;
-    }
-    .dot{
-      width: 8px; height: 8px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 18px rgba(34,197,94,0.55);
-    }
+
     h1{
-      margin: 0 0 12px;
-      font-size: clamp(32px, 4.2vw, 52px);
-      line-height: 1.05;
-      letter-spacing: -0.6px;
+      font-size: clamp(32px,4vw,48px);
     }
+
     .sub{
-      color: var(--muted);
-      font-size: 16.5px;
-      margin: 0 0 18px;
-      max-width: 56ch;
+      color:var(--muted);
+      max-width:55ch;
     }
+
     .hero-actions{
       display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 14px;
-    }
-    .micro{
-      color: var(--muted2);
-      font-size: 13px;
+      gap:12px;
+      flex-wrap:wrap;
     }
 
-    /* Image card */
     .image-card{
-      border-radius: var(--radius2);
-      overflow: hidden;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.04);
-      box-shadow: var(--shadow);
-    }
-    .image-card img{
-      display:block;
-      width: 100%;
-      height: auto;
-    }
-    .image-caption{
-      padding: 12px 14px;
-      color: var(--muted);
-      font-size: 13px;
-      border-top: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
+      border-radius:20px;
+      overflow:hidden;
+      border:1px solid var(--line);
     }
 
-    /* Sections */
-    .section{ padding: 24px 0; }
+    .image-card img{
+      width:100%;
+      display:block;
+    }
+
+    .section{ padding:40px 0; }
+
     .grid3{
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap:14px;
     }
+
     .card{
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px;
       background: rgba(255,255,255,0.05);
-      padding: 16px;
-    }
-    .card h3{
-      margin: 0 0 6px;
-      font-size: 16px;
-    }
-    .card p{
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-    .icon{
-      width: 38px; height: 38px;
-      border-radius: 14px;
-      margin-bottom: 10px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid var(--line);
-      display:grid;
-      place-items:center;
-      font-weight: 800;
     }
 
-    /* Waitlist */
-    .waitlist{
-      border-radius: var(--radius2);
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
-      padding: 18px;
-      box-shadow: var(--shadow);
-    }
-    .waitlist h2{
-      margin: 0 0 6px;
-      font-size: 22px;
-      letter-spacing: -0.3px;
-    }
-    .waitlist p{
-      margin: 0 0 14px;
-      color: var(--muted);
-      font-size: 14.5px;
-    }
-    form{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    input{
-      flex: 1 1 220px;
-      padding: 12px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: rgba(0,0,0,0.20);
-      color: var(--text);
-      outline: none;
-      font-size: 14px;
-    }
-    input::placeholder{ color: rgba(255,255,255,0.45); }
-    input:focus{ border-color: rgba(34,197,94,0.55); box-shadow: 0 0 0 4px rgba(34,197,94,0.12); }
-
-    /* Footer */
     footer{
-      padding: 26px 0 40px;
-      color: var(--muted2);
-      font-size: 13px;
-      border-top: 1px solid var(--line);
-      margin-top: 26px;
+      border-top:1px solid var(--line);
+      padding:24px 0;
+      color:var(--muted2);
+      font-size:13px;
     }
-    .footer-row{
-      display:flex;
-      justify-content:space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .links{ display:flex; gap: 12px; flex-wrap: wrap; }
-    .links a{ color: var(--muted2); padding: 6px 8px; border-radius: 10px; }
-    .links a:hover{ color: var(--text); background: rgba(255,255,255,0.06); }
 
-    /* Responsive */
-    @media (max-width: 920px){
-      .hero-grid{ grid-template-columns: 1fr; }
-      .nav{ display:none; }
-    }
-    @media (max-width: 720px){
-      .grid3{ grid-template-columns: 1fr; }
-      .hero{ padding-top: 34px; }
+    @media(max-width:900px){
+      .hero-grid{ grid-template-columns:1fr; }
     }
   </style>
 </head>
 
 <body>
-  <!-- Topbar -->
-  <div class="topbar">
-    <div class="wrap topbar-inner">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>MorphyHair</div>
+
+<div class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand">
+      <div class="logo"></div>
+      MorphyHair
+    </div>
+
+    <div>
+      <a class="btn" href="#waitlist">Join Beta</a>
+      <a
+        class="btn btn-primary"
+        href="https://expo.dev/@wellbeing4526/hair_project"
+        target="_blank"
+      >
+        Open App
+      </a>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+
+    <div>
+      <h1>Style inspiration, bundles, and salon discovery — built for textured hair.</h1>
+      <p class="sub">
+        MorphyHair helps you save looks you love, match hair to styles, and discover trusted textured hair-friendly salons.
+      </p>
+
+      <div class="hero-actions">
+        <a
+          class="btn btn-primary"
+          href="https://expo.dev/@wellbeing4526/hair_project"
+          target="_blank"
+        >
+          Open MorphyHair App
+        </a>
+
+        <a class="btn" href="#features">See Features</a>
+      </div>
+    </div>
+
+    <div class="image-card">
+      <img src="IMG_9192 2.PNG" alt="MorphyHair preview">
+    </div>
+
+  </div>
+</header>
+
+<section class="section" id="features">
+  <div class="wrap">
+    <div class="grid3">
+      <div class="card">
+        <h3>Save Styles</h3>
+        <p>Organize inspiration by color, length, and vibe.</p>
       </div>
 
-      <div class="nav" aria-label="Site navigation">
-        <a href="#how">How it works</a>
-        <a href="#features">What you get</a>
-        <a href="#waitlist">Waitlist</a>
+      <div class="card">
+        <h3>Match Hair</h3>
+        <p>Find bundles and extensions that fit your style.</p>
       </div>
 
-      <div class="cta">
-        <a class="btn" href="#waitlist">Join beta</a>
-        <a class="btn btn-primary" href="#waitlist">Get early access</a>
+      <div class="card">
+        <h3>Salon Discovery</h3>
+        <p>Find trusted textured hair salons near you.</p>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Hero -->
-  <header class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <div class="kicker"><span class="dot"></span> Building for textured hair — beta launching soon</div>
-        <h1>Style inspiration, bundles, and salon discovery — built for textured hair.</h1>
-        <p class="sub">
-          MorphyHair helps you save looks you love, find the right hair for the style, and (soon)
-          discover trusted textured hair-friendly salons near you.
-        </p>
+<section class="section" id="waitlist">
+  <div class="wrap">
+    <div class="card">
 
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#waitlist">Join the waitlist</a>
-          <a class="btn" href="#features">See what’s inside</a>
-        </div>
+      <h2>Try MorphyHair Beta</h2>
+      <p>Open the live Expo demo or join the early access list.</p>
 
-        <div class="micro">No spam. Early access + updates only.</div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+
+        <a
+          class="btn btn-primary"
+          href="https://expo.dev/@wellbeing4526/hair_project"
+          target="_blank"
+        >
+          Try Live App Demo
+        </a>
+
+        <a class="btn" href="mailto:hello@morphyhair.com">
+          Contact Team
+        </a>
+
       </div>
 
-      <div class="image-card">
-        <!-- IMPORTANT: replace YOUR_IMAGE_FILENAME.png with your uploaded image name -->
-        <img src="IMG_9192 2.PNG" alt="MorphyHair style inspiration grid" />
-        <div class="image-caption">A preview of the inspiration & hair library.</div>
-      </div>
     </div>
-  </header>
+  </div>
+</section>
 
-  <!-- Value props -->
-  <section class="section" id="how">
-    <div class="wrap">
-      <div class="grid3">
-        <div class="card">
-          <div class="icon">1</div>
-          <h3>Save styles</h3>
-          <p>Organize looks by color, length, vibe, and upcoming appointments.</p>
-        </div>
-        <div class="card">
-          <div class="icon">2</div>
-          <h3>Match the hair</h3>
-          <p>Find bundles/extensions that match the style you want (coming soon).</p>
-        </div>
-        <div class="card">
-          <div class="icon">3</div>
-          <h3>Find trusted salons</h3>
-          <p>Discover textured hair-friendly salons near you (roadmap feature).</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<footer>
+  <div class="wrap">
+    © <span id="year"></span> MorphyHair — Built for textured hair.
+  </div>
+</footer>
 
-  <!-- Features -->
-  <section class="section" id="features">
-    <div class="wrap">
-      <div class="waitlist" style="margin-bottom:14px;">
-        <h2>What you’ll get in MorphyHair</h2>
-        <p>
-          A simple MVP designed to validate demand fast: inspiration + organization now, discovery next.
-        </p>
-        <div class="grid3">
-          <div class="card" style="background: rgba(255,255,255,0.04);">
-            <h3>My Hair Library</h3>
-            <p>Keep all your hair colors, bundles, beads, and accessories in one place.</p>
-          </div>
-          <div class="card" style="background: rgba(255,255,255,0.04);">
-            <h3>Style Boards</h3>
-            <p>Create boards for installs, braids, wigs, or seasonal looks.</p>
-          </div>
-          <div class="card" style="background: rgba(255,255,255,0.04);">
-            <h3>Beta-first community</h3>
-            <p>Help shape the product + get early access to new drops.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
-  <!-- Waitlist -->
-  <section class="section" id="waitlist">
-    <div class="wrap">
-      <div class="waitlist">
-        <h2>Join the MorphyHair beta</h2>
-        <p>Be first in line when we open the app. Drop your email and we’ll invite you.</p>
-
-        <!-- MVP waitlist form (fake-door): stores locally + opens mail client as backup -->
-        <form id="waitlistForm">
-          <input id="email" type="email" placeholder="Enter your email" required />
-          <button class="btn btn-primary" type="submit">Join waitlist</button>
-          <a class="btn" id="tryLink" href="#" title="Demo link coming soon">Try preview</a>
-        </form>
-
-        <div class="micro" id="status" style="margin-top:10px;"></div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="wrap footer-row">
-      <div>© <span id="year"></span> MorphyHair. All rights reserved.</div>
-      <div class="links">
-        <a href="#features">Features</a>
-        <a href="#waitlist">Waitlist</a>
-        <a href="mailto:hello@morphyhair.com">Contact</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Update year
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Simple "fake-door" waitlist capture (stores email locally)
-    const form = document.getElementById("waitlistForm");
-    const statusEl = document.getElementById("status");
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const email = document.getElementById("email").value.trim();
-
-      if (!email) return;
-
-      // store locally (MVP)
-      try {
-        const existing = JSON.parse(localStorage.getItem("morphyhair_waitlist") || "[]");
-        existing.push({ email, ts: new Date().toISOString() });
-        localStorage.setItem("morphyhair_waitlist", JSON.stringify(existing));
-      } catch (err) { /* ignore */ }
-
-      statusEl.textContent = "You're on the list ✅ We'll email you when beta opens.";
-
-      // optional: open mail client as backup notification to you (edit to your email)
-      // window.location.href = `mailto:hello@morphyhair.com?subject=Waitlist%20Signup&body=${encodeURIComponent(email)}`;
-      form.reset();
-    });
-  </script>
 </body>
 </html>
