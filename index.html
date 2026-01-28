@@ -10,7 +10,6 @@
     :root{
       --bg: #0b1220;
       --card: rgba(255,255,255,0.06);
-      --card2: rgba(255,255,255,0.08);
       --text: rgba(255,255,255,0.92);
       --muted: rgba(255,255,255,0.70);
       --muted2: rgba(255,255,255,0.55);
@@ -19,79 +18,91 @@
       --accent2: #a78bfa;
       --shadow: 0 20px 60px rgba(0,0,0,0.45);
       --radius: 18px;
-      --radius2: 26px;
       --max: 1100px;
     }
 
     *{ box-sizing: border-box; }
     html,body{ height:100%; }
+
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
       background:
         radial-gradient(1100px 500px at 15% 0%, rgba(167,139,250,0.20), transparent 55%),
         radial-gradient(900px 500px at 85% 10%, rgba(34,197,94,0.18), transparent 50%),
-        radial-gradient(700px 700px at 50% 100%, rgba(59,130,246,0.12), transparent 60%),
         var(--bg);
       color: var(--text);
-      line-height: 1.35;
     }
 
-    a{ color: inherit; text-decoration: none; }
-    .wrap{ width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+    a{ text-decoration:none; color:inherit; }
+
+    .wrap{
+      width:min(var(--max), calc(100% - 40px));
+      margin:0 auto;
+    }
 
     .topbar{
-      position: sticky;
-      top: 0;
-      backdrop-filter: blur(10px);
-      background: rgba(11,18,32,0.55);
-      border-bottom: 1px solid var(--line);
+      background: rgba(11,18,32,0.8);
+      border-bottom:1px solid var(--line);
+      padding:14px 0;
     }
 
     .topbar-inner{
       display:flex;
       justify-content:space-between;
-      padding: 14px 0;
+      align-items:center;
     }
 
     .brand{
       display:flex;
-      gap: 10px;
-      font-weight: 800;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
     }
 
     .logo{
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #a78bfa, #22c55e);
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      background:linear-gradient(135deg,#a78bfa,#22c55e);
     }
 
     .btn{
       padding:10px 14px;
       border-radius:12px;
       border:1px solid var(--line);
-      background: rgba(255,255,255,0.06);
+      background:rgba(255,255,255,0.06);
       font-weight:600;
+      display:inline-block;
     }
 
     .btn-primary{
-      background: linear-gradient(135deg, #22c55e, #a78bfa);
+      background:linear-gradient(135deg,#22c55e,#a78bfa);
       border:none;
       color:#071016;
     }
 
-    .hero{ padding:50px 0; }
+    .hero{
+      padding:60px 0;
+    }
 
     .hero-grid{
       display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:20px;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+      align-items:center;
     }
 
-    h1{ font-size: clamp(32px,4vw,48px); }
+    h1{
+      font-size:clamp(32px,4vw,48px);
+      margin-bottom:12px;
+    }
 
-    .sub{ color:var(--muted); }
+    .sub{
+      color:var(--muted);
+      max-width:55ch;
+      margin-bottom:20px;
+    }
 
     .hero-actions{
       display:flex;
@@ -100,7 +111,7 @@
     }
 
     .image-card{
-      border-radius:20px;
+      border-radius:18px;
       overflow:hidden;
       border:1px solid var(--line);
     }
@@ -110,19 +121,21 @@
       display:block;
     }
 
-    .section{ padding:40px 0; }
+    .section{
+      padding:50px 0;
+    }
 
     .grid3{
       display:grid;
-      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-      gap:14px;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:16px;
     }
 
     .card{
       border:1px solid var(--line);
       border-radius:16px;
       padding:16px;
-      background: rgba(255,255,255,0.05);
+      background:rgba(255,255,255,0.05);
     }
 
     footer{
@@ -135,13 +148,16 @@
     @media(max-width:900px){
       .hero-grid{ grid-template-columns:1fr; }
     }
+
   </style>
 </head>
 
 <body>
 
+<!-- TOP BAR -->
 <div class="topbar">
   <div class="wrap topbar-inner">
+
     <div class="brand">
       <div class="logo"></div>
       MorphyHair
@@ -150,38 +166,41 @@
     <div>
       <a class="btn" href="#waitlist">Join Beta</a>
 
-      <!-- UPDATED LINK -->
+      <!-- ✅ CORRECT EXPO LINK -->
       <a
         class="btn btn-primary"
-        href="https://expo.dev/accounts/wellbeing4526/projects/hair_project"
+        href="https://expo.dev/accounts/wellbeing4526/projects/hair_project/updates/f04c7020-98ce-46cc-a98d-515116d290d9"
         target="_blank"
         rel="noopener"
       >
         Open App
       </a>
     </div>
+
   </div>
 </div>
 
+<!-- HERO -->
 <header class="hero">
   <div class="wrap hero-grid">
 
     <div>
       <h1>Style inspiration, bundles, and salon discovery — built for textured hair.</h1>
+
       <p class="sub">
         MorphyHair helps you save looks you love, match hair to styles, and discover trusted textured hair-friendly salons.
       </p>
 
       <div class="hero-actions">
 
-        <!-- UPDATED LINK -->
+        <!-- ✅ CORRECT EXPO LINK -->
         <a
           class="btn btn-primary"
-          href="https://expo.dev/accounts/wellbeing4526/projects/hair_project"
+          href="https://expo.dev/accounts/wellbeing4526/projects/hair_project/updates/f04c7020-98ce-46cc-a98d-515116d290d9"
           target="_blank"
           rel="noopener"
         >
-          Open MorphyHair App
+          Try Live App Demo
         </a>
 
         <a class="btn" href="#features">See Features</a>
@@ -195,9 +214,11 @@
   </div>
 </header>
 
+<!-- FEATURES -->
 <section class="section" id="features">
   <div class="wrap">
     <div class="grid3">
+
       <div class="card">
         <h3>Save Styles</h3>
         <p>Organize inspiration by color, length, and vibe.</p>
@@ -212,10 +233,12 @@
         <h3>Salon Discovery</h3>
         <p>Find trusted textured hair salons near you.</p>
       </div>
+
     </div>
   </div>
 </section>
 
+<!-- WAITLIST -->
 <section class="section" id="waitlist">
   <div class="wrap">
     <div class="card">
@@ -225,14 +248,14 @@
 
       <div style="display:flex; gap:12px; flex-wrap:wrap;">
 
-        <!-- UPDATED LINK -->
+        <!-- ✅ CORRECT EXPO LINK -->
         <a
           class="btn btn-primary"
-          href="https://expo.dev/accounts/wellbeing4526/projects/hair_project"
+          href="https://expo.dev/accounts/wellbeing4526/projects/hair_project/updates/f04c7020-98ce-46cc-a98d-515116d290d9"
           target="_blank"
           rel="noopener"
         >
-          Try Live App Demo
+          Open Live Demo
         </a>
 
         <a class="btn" href="mailto:hello@morphyhair.com">
@@ -245,6 +268,7 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="wrap">
     © <span id="year"></span> MorphyHair — Built for textured hair.
@@ -257,3 +281,4 @@
 
 </body>
 </html>
+
