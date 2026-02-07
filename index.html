@@ -3,21 +3,23 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MorphyHair — Textured Hair Discovery</title>
-  <meta name="description" content="Discover textured hair inspiration, understand what works for your hair type, and join the MorphyHair waitlist." />
+  <title>MorphyHair — Everything for textured hair, in one place</title>
+  <meta name="description" content="MorphyHair brings textured hair info, tutorials, inspiration, and soft products into one platform. Join the waitlist for early access." />
 
   <style>
     :root{
       --bg: #0b1220;
       --card: rgba(255,255,255,0.06);
       --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.70);
+      --muted: rgba(255,255,255,0.72);
       --muted2: rgba(255,255,255,0.55);
       --line: rgba(255,255,255,0.12);
-      --accent: #22c55e;
-      --accent2: #a78bfa;
       --shadow: 0 20px 60px rgba(0,0,0,0.45);
       --radius: 18px;
+
+      --accent: #22c55e;
+      --accent2: #a78bfa;
+
       --max: 1100px;
       --danger: #fb7185;
     }
@@ -39,15 +41,15 @@
     a{ color: inherit; text-decoration: none; }
     .wrap{ width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
 
+    /* Topbar */
     .topbar{
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 50;
       backdrop-filter: blur(10px);
-      background: rgba(11,18,32,0.55);
+      background: rgba(11,18,32,0.60);
       border-bottom: 1px solid var(--line);
     }
-
     .topbar-inner{
       display:flex;
       align-items:center;
@@ -55,28 +57,28 @@
       padding: 14px 0;
       gap: 14px;
     }
-
     .brand{
       display:flex;
       align-items:center;
       gap: 10px;
-      font-weight: 800;
+      font-weight: 850;
+      letter-spacing: .2px;
     }
-
     .logo{
       width: 34px;
       height: 34px;
       border-radius: 12px;
-      background: linear-gradient(135deg, #a78bfa, #22c55e);
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
       box-shadow: 0 10px 25px rgba(0,0,0,0.25);
     }
 
+    /* Buttons */
     .btn{
       padding:10px 14px;
       border-radius:12px;
       border:1px solid var(--line);
       background: rgba(255,255,255,0.06);
-      font-weight:600;
+      font-weight:650;
       display:inline-flex;
       align-items:center;
       gap:8px;
@@ -84,22 +86,38 @@
       white-space: nowrap;
       transition: transform .12s ease, background .12s ease, opacity .12s ease;
     }
-
     .btn:hover{ background: rgba(255,255,255,0.10); transform: translateY(-1px); }
-
     .btn-primary{
-      background: linear-gradient(135deg, #22c55e, #a78bfa);
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
       border:none;
       color:#071016;
       box-shadow: 0 14px 35px rgba(34,197,94,0.18), 0 14px 35px rgba(167,139,250,0.10);
     }
+    .btn:disabled, .btn[aria-disabled="true"]{ opacity:.55; cursor:not-allowed; transform:none !important; }
 
-    .btn:disabled, .btn[aria-disabled="true"]{
-      opacity:.55;
-      cursor:not-allowed;
-      transform:none !important;
+    /* Layout */
+    .section{ padding: 42px 0; }
+    .card{
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      background: rgba(255,255,255,0.05);
     }
+    .muted{ color: var(--muted); }
+    .muted2{ color: var(--muted2); }
+    h1{ font-size: clamp(34px, 4.2vw, 52px); margin: 0 0 12px; }
+    h2{ font-size: 22px; margin: 0 0 10px; }
+    h3{ font-size: 16px; margin: 0 0 8px; }
+    p{ margin: 0 0 10px; }
 
+    /* Hero */
+    .hero{ padding: 54px 0 32px; }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 18px;
+      align-items:center;
+    }
     .pill{
       display:inline-flex;
       align-items:center;
@@ -110,104 +128,90 @@
       border-radius: 999px;
       color: var(--muted);
       font-size: 13px;
+      margin-bottom: 14px;
     }
-
-    .hero{ padding:50px 0; }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap:20px;
-      align-items:center;
-    }
-
-    h1{ font-size: clamp(32px,4vw,48px); margin: 0 0 12px; }
-    .sub{ color:var(--muted); max-width:60ch; margin: 0 0 18px; }
-
     .hero-actions{
       display:flex;
-      gap:12px;
-      flex-wrap:wrap;
+      gap: 12px;
+      flex-wrap: wrap;
       align-items:center;
+      margin-top: 14px;
     }
-
     .image-card{
-      border-radius:20px;
+      border-radius: 20px;
       overflow:hidden;
-      border:1px solid var(--line);
+      border: 1px solid var(--line);
       background: rgba(255,255,255,0.04);
       box-shadow: var(--shadow);
     }
+    .image-card img{ width:100%; display:block; }
 
-    .image-card img{
-      width:100%;
-      display:block;
-    }
-
-    .section{ padding:40px 0; }
-
-    .grid3{
-      display:grid;
-      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-      gap:14px;
-    }
-
-    .card{
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:16px;
-      background: rgba(255,255,255,0.05);
-    }
-
-    .kicker{
-      color: var(--muted2);
-      font-size: 13px;
-      margin: 10px 0 0;
-    }
-
+    /* Problem */
     .two-col{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap:14px;
+      gap: 14px;
       align-items: start;
     }
-
-    .card h2{ margin: 0 0 10px; }
-    .card h3{ margin: 0 0 8px; }
-    .card p{ margin: 0 0 10px; color: var(--muted); }
-
-    .problem-list{
-      margin: 10px 0 0;
-      padding-left: 18px;
-      color: var(--muted);
+    .icon-list{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 10px;
     }
-    .problem-list li{ margin: 8px 0; }
-
-    details{
-      border: 1px solid var(--line);
+    .icon-row{
+      display:flex;
+      align-items:flex-start;
+      gap: 10px;
+      padding: 12px;
       border-radius: 14px;
-      background: rgba(255,255,255,0.04);
-      padding: 12px 12px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
     }
-    details + details{ margin-top: 10px; }
-    summary{
-      cursor:pointer;
-      font-weight: 700;
-      list-style: none;
+    .icon{
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      flex: 0 0 auto;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
       display:flex;
       align-items:center;
-      justify-content:space-between;
-      gap:10px;
+      justify-content:center;
+      font-size: 16px;
     }
-    summary::-webkit-details-marker{ display:none; }
-    .summary-right{ color: var(--muted2); font-size: 12px; font-weight: 600; }
-    .details-body{ padding-top: 10px; color: var(--muted); }
 
+    /* Fix tiles */
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .tile{
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(255,255,255,0.05);
+    }
+    .tile p{ margin: 0; color: var(--muted); }
+
+    /* Demo */
+    video{
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,0.25);
+      display:block;
+    }
+
+    /* Form */
     .form-grid{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap:12px;
+      gap: 12px;
+      margin-top: 12px;
     }
-    .field{ display:flex; flex-direction:column; gap:8px; }
+    .field{ display:flex; flex-direction:column; gap: 8px; }
     label{ font-size: 13px; color: var(--muted2); }
     input, select{
       width:100%;
@@ -216,7 +220,7 @@
       background: rgba(255,255,255,0.05);
       color: var(--text);
       padding: 10px 12px;
-      outline:none;
+      outline: none;
     }
     input::placeholder{ color: rgba(255,255,255,0.40); }
     .full{ grid-column: 1 / -1; }
@@ -228,14 +232,14 @@
       padding: 12px;
       color: var(--muted);
       font-size: 13px;
+      margin-top: 12px;
+      display:none;
     }
-
     .success{
       border-color: rgba(34,197,94,0.35);
       background: rgba(34,197,94,0.06);
       color: rgba(255,255,255,0.88);
     }
-
     .error{
       border-color: rgba(251,113,133,0.35);
       background: rgba(251,113,133,0.06);
@@ -243,17 +247,18 @@
     }
 
     footer{
-      border-top:1px solid var(--line);
-      padding:24px 0;
-      color:var(--muted2);
-      font-size:13px;
+      border-top: 1px solid var(--line);
+      padding: 24px 0;
+      color: var(--muted2);
+      font-size: 13px;
       margin-top: 10px;
     }
 
-    @media(max-width:900px){
-      .hero-grid{ grid-template-columns:1fr; }
-      .two-col{ grid-template-columns:1fr; }
-      .form-grid{ grid-template-columns:1fr; }
+    @media(max-width: 920px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .two-col{ grid-template-columns: 1fr; }
+      .grid3{ grid-template-columns: 1fr; }
+      .form-grid{ grid-template-columns: 1fr; }
       .full{ grid-column: auto; }
     }
   </style>
@@ -261,17 +266,17 @@
 
 <body>
 
-<!-- ✅ Single source of truth: PUBLIC QR link (full UUID groupId) -->
+<!-- ✅ Single source of truth: app demo QR URL -->
 <script>
   window.__MORPHY_EXPO_QR_URL__ =
     "https://qr.expo.dev/eas-update?projectId=f2c37089-81c4-4d70-99e9-aa05597e0051&groupId=f04c7020-98ce-46cc-a98d-515116d290d9";
 </script>
 
-<!-- ✅ Minimal analytics + event tracking (no external dependencies) -->
+<!-- ✅ Minimal event tracking (no dependencies). Replace /api/* endpoints later if you want. -->
 <script>
   (function(){
     const KEY = "morphy_anon_id";
-    function getAnonId(){
+    function anonId(){
       try{
         let id = localStorage.getItem(KEY);
         if(!id){
@@ -280,19 +285,16 @@
           localStorage.setItem(KEY, id);
         }
         return id;
-      }catch(e){
-        return "na";
-      }
+      }catch(e){ return "na"; }
     }
 
-    const ANON_ID = getAnonId();
-    const SESSION_ID = (crypto && crypto.randomUUID) ? crypto.randomUUID() :
+    const ANON = anonId();
+    const SESSION = (crypto && crypto.randomUUID) ? crypto.randomUUID() :
       ("s_" + Math.random().toString(16).slice(2) + Date.now().toString(16));
-
-    const PAGE_ENTER_MS = Date.now();
+    const ENTER_MS = Date.now();
     let maxScroll = 0;
 
-    function getUTM(){
+    function utm(){
       const p = new URLSearchParams(location.search);
       const keys = ["utm_source","utm_medium","utm_campaign","utm_content","utm_term"];
       const out = {};
@@ -302,8 +304,6 @@
 
     function postJSON(url, payload){
       try{
-        // Non-blocking; replace /api/track with your endpoint later
-        // If you don't have an endpoint yet, this safely no-ops.
         fetch(url, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -313,54 +313,42 @@
       }catch(e){}
     }
 
-    window.morphyTrack = function(eventName, props){
+    window.morphyTrack = function(event, props){
       const payload = {
-        event: eventName,
+        event,
         ts: new Date().toISOString(),
         url: location.href,
         path: location.pathname,
         referrer: document.referrer || null,
-        anon_id: ANON_ID,
-        session_id: SESSION_ID,
-        ...getUTM(),
+        anon_id: ANON,
+        session_id: SESSION,
+        ...utm(),
         props: props || {}
       };
-
-      // ✅ Console for dev visibility
-      // Remove if you want it fully silent.
       console.log("[morphyTrack]", payload);
-
-      // ✅ Hook: send to your backend later (recommended)
-      // Example: /api/track -> PostHog/GA4 server-side/etc.
       postJSON("/api/track", payload);
     };
 
-    // Page view (Landing page visits + uniques via anon_id)
-    window.addEventListener("DOMContentLoaded", () => {
-      window.morphyTrack("lp_view", { page: "landing" });
-    });
+    window.addEventListener("DOMContentLoaded", () => window.morphyTrack("lp_view", { page: "landing_v2_simple" }));
 
-    // Scroll depth
     window.addEventListener("scroll", () => {
       const doc = document.documentElement;
-      const scrollTop = doc.scrollTop || document.body.scrollTop;
-      const scrollHeight = (doc.scrollHeight || document.body.scrollHeight) - doc.clientHeight;
-      const pct = scrollHeight > 0 ? Math.round((scrollTop / scrollHeight) * 100) : 0;
+      const st = doc.scrollTop || document.body.scrollTop;
+      const sh = (doc.scrollHeight || document.body.scrollHeight) - doc.clientHeight;
+      const pct = sh > 0 ? Math.round((st / sh) * 100) : 0;
       if(pct > maxScroll) maxScroll = pct;
     }, { passive: true });
 
-    // Time on page
-    function sendTimeOnPage(){
-      const seconds = Math.round((Date.now() - PAGE_ENTER_MS) / 1000);
+    function sendTime(){
+      const seconds = Math.round((Date.now() - ENTER_MS)/1000);
       window.morphyTrack("lp_time_on_page", { seconds, max_scroll_pct: maxScroll });
     }
-    window.addEventListener("beforeunload", sendTimeOnPage);
-    document.addEventListener("visibilitychange", () => {
-      if(document.visibilityState === "hidden") sendTimeOnPage();
-    });
+    window.addEventListener("beforeunload", sendTime);
+    document.addEventListener("visibilitychange", () => { if(document.visibilityState === "hidden") sendTime(); });
   })();
 </script>
 
+<!-- Topbar -->
 <div class="topbar">
   <div class="wrap topbar-inner">
     <div class="brand">
@@ -369,192 +357,168 @@
     </div>
 
     <div style="display:flex; gap:10px; align-items:center;">
-      <a class="btn" href="#waitlist" data-track="nav_join_beta">Join Waitlist</a>
-      <a class="btn" href="#demo" data-track="nav_view_demo">View Demo</a>
-      <a
-        class="btn btn-primary"
-        href="#"
-        id="openAppBtnTop"
-        data-track="nav_open_app_qr"
-      >
-        Open App (QR)
-      </a>
+      <a class="btn" href="#demo" data-track="nav_watch_demo">Watch demo</a>
+      <a class="btn btn-primary" href="#waitlist" data-track="nav_join_waitlist">Join waitlist</a>
     </div>
   </div>
 </div>
 
+<!-- HERO -->
 <header class="hero">
   <div class="wrap hero-grid">
-
     <div>
-      <div class="pill" id="trafficPill">Built for textured hair • Early access</div>
+      <div class="pill">Early access • Built for textured hair</div>
 
-      <h1>Stop guessing what works for your hair. Discover styles that actually match.</h1>
-      <p class="sub">
-        MorphyHair is building a textured hair discovery experience: find looks you love, learn what they require,
-        and save your favorites. Join the waitlist to help shape the MVP.
+      <h1>Everything for textured hair — in one place.</h1>
+
+      <p class="muted" style="max-width: 62ch;">
+        MorphyHair brings together textured hair <strong>information</strong>, <strong>tutorials</strong>,
+        <strong>inspiration</strong>, and <strong>soft products</strong>— so you can find what you need fast.
       </p>
 
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#waitlist" id="ctaJoinWaitlist" data-track="cta_join_waitlist_hero">
-          Join Waitlist
-        </a>
-
-        <a class="btn" href="#demo" id="ctaViewDemo" data-track="cta_view_demo_hero">
-          Watch Demo
-        </a>
-
-        <a class="btn" href="#features" data-track="cta_features_hero">How it Works</a>
+        <a class="btn btn-primary" href="#waitlist" data-track="cta_join_waitlist_hero">Join waitlist</a>
+        <a class="btn" href="#demo" data-track="cta_watch_demo_hero">Watch demo</a>
+        <a class="btn" href="#" id="openAppHero" data-track="cta_open_app_qr_hero">Open app demo (QR)</a>
       </div>
 
-      <p class="kicker">
-        Investors + users: this page measures interest (views, time, demo plays), and what people want in the MVP.
+      <p class="muted2" style="font-size:13px; margin-top: 10px;">
+        We’re validating the MVP now: what people want, what they click, and what converts to signups.
       </p>
     </div>
 
     <div class="image-card">
-      <img src="IMG_9192 2.PNG" alt="MorphyHair preview">
+      <img src="IMG_9192 2.PNG" alt="MorphyHair product preview">
     </div>
-
   </div>
 </header>
 
-<!-- Problem / why now -->
+<!-- PROBLEM -->
 <section class="section" id="problem">
   <div class="wrap">
     <div class="two-col">
       <div class="card">
         <h2>The problem</h2>
-        <ul class="problem-list">
-          <li>Textured hair inspo is everywhere — but it’s hard to know what works for <em>your</em> hair type.</li>
-          <li>Style photos don’t tell you the real requirements (hair needed, time, maintenance, skill level).</li>
-          <li>Most discovery tools aren’t built around textured hair realities (protective styles, installs, braids, wigs).</li>
-        </ul>
+        <p class="muted">
+          There isn’t one platform that brings together textured hair <strong>information</strong>,
+          <strong>tutorials</strong>, <strong>inspiration</strong>, and <strong>shopping</strong>.
+        </p>
+
+        <div class="icon-list" aria-label="Where people have to go today">
+          <div class="icon-row">
+            <div class="icon" aria-hidden="true">▶</div>
+            <div>
+              <strong>Tutorials</strong>
+              <div class="muted2" style="font-size:13px; margin-top:3px;">TikTok / YouTube / IG Reels</div>
+            </div>
+          </div>
+
+          <div class="icon-row">
+            <div class="icon" aria-hidden="true">✦</div>
+            <div>
+              <strong>Inspiration</strong>
+              <div class="muted2" style="font-size:13px; margin-top:3px;">Instagram / Pinterest</div>
+            </div>
+          </div>
+
+          <div class="icon-row">
+            <div class="icon" aria-hidden="true">i</div>
+            <div>
+              <strong>Information</strong>
+              <div class="muted2" style="font-size:13px; margin-top:3px;">Blogs / forums / random posts</div>
+            </div>
+          </div>
+
+          <div class="icon-row">
+            <div class="icon" aria-hidden="true">🛍</div>
+            <div>
+              <strong>Products</strong>
+              <div class="muted2" style="font-size:13px; margin-top:3px;">Different shops, no guidance</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="muted" style="margin-top: 12px;">
+          Result: people waste time searching and still don’t know what works for their hair type.
+        </p>
       </div>
 
       <div class="card">
-        <h2>What we’re building</h2>
-        <p>
-          A style discovery + saving experience designed for textured hair:
-          explore grids of looks, filter by vibe, and learn what each style actually needs.
+        <h2>The fix</h2>
+        <p class="muted">
+          MorphyHair is a platform for textured hair that lets people browse a large variety of:
+          <strong>info</strong>, <strong>tutorials</strong>, <strong>inspiration</strong>, and <strong>soft products</strong>.
         </p>
-        <p class="kicker">
-          (Salon discovery and marketplace features can come later — right now we’re validating discovery + saving.)
+        <p class="muted2" style="font-size:13px; margin-top: 10px;">
+          MVP focus: prove demand for discovery + education + saving (what people click + what they want most).
         </p>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top: 12px;">
+          <a class="btn btn-primary" href="#waitlist" data-track="cta_join_waitlist_problem">Join waitlist</a>
+          <a class="btn" href="#demo" data-track="cta_watch_demo_problem">Watch demo</a>
+          <a class="btn" href="#" id="openAppProblem" data-track="cta_open_app_qr_problem">Open app demo (QR)</a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Demo video section (short demo + tracking plays) -->
+<!-- SOLUTION TILES -->
+<section class="section" id="solution">
+  <div class="wrap">
+    <div class="card" style="margin-bottom:14px;">
+      <h2>What you’ll do in MorphyHair</h2>
+      <p class="muted">Three simple pillars. No fluff.</p>
+    </div>
+
+    <div class="grid3">
+      <div class="tile">
+        <h3>Learn</h3>
+        <p>Textured hair information + tutorials organized by hair type and goal.</p>
+      </div>
+      <div class="tile">
+        <h3>Get inspired</h3>
+        <p>Browse a big style library and save looks you love.</p>
+      </div>
+      <div class="tile">
+        <h3>Buy</h3>
+        <p>Soft products that match the style and tutorial—without guessing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
 <section class="section" id="demo">
   <div class="wrap">
     <div class="card">
       <h2>Short demo</h2>
-      <p>Quick walkthrough of the product direction. (Tracked: plays + completion.)</p>
+      <p class="muted">Quick walkthrough. (Tracked: plays + completion.)</p>
 
       <!-- Replace demo.mp4 with your real short demo file or hosted url -->
-      <video
-        id="demoVideo"
-        controls
-        playsinline
-        preload="metadata"
-        style="width:100%; border-radius:14px; border:1px solid var(--line); background: rgba(0,0,0,0.25);"
-        poster=""
-      >
+      <video id="demoVideo" controls playsinline preload="metadata">
         <source src="demo.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
       <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:12px;">
-        <a class="btn btn-primary" href="#" id="openAppBtnDemo" data-track="demo_open_app_qr">
-          Open Live App Demo (QR)
-        </a>
-        <a class="btn" href="#waitlist" data-track="demo_join_waitlist">Join Waitlist</a>
+        <a class="btn btn-primary" href="#waitlist" data-track="cta_join_waitlist_demo">Join waitlist</a>
+        <a class="btn" href="#" id="openAppDemo" data-track="cta_open_app_qr_demo">Open app demo (QR)</a>
       </div>
 
-      <p class="kicker">Tip: If you don’t have a hosted video yet, keep <code>demo.mp4</code> in the same folder as this HTML file.</p>
+      <p class="muted2" style="font-size:13px; margin-top: 10px;">
+        Tip: If you don’t have a hosted video yet, keep <code>demo.mp4</code> in the same folder as this HTML file.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- Features with dropdown explanation cards (tracked) -->
-<section class="section" id="features">
-  <div class="wrap">
-    <div class="card" style="margin-bottom:14px;">
-      <h2>How it works</h2>
-      <p>Tap into the parts you care about. (Tracked: explanation card clicks.)</p>
-    </div>
-
-    <details data-track-open="explain_style_discovery">
-      <summary>
-        <span>Style discovery grid (MVP)</span>
-        <span class="summary-right">Tap to expand</span>
-      </summary>
-      <div class="details-body">
-        Browse a grid of textured-hair looks and quickly filter by category and vibe.
-        We’ll use this to learn what styles people actually want.
-      </div>
-    </details>
-
-    <details data-track-open="explain_filters">
-      <summary>
-        <span>Filters that match your hair reality</span>
-        <span class="summary-right">Tap to expand</span>
-      </summary>
-      <div class="details-body">
-        Track which filters get clicked most — that becomes your feature priority list.
-      </div>
-    </details>
-
-    <details data-track-open="explain_save_like">
-      <summary>
-        <span>Save + like what you love</span>
-        <span class="summary-right">Tap to expand</span>
-      </summary>
-      <div class="details-body">
-        Likes and saves tell us what resonates: categories, lengths, colors, and protective styles.
-      </div>
-    </details>
-
-    <details data-track-open="explain_hair_matching">
-      <summary>
-        <span>Hair matching (later)</span>
-        <span class="summary-right">Tap to expand</span>
-      </summary>
-      <div class="details-body">
-        Once discovery is validated, we can map styles to hair requirements (bundles, closure types, density, length).
-      </div>
-    </details>
-  </div>
-</section>
-
-<!-- Screenshots (carousel-like simple strip + click tracking) -->
-<section class="section" id="screenshots">
-  <div class="wrap">
-    <div class="card">
-      <h2>Product snapshots</h2>
-      <p>Early MVP direction. (Tracked: screenshot clicks.)</p>
-
-      <div style="display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:12px;">
-        <a href="IMG_9192 2.PNG" target="_blank" rel="noopener" data-track="screenshot_click_1"
-           style="border:1px solid var(--line); border-radius:14px; overflow:hidden; background: rgba(255,255,255,0.03);">
-          <img src="IMG_9192 2.PNG" alt="Screenshot 1" style="width:100%; display:block;">
-        </a>
-        <!-- Add more screenshots if you have them:
-        <a href="s2.png" target="_blank" rel="noopener" data-track="screenshot_click_2">...</a>
-        -->
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Waitlist + "Form — who they are" + after submit show demo + landing links -->
+<!-- WAITLIST -->
 <section class="section" id="waitlist">
   <div class="wrap">
     <div class="card">
-      <h2>Join the MorphyHair waitlist</h2>
-      <p>Help shape the MVP. This takes 15 seconds.</p>
+      <h2>Join early access</h2>
+      <p class="muted">Help shape the MVP. This takes 15 seconds.</p>
 
       <form id="waitlistForm" novalidate>
         <div class="form-grid">
@@ -578,11 +542,11 @@
           </div>
 
           <div class="field">
-            <label for="role">Are you a stylist?</label>
-            <select id="role" name="role" required>
+            <label for="stylist">Are you a stylist?</label>
+            <select id="stylist" name="stylist" required>
               <option value="" selected disabled>Select one</option>
-              <option value="no">No</option>
               <option value="yes">Yes</option>
+              <option value="no">No</option>
             </select>
           </div>
 
@@ -615,39 +579,29 @@
               <option value="5">5 — I need this ASAP</option>
             </select>
           </div>
-
-          <div class="field full">
-            <label for="note">Optional: What do you want MorphyHair to help you with most?</label>
-            <input id="note" name="note" type="text" placeholder="E.g., protective styles, wig install inspo, finding styles for my face shape…" />
-          </div>
         </div>
 
         <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:14px; align-items:center;">
-          <button class="btn btn-primary" type="submit" id="submitBtn" data-track="waitlist_submit_click">
-            Join Waitlist
-          </button>
-          <a class="btn" href="#" id="openAppBtnWaitlist" data-track="waitlist_open_app_qr">Open Live Demo (QR)</a>
-          <a class="btn" href="mailto:hello@morphyhair.com" data-track="waitlist_contact">Contact</a>
+          <button class="btn btn-primary" type="submit" id="submitBtn" data-track="waitlist_submit_click">Join waitlist</button>
+          <a class="btn" href="#" id="openAppWaitlist" data-track="cta_open_app_qr_waitlist">Open app demo (QR)</a>
         </div>
 
-        <div id="formMsg" class="notice" style="margin-top:12px; display:none;"></div>
+        <div id="formMsg" class="notice"></div>
 
-        <p class="kicker">
-          We track anonymous engagement (views/time/demo plays) and form interest to prioritize the MVP.
-          Your email is only for early access updates.
+        <p class="muted2" style="font-size:13px; margin-top: 10px;">
+          We track anonymous engagement (views, time, demo plays) and form interest to prioritize the MVP.
         </p>
       </form>
 
-      <!-- After-submit area (matches your roadmap: after submit show demo app + landing links) -->
+      <!-- After submit -->
       <div id="afterSubmit" style="display:none; margin-top:16px;">
-        <div class="notice success">
-          <strong>You’re on the list.</strong> Want to explore now?
+        <div class="notice success" style="display:block;">
+          <strong>You’re on the waitlist.</strong> Want to explore now?
         </div>
 
         <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:12px;">
-          <a class="btn btn-primary" href="#" id="afterOpenApp" data-track="after_submit_open_app_qr">Open Live App Demo (QR)</a>
-          <a class="btn" href="#demo" data-track="after_submit_watch_demo">Watch Demo</a>
-          <a class="btn" href="#features" data-track="after_submit_features">See How It Works</a>
+          <a class="btn btn-primary" href="#" id="afterOpenApp" data-track="after_submit_open_app_qr">Open app demo (QR)</a>
+          <a class="btn" href="#demo" data-track="after_submit_watch_demo">Watch demo</a>
         </div>
       </div>
     </div>
@@ -658,13 +612,9 @@
   <div class="wrap">
     © <span id="year"></span> MorphyHair — Built for textured hair.
     <span style="display:inline-block; margin-left:10px;">
-      <a href="#" id="privacyLink" style="color:inherit; text-decoration:underline; text-decoration-color: rgba(255,255,255,0.25);" data-track="footer_privacy">
-        Privacy
-      </a>
+      <a href="#" id="privacyLink" style="color:inherit; text-decoration:underline; text-decoration-color: rgba(255,255,255,0.25);" data-track="footer_privacy">Privacy</a>
       <span style="opacity:.6;">•</span>
-      <a href="#" id="termsLink" style="color:inherit; text-decoration:underline; text-decoration-color: rgba(255,255,255,0.25);" data-track="footer_terms">
-        Terms
-      </a>
+      <a href="#" id="termsLink" style="color:inherit; text-decoration:underline; text-decoration-color: rgba(255,255,255,0.25);" data-track="footer_terms">Terms</a>
     </span>
   </div>
 </footer>
@@ -673,10 +623,13 @@
   // Year
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  // Always use the single source of truth for QR URL
-  const QR_URL = window.__MORPHY_EXPO_QR_URL__;
+  // Wire tracking clicks
+  document.querySelectorAll("[data-track]").forEach(el => {
+    el.addEventListener("click", () => window.morphyTrack("lp_click", { key: el.getAttribute("data-track") }));
+  });
 
-  // Wire QR buttons
+  // QR wiring (single source of truth)
+  const QR_URL = window.__MORPHY_EXPO_QR_URL__;
   function wireQR(id){
     const el = document.getElementById(id);
     if(!el) return;
@@ -685,29 +638,15 @@
     el.setAttribute("rel","noopener");
     el.addEventListener("click", () => window.morphyTrack("app_demo_click", { placement: id }));
   }
-  ["openAppBtnTop","openAppBtnDemo","openAppBtnWaitlist","afterOpenApp"].forEach(wireQR);
+  ["openAppHero","openAppProblem","openAppDemo","openAppWaitlist","afterOpenApp"].forEach(wireQR);
 
-  // Track nav + CTA clicks
-  document.querySelectorAll("[data-track]").forEach(el => {
-    el.addEventListener("click", () => window.morphyTrack("lp_click", { key: el.getAttribute("data-track") }));
-  });
-
-  // Track dropdown explanation cards (open events)
-  document.querySelectorAll("details[data-track-open]").forEach(d => {
-    d.addEventListener("toggle", () => {
-      if(d.open){
-        window.morphyTrack("dropdown_card_open", { key: d.getAttribute("data-track-open") });
-      }
-    });
-  });
-
-  // Demo video tracking (plays + completion)
+  // Demo video tracking
   (function(){
     const v = document.getElementById("demoVideo");
     if(!v) return;
 
     let started = false;
-    let lastPctBucket = 0;
+    let lastBucket = 0;
 
     v.addEventListener("play", () => {
       if(!started){
@@ -719,12 +658,10 @@
     v.addEventListener("timeupdate", () => {
       if(!v.duration || !isFinite(v.duration)) return;
       const pct = Math.floor((v.currentTime / v.duration) * 100);
-
-      // bucketed checkpoints: 25/50/75/100
       const buckets = [25,50,75,100];
       for(const b of buckets){
-        if(pct >= b && lastPctBucket < b){
-          lastPctBucket = b;
+        if(pct >= b && lastBucket < b){
+          lastBucket = b;
           window.morphyTrack("demo_video_progress", { pct: b });
         }
       }
@@ -735,95 +672,85 @@
     });
   })();
 
-  // Waitlist form handling (tracks: submit click, submit success, submit error)
+  // Waitlist form (tracks who they are + interest)
   (function(){
     const form = document.getElementById("waitlistForm");
     const msg = document.getElementById("formMsg");
     const after = document.getElementById("afterSubmit");
     const submitBtn = document.getElementById("submitBtn");
 
-    function showMsg(type, html){
+    function showMsg(type, text){
       msg.className = "notice " + (type || "");
-      msg.innerHTML = html;
+      msg.textContent = text;
       msg.style.display = "block";
     }
-
     function hideMsg(){ msg.style.display = "none"; }
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       hideMsg();
 
-      const data = {
+      const payload = {
         email: (document.getElementById("email").value || "").trim(),
         hairType: document.getElementById("hairType").value,
+        stylist: document.getElementById("stylist").value,
         creativeInspo: document.getElementById("creativeInspo").value,
         tutorialWatcher: document.getElementById("tutorialWatcher").value,
-        stylist: document.getElementById("role").value,
-        interestLevel: document.getElementById("interestLevel").value,
-        note: (document.getElementById("note").value || "").trim(),
+        interestLevel: document.getElementById("interestLevel").value
       };
 
-      // Basic validation
-      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email);
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email);
       if(!emailOk){
         window.morphyTrack("form_submit_error", { reason: "invalid_email" });
         showMsg("error", "Please enter a valid email address.");
         return;
       }
-      const requiredKeys = ["hairType","creativeInspo","tutorialWatcher","stylist","interestLevel"];
-      for(const k of requiredKeys){
-        if(!data[k]){
+
+      const required = ["hairType","stylist","creativeInspo","tutorialWatcher","interestLevel"];
+      for(const k of required){
+        if(!payload[k]){
           window.morphyTrack("form_submit_error", { reason: "missing_field", field: k });
           showMsg("error", "Please complete all required fields.");
           return;
         }
       }
 
-      // Track submit attempt with responses (Form analytics — who they are)
-      window.morphyTrack("form_submit_attempt", { ...data, email: undefined });
+      // Track form attempt (exclude email from analytics payload)
+      window.morphyTrack("form_submit_attempt", { ...payload, email: undefined });
 
-      // Disable button while submitting
-      submitBtn.setAttribute("aria-disabled","true");
       submitBtn.disabled = true;
+      submitBtn.setAttribute("aria-disabled","true");
 
       try{
-        // ✅ Replace with your real endpoint. Keeping it optional to avoid breaking the page.
-        // If no backend exists, we still treat it as "success" locally and show the after-submit demo links.
+        // Optional server save (safe fallback if you don't have backend yet)
         const ENDPOINT = "/api/waitlist";
-
-        let submittedToServer = false;
+        let serverSaved = false;
 
         try{
           const res = await fetch(ENDPOINT, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
+            body: JSON.stringify(payload)
           });
-          if(res.ok) submittedToServer = true;
-        }catch(err){
-          // No backend yet — safe fallback
-        }
+          if(res.ok) serverSaved = true;
+        }catch(_e){}
 
         window.morphyTrack("waitlist_signup", {
-          hairType: data.hairType,
-          creativeInspo: data.creativeInspo,
-          tutorialWatcher: data.tutorialWatcher,
-          stylist: data.stylist,
-          interestLevel: data.interestLevel,
-          server_saved: submittedToServer
+          hairType: payload.hairType,
+          stylist: payload.stylist,
+          creativeInspo: payload.creativeInspo,
+          tutorialWatcher: payload.tutorialWatcher,
+          interestLevel: payload.interestLevel,
+          server_saved: serverSaved
         });
 
-        showMsg("success", "✅ You’re on the waitlist. Scroll down for the demo links.");
+        showMsg("success", "✅ You’re on the waitlist.");
         after.style.display = "block";
-        form.scrollIntoView({ behavior: "smooth", block: "start" });
+        after.scrollIntoView({ behavior: "smooth", block: "start" });
 
-        // Optional: clear fields except email so you keep it visible
-        // form.reset();
-
-      }catch(err){
+      }catch(_err){
         window.morphyTrack("form_submit_error", { reason: "unknown" });
-        showMsg("error", "Something went wrong. Please try again or email hello@morphyhair.com.");
+        showMsg("error", "Something went wrong. Please try again.");
       }finally{
         submitBtn.disabled = false;
         submitBtn.removeAttribute("aria-disabled");
@@ -831,17 +758,16 @@
     });
   })();
 
-  // Optional Privacy / Terms (placeholders; keep for investor readiness)
+  // Privacy / Terms placeholders
   document.getElementById("privacyLink").addEventListener("click", (e) => {
     e.preventDefault();
     window.morphyTrack("legal_click", { doc: "privacy" });
-    alert("Privacy Policy placeholder — add your hosted policy URL here.");
+    alert("Privacy Policy placeholder — add your hosted URL here.");
   });
-
   document.getElementById("termsLink").addEventListener("click", (e) => {
     e.preventDefault();
     window.morphyTrack("legal_click", { doc: "terms" });
-    alert("Terms placeholder — add your hosted terms URL here.");
+    alert("Terms placeholder — add your hosted URL here.");
   });
 </script>
 
