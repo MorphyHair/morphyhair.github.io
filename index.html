@@ -1,251 +1,125 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MorphyHair — Textured Hair, in one place</title>
-  <meta name="description" content="MorphyHair brings textured hair info, tutorials, inspiration, and products into one simple platform." />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MorphyHair</title>
 
-  <style>
-    :root{
-      --bg:#0b0d12;
-      --card:#121622;
-      --text:#f5f6f8;
-      --muted:#aab2c2;
-      --line:rgba(255,255,255,.10);
-      --btn:#f5f6f8;
-      --btnText:#0b0d12;
-      --radius:16px;
-      --max:980px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.4;
-    }
-    a{color:inherit;text-decoration:none}
-    .wrap{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+<style>
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  background:#0f1115;
+  color:#f5f6f8;
+}
 
-    .top{
-      position:sticky;top:0;z-index:10;
-      background:rgba(11,13,18,.9);
-      border-bottom:1px solid var(--line);
-      backdrop-filter:blur(8px);
-    }
-    .top .inner{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:14px 0;gap:12px;
-    }
-    .brand{font-weight:800;letter-spacing:.2px}
-    .nav{display:flex;gap:10px;align-items:center}
+.wrap{max-width:900px;margin:0 auto;padding:40px 20px}
+.top{
+  border-bottom:1px solid #222;
+  padding:16px 20px;
+  position:sticky;top:0;background:#0f1115;
+}
+.brand{font-weight:800}
 
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:10px 14px;border-radius:12px;
-      border:1px solid var(--line);
-      background:transparent;color:var(--text);
-      font-weight:650;
-    }
-    .btn.primary{
-      background:var(--btn);color:var(--btnText);
-      border-color:transparent;
-    }
+h1{font-size:40px;margin:0 0 10px}
+p{color:#aab2c2;margin:0}
 
-    header{padding:48px 0 22px}
-    h1{margin:0 0 10px;font-size:clamp(30px,4vw,44px);letter-spacing:-.5px}
-    .sub{margin:0;color:var(--muted);max-width:60ch}
+.btn{
+  display:inline-block;
+  padding:12px 16px;
+  border-radius:12px;
+  border:1px solid #2a2f3a;
+  color:#f5f6f8;
+  text-decoration:none;
+  margin-right:10px;
+  margin-top:14px;
+}
+.btn.primary{
+  background:#f5f6f8;
+  color:#0f1115;
+  border:none;
+}
 
-    .section{padding:26px 0}
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:18px;
-    }
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:12px;
-    }
-    .kicker{font-size:12px;color:var(--muted);margin:10px 0 0}
-    h2{margin:0 0 10px;font-size:18px}
-    ul{margin:10px 0 0;padding-left:18px;color:var(--muted)}
-    li{margin:8px 0}
+.card{
+  border:1px solid #222;
+  border-radius:16px;
+  padding:20px;
+  margin-top:24px;
+  background:#151925;
+}
 
-    form{display:grid;gap:10px;margin-top:12px}
-    input,select{
-      width:100%;
-      padding:10px 12px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:transparent;
-      color:var(--text);
-      outline:none;
-    }
-    label{font-size:12px;color:var(--muted)}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .notice{font-size:12px;color:var(--muted)}
-    footer{
-      border-top:1px solid var(--line);
-      padding:18px 0;
-      color:var(--muted);
-      font-size:12px;
-      margin-top:18px;
-    }
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:14px;
+}
 
-    @media(max-width:850px){
-      .grid{grid-template-columns:1fr}
-      .row{grid-template-columns:1fr}
-    }
-  </style>
+small{color:#7f8899}
+
+@media(max-width:700px){
+  .grid{grid-template-columns:1fr}
+}
+</style>
 </head>
 
 <body>
-  <div class="top">
-    <div class="wrap inner">
-      <div class="brand">MorphyHair</div>
-      <div class="nav">
-        <a class="btn" href="#problem">Problem</a>
-        <a class="btn" href="#fix">Fix</a>
-        <a class="btn primary" href="#waitlist">Join waitlist</a>
+
+<div class="top">
+  <div class="brand">MorphyHair</div>
+</div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <h1>Everything for textured hair — in one place.</h1>
+  <p>Info, tutorials, inspiration, and products built together.</p>
+
+  <a href="#waitlist" class="btn primary">Join waitlist</a>
+  <a href="#fix" class="btn">See fix</a>
+
+  <!-- PROBLEM -->
+  <div class="card">
+    <h2>The problem</h2>
+    <p>Textured hair help is scattered across too many places.</p>
+    <ul>
+      <li>Tutorials → TikTok / YouTube</li>
+      <li>Inspiration → Instagram / Pinterest</li>
+      <li>Information → blogs / forums</li>
+      <li>Products → separate shops</li>
+    </ul>
+    <small>You search everywhere and still lack clarity.</small>
+  </div>
+
+  <!-- FIX -->
+  <div class="card" id="fix">
+    <h2>The fix</h2>
+    <p>MorphyHair brings it together.</p>
+
+    <div class="grid">
+      <div class="card">
+        <b>Learn</b>
+        <p>Textured hair info + tutorials</p>
+      </div>
+      <div class="card">
+        <b>Inspire</b>
+        <p>Browse and save styles</p>
+      </div>
+      <div class="card">
+        <b>Buy</b>
+        <p>Soft products that match</p>
       </div>
     </div>
   </div>
 
-  <header>
-    <div class="wrap">
-      <h1>Everything for textured hair — in one place.</h1>
-      <p class="sub">Info, tutorials, inspiration, and soft products built together so you can find what you need fast.</p>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
-        <a class="btn primary" href="#waitlist">Join waitlist</a>
-        <a class="btn" href="#fix">See how it works</a>
-      </div>
-      <p class="kicker">Early access: we’re building the MVP now.</p>
-    </div>
-  </header>
+  <!-- WAITLIST -->
+  <div class="card" id="waitlist">
+    <h2>Join early access</h2>
+    <p>Design test form (no backend yet)</p>
+    <input placeholder="Email" style="padding:12px;border-radius:10px;border:1px solid #2a2f3a;background:#0f1115;color:white;width:100%;margin-top:10px">
+    <button class="btn primary" onclick="alert('Saved locally — backend later')">Join</button>
+  </div>
 
-  <section class="section" id="problem">
-    <div class="wrap">
-      <div class="card">
-        <h2>The problem</h2>
-        <p class="sub" style="margin:0">Textured hair help is scattered across too many places.</p>
-        <ul>
-          <li>Tutorials are on TikTok / YouTube</li>
-          <li>Inspiration is on Instagram / Pinterest</li>
-          <li>Information is buried in blogs and forums</li>
-          <li>Products are sold separately with no context</li>
-        </ul>
-        <p class="kicker">Result: you waste time searching and still don’t know what works for your hair.</p>
-      </div>
-    </div>
-  </section>
+</div>
 
-  <section class="section" id="fix">
-    <div class="wrap">
-      <div class="card" style="margin-bottom:12px">
-        <h2>The fix</h2>
-        <p class="sub" style="margin:0">MorphyHair brings textured hair learning, inspiration, and products into one platform.</p>
-      </div>
-
-      <div class="grid">
-        <div class="card">
-          <h2>Learn</h2>
-          <p class="sub" style="margin:0">Browse textured hair info and tutorials by hair type and goal.</p>
-        </div>
-        <div class="card">
-          <h2>Get inspired</h2>
-          <p class="sub" style="margin:0">Explore styles and save what you love for later.</p>
-        </div>
-        <div class="card">
-          <h2>Buy</h2>
-          <p class="sub" style="margin:0">Find soft products that match the style or tutorial.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="waitlist">
-    <div class="wrap">
-      <div class="card">
-        <h2>Join early access</h2>
-        <p class="sub" style="margin:0">Help shape the MVP. Quick form — no spam.</p>
-
-        <form id="waitlistForm">
-          <div>
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="you@example.com" required />
-          </div>
-
-          <div class="row">
-            <div>
-              <label for="hairType">Hair type</label>
-              <select id="hairType" name="hairType" required>
-                <option value="" selected disabled>Select</option>
-                <option>Type 2 (2a–2c)</option>
-                <option>Type 3 (3a–3c)</option>
-                <option>Type 4 (4a–4c)</option>
-                <option>Locs</option>
-                <option>Relaxed / chemically treated</option>
-                <option>Transitioning</option>
-                <option>Other / not sure</option>
-              </select>
-            </div>
-            <div>
-              <label for="stylist">Are you a stylist?</label>
-              <select id="stylist" name="stylist" required>
-                <option value="" selected disabled>Select</option>
-                <option>No</option>
-                <option>Yes</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="row">
-            <div>
-              <label for="tutorials">Do you watch hair tutorials?</label>
-              <select id="tutorials" name="tutorials" required>
-                <option value="" selected disabled>Select</option>
-                <option>Yes</option>
-                <option>No</option>
-              </select>
-            </div>
-            <div>
-              <label for="inspo">Do you like creative hair inspo?</label>
-              <select id="inspo" name="inspo" required>
-                <option value="" selected disabled>Select</option>
-                <option>Yes</option>
-                <option>No</option>
-              </select>
-            </div>
-          </div>
-
-          <button class="btn primary" type="submit">Join waitlist</button>
-          <div class="notice" id="msg" style="display:none"></div>
-        </form>
-
-        <p class="kicker">Next: we’ll add the demo section + tracking once the layout feels right.</p>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="wrap">© <span id="year"></span> MorphyHair</div>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Lightweight placeholder submit (no backend yet)
-    const form = document.getElementById("waitlistForm");
-    const msg = document.getElementById("msg");
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      msg.style.display = "block";
-      msg.textContent = "✅ You're on the list. (Form wiring comes next.)";
-    });
-  </script>
 </body>
 </html>
