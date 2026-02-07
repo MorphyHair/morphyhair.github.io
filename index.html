@@ -3,774 +3,178 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MorphyHair — Everything for textured hair, in one place</title>
-  <meta name="description" content="MorphyHair brings textured hair info, tutorials, inspiration, and soft products into one platform. Join the waitlist for early access." />
+  <title>MorphyHair — Textured Hair, In One Place</title>
+  <meta name="description" content="MorphyHair brings textured hair info, tutorials, inspiration, and soft products into one platform." />
 
   <style>
     :root{
-      --bg: #0b1220;
-      --card: rgba(255,255,255,0.06);
-      --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.72);
-      --muted2: rgba(255,255,255,0.55);
-      --line: rgba(255,255,255,0.12);
-      --shadow: 0 20px 60px rgba(0,0,0,0.45);
-      --radius: 18px;
-
-      --accent: #22c55e;
-      --accent2: #a78bfa;
-
-      --max: 1100px;
-      --danger: #fb7185;
+      --bg:#0b1220; --card:rgba(255,255,255,.06); --line:rgba(255,255,255,.12);
+      --text:rgba(255,255,255,.92); --muted:rgba(255,255,255,.70);
+      --shadow:0 20px 60px rgba(0,0,0,.45); --r:18px; --max:1080px;
     }
-
-    *{ box-sizing: border-box; }
-    html,body{ height:100%; }
+    *{box-sizing:border-box} html,body{height:100%}
     body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      margin:0; color:var(--text); line-height:1.35;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
       background:
-        radial-gradient(1100px 500px at 15% 0%, rgba(167,139,250,0.20), transparent 55%),
-        radial-gradient(900px 500px at 85% 10%, rgba(34,197,94,0.18), transparent 50%),
-        radial-gradient(700px 700px at 50% 100%, rgba(59,130,246,0.12), transparent 60%),
+        radial-gradient(900px 450px at 15% 0%, rgba(167,139,250,.18), transparent 55%),
+        radial-gradient(800px 450px at 85% 10%, rgba(34,197,94,.14), transparent 55%),
         var(--bg);
-      color: var(--text);
-      line-height: 1.35;
     }
-
-    a{ color: inherit; text-decoration: none; }
-    .wrap{ width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
-
-    /* Topbar */
-    .topbar{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(10px);
-      background: rgba(11,18,32,0.60);
-      border-bottom: 1px solid var(--line);
-    }
-    .topbar-inner{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 14px 0;
-      gap: 14px;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      font-weight: 850;
-      letter-spacing: .2px;
-    }
-    .logo{
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--accent2), var(--accent));
-      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-    }
-
-    /* Buttons */
+    a{color:inherit; text-decoration:none}
+    .wrap{width:min(var(--max), calc(100% - 40px)); margin:0 auto}
+    .topbar{position:sticky; top:0; z-index:10; backdrop-filter: blur(10px);
+      background:rgba(11,18,32,.55); border-bottom:1px solid var(--line);}
+    .topbar-inner{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800}
+    .logo{width:34px; height:34px; border-radius:12px; background:linear-gradient(135deg,#a78bfa,#22c55e)}
     .btn{
-      padding:10px 14px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,0.06);
-      font-weight:650;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      cursor:pointer;
-      white-space: nowrap;
-      transition: transform .12s ease, background .12s ease, opacity .12s ease;
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding:10px 14px; border-radius:12px; border:1px solid var(--line);
+      background:rgba(255,255,255,.06); font-weight:650; cursor:pointer;
     }
-    .btn:hover{ background: rgba(255,255,255,0.10); transform: translateY(-1px); }
-    .btn-primary{
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      border:none;
-      color:#071016;
-      box-shadow: 0 14px 35px rgba(34,197,94,0.18), 0 14px 35px rgba(167,139,250,0.10);
-    }
-    .btn:disabled, .btn[aria-disabled="true"]{ opacity:.55; cursor:not-allowed; transform:none !important; }
-
-    /* Layout */
-    .section{ padding: 42px 0; }
-    .card{
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 18px;
-      background: rgba(255,255,255,0.05);
-    }
-    .muted{ color: var(--muted); }
-    .muted2{ color: var(--muted2); }
-    h1{ font-size: clamp(34px, 4.2vw, 52px); margin: 0 0 12px; }
-    h2{ font-size: 22px; margin: 0 0 10px; }
-    h3{ font-size: 16px; margin: 0 0 8px; }
-    p{ margin: 0 0 10px; }
-
-    /* Hero */
-    .hero{ padding: 54px 0 32px; }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 18px;
-      align-items:center;
-    }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.04);
-      padding: 8px 12px;
-      border-radius: 999px;
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 14px;
-    }
-    .hero-actions{
-      display:flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items:center;
-      margin-top: 14px;
-    }
-    .image-card{
-      border-radius: 20px;
-      overflow:hidden;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.04);
-      box-shadow: var(--shadow);
-    }
-    .image-card img{ width:100%; display:block; }
-
-    /* Problem */
-    .two-col{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      align-items: start;
-    }
-    .icon-list{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    .icon-row{
-      display:flex;
-      align-items:flex-start;
-      gap: 10px;
-      padding: 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.03);
-    }
-    .icon{
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      flex: 0 0 auto;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.05);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size: 16px;
-    }
-
-    /* Fix tiles */
-    .grid3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-    .tile{
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 16px;
-      background: rgba(255,255,255,0.05);
-    }
-    .tile p{ margin: 0; color: var(--muted); }
-
-    /* Demo */
-    video{
-      width: 100%;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: rgba(0,0,0,0.25);
-      display:block;
-    }
-
-    /* Form */
-    .form-grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 12px;
-    }
-    .field{ display:flex; flex-direction:column; gap: 8px; }
-    label{ font-size: 13px; color: var(--muted2); }
-    input, select{
-      width:100%;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.05);
-      color: var(--text);
-      padding: 10px 12px;
-      outline: none;
-    }
-    input::placeholder{ color: rgba(255,255,255,0.40); }
-    .full{ grid-column: 1 / -1; }
-
-    .notice{
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.03);
-      border-radius: 14px;
-      padding: 12px;
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 12px;
-      display:none;
-    }
-    .success{
-      border-color: rgba(34,197,94,0.35);
-      background: rgba(34,197,94,0.06);
-      color: rgba(255,255,255,0.88);
-    }
-    .error{
-      border-color: rgba(251,113,133,0.35);
-      background: rgba(251,113,133,0.06);
-      color: rgba(255,255,255,0.88);
-    }
-
-    footer{
-      border-top: 1px solid var(--line);
-      padding: 24px 0;
-      color: var(--muted2);
-      font-size: 13px;
-      margin-top: 10px;
-    }
-
-    @media(max-width: 920px){
-      .hero-grid{ grid-template-columns: 1fr; }
-      .two-col{ grid-template-columns: 1fr; }
-      .grid3{ grid-template-columns: 1fr; }
-      .form-grid{ grid-template-columns: 1fr; }
-      .full{ grid-column: auto; }
-    }
+    .btn.primary{border:none; color:#071016; background:linear-gradient(135deg,#22c55e,#a78bfa)}
+    .hero{padding:46px 0}
+    .grid{display:grid; grid-template-columns:1.1fr .9fr; gap:18px; align-items:center}
+    h1{margin:0 0 10px; font-size:clamp(32px,4vw,46px)}
+    p{margin:0 0 14px; color:var(--muted); max-width:60ch}
+    .card{border:1px solid var(--line); background:rgba(255,255,255,.05);
+      border-radius:16px; padding:16px}
+    .shot{border-radius:20px; overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow); background:rgba(255,255,255,.04)}
+    .shot img{width:100%; display:block}
+    .section{padding:28px 0}
+    .three{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+    .pill{display:inline-flex; gap:8px; align-items:center; padding:7px 10px; border-radius:999px;
+      border:1px solid var(--line); background:rgba(255,255,255,.04); color:var(--muted); font-size:13px}
+    .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:6px}
+    footer{border-top:1px solid var(--line); padding:22px 0; color:rgba(255,255,255,.55); font-size:13px; margin-top:12px}
+    .list{margin:10px 0 0; padding-left:18px; color:var(--muted)}
+    .list li{margin:7px 0}
+    @media(max-width:900px){ .grid{grid-template-columns:1fr} .three{grid-template-columns:1fr} }
   </style>
 </head>
 
 <body>
+  <!-- set this once and reuse -->
+  <script>
+    window.__MORPHY_QR__ =
+      "https://qr.expo.dev/eas-update?projectId=f2c37089-81c4-4d70-99e9-aa05597e0051&groupId=f04c7020-98ce-46cc-a98d-515116d290d9";
+  </script>
 
-<!-- ✅ Single source of truth: app demo QR URL -->
-<script>
-  window.__MORPHY_EXPO_QR_URL__ =
-    "https://qr.expo.dev/eas-update?projectId=f2c37089-81c4-4d70-99e9-aa05597e0051&groupId=f04c7020-98ce-46cc-a98d-515116d290d9";
-</script>
-
-<!-- ✅ Minimal event tracking (no dependencies). Replace /api/* endpoints later if you want. -->
-<script>
-  (function(){
-    const KEY = "morphy_anon_id";
-    function anonId(){
-      try{
-        let id = localStorage.getItem(KEY);
-        if(!id){
-          id = (crypto && crypto.randomUUID) ? crypto.randomUUID() :
-            ("id_" + Math.random().toString(16).slice(2) + Date.now().toString(16));
-          localStorage.setItem(KEY, id);
-        }
-        return id;
-      }catch(e){ return "na"; }
-    }
-
-    const ANON = anonId();
-    const SESSION = (crypto && crypto.randomUUID) ? crypto.randomUUID() :
-      ("s_" + Math.random().toString(16).slice(2) + Date.now().toString(16));
-    const ENTER_MS = Date.now();
-    let maxScroll = 0;
-
-    function utm(){
-      const p = new URLSearchParams(location.search);
-      const keys = ["utm_source","utm_medium","utm_campaign","utm_content","utm_term"];
-      const out = {};
-      keys.forEach(k => { if(p.get(k)) out[k] = p.get(k); });
-      return out;
-    }
-
-    function postJSON(url, payload){
-      try{
-        fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          keepalive: true,
-          body: JSON.stringify(payload)
-        }).catch(()=>{});
-      }catch(e){}
-    }
-
-    window.morphyTrack = function(event, props){
-      const payload = {
-        event,
-        ts: new Date().toISOString(),
-        url: location.href,
-        path: location.pathname,
-        referrer: document.referrer || null,
-        anon_id: ANON,
-        session_id: SESSION,
-        ...utm(),
-        props: props || {}
-      };
-      console.log("[morphyTrack]", payload);
-      postJSON("/api/track", payload);
-    };
-
-    window.addEventListener("DOMContentLoaded", () => window.morphyTrack("lp_view", { page: "landing_v2_simple" }));
-
-    window.addEventListener("scroll", () => {
-      const doc = document.documentElement;
-      const st = doc.scrollTop || document.body.scrollTop;
-      const sh = (doc.scrollHeight || document.body.scrollHeight) - doc.clientHeight;
-      const pct = sh > 0 ? Math.round((st / sh) * 100) : 0;
-      if(pct > maxScroll) maxScroll = pct;
-    }, { passive: true });
-
-    function sendTime(){
-      const seconds = Math.round((Date.now() - ENTER_MS)/1000);
-      window.morphyTrack("lp_time_on_page", { seconds, max_scroll_pct: maxScroll });
-    }
-    window.addEventListener("beforeunload", sendTime);
-    document.addEventListener("visibilitychange", () => { if(document.visibilityState === "hidden") sendTime(); });
-  })();
-</script>
-
-<!-- Topbar -->
-<div class="topbar">
-  <div class="wrap topbar-inner">
-    <div class="brand">
-      <div class="logo" aria-hidden="true"></div>
-      MorphyHair
-    </div>
-
-    <div style="display:flex; gap:10px; align-items:center;">
-      <a class="btn" href="#demo" data-track="nav_watch_demo">Watch demo</a>
-      <a class="btn btn-primary" href="#waitlist" data-track="nav_join_waitlist">Join waitlist</a>
+  <div class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="brand"><span class="logo" aria-hidden="true"></span> MorphyHair</div>
+      <div class="actions">
+        <a class="btn" href="#problem">Problem</a>
+        <a class="btn" href="#waitlist">Join waitlist</a>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- HERO -->
-<header class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <div class="pill">Early access • Built for textured hair</div>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap grid">
+      <div>
+        <div class="pill">Textured hair • early access</div>
+        <h1>Everything for textured hair — in one place.</h1>
+        <p>MorphyHair brings together textured hair info, tutorials, inspiration, and soft products—so you stop searching across 10 apps.</p>
 
-      <h1>Everything for textured hair — in one place.</h1>
-
-      <p class="muted" style="max-width: 62ch;">
-        MorphyHair brings together textured hair <strong>information</strong>, <strong>tutorials</strong>,
-        <strong>inspiration</strong>, and <strong>soft products</strong>— so you can find what you need fast.
-      </p>
-
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#waitlist" data-track="cta_join_waitlist_hero">Join waitlist</a>
-        <a class="btn" href="#demo" data-track="cta_watch_demo_hero">Watch demo</a>
-        <a class="btn" href="#" id="openAppHero" data-track="cta_open_app_qr_hero">Open app demo (QR)</a>
+        <div class="actions">
+          <a class="btn primary" href="#waitlist">Join waitlist</a>
+          <a class="btn" href="#demo">Watch demo</a>
+        </div>
       </div>
 
-      <p class="muted2" style="font-size:13px; margin-top: 10px;">
-        We’re validating the MVP now: what people want, what they click, and what converts to signups.
-      </p>
+      <div class="shot">
+        <img src="IMG_9192 2.PNG" alt="MorphyHair preview" />
+      </div>
     </div>
+  </header>
 
-    <div class="image-card">
-      <img src="IMG_9192 2.PNG" alt="MorphyHair product preview">
-    </div>
-  </div>
-</header>
-
-<!-- PROBLEM -->
-<section class="section" id="problem">
-  <div class="wrap">
-    <div class="two-col">
+  <!-- PROBLEM -->
+  <section class="section" id="problem">
+    <div class="wrap">
       <div class="card">
-        <h2>The problem</h2>
-        <p class="muted">
-          There isn’t one platform that brings together textured hair <strong>information</strong>,
-          <strong>tutorials</strong>, <strong>inspiration</strong>, and <strong>shopping</strong>.
-        </p>
+        <h2 style="margin:0 0 8px;">The problem</h2>
+        <p style="margin:0;">Textured hair help is scattered across too many places.</p>
+        <ul class="list">
+          <li>Tutorials on TikTok / YouTube</li>
+          <li>Inspiration on Instagram / Pinterest</li>
+          <li>Info spread across random blogs and threads</li>
+          <li>Products sold somewhere else entirely</li>
+        </ul>
+        <p style="margin:10px 0 0;">Result: you waste time searching and still aren’t sure what works for your hair.</p>
+      </div>
+    </div>
+  </section>
 
-        <div class="icon-list" aria-label="Where people have to go today">
-          <div class="icon-row">
-            <div class="icon" aria-hidden="true">▶</div>
-            <div>
-              <strong>Tutorials</strong>
-              <div class="muted2" style="font-size:13px; margin-top:3px;">TikTok / YouTube / IG Reels</div>
-            </div>
-          </div>
-
-          <div class="icon-row">
-            <div class="icon" aria-hidden="true">✦</div>
-            <div>
-              <strong>Inspiration</strong>
-              <div class="muted2" style="font-size:13px; margin-top:3px;">Instagram / Pinterest</div>
-            </div>
-          </div>
-
-          <div class="icon-row">
-            <div class="icon" aria-hidden="true">i</div>
-            <div>
-              <strong>Information</strong>
-              <div class="muted2" style="font-size:13px; margin-top:3px;">Blogs / forums / random posts</div>
-            </div>
-          </div>
-
-          <div class="icon-row">
-            <div class="icon" aria-hidden="true">🛍</div>
-            <div>
-              <strong>Products</strong>
-              <div class="muted2" style="font-size:13px; margin-top:3px;">Different shops, no guidance</div>
-            </div>
-          </div>
-        </div>
-
-        <p class="muted" style="margin-top: 12px;">
-          Result: people waste time searching and still don’t know what works for their hair type.
-        </p>
+  <!-- FIX -->
+  <section class="section" id="fix">
+    <div class="wrap">
+      <div class="card" style="margin-bottom:12px;">
+        <h2 style="margin:0 0 8px;">The fix</h2>
+        <p style="margin:0;">One platform to browse textured hair info, tutorials, inspiration, and soft products.</p>
       </div>
 
+      <div class="three">
+        <div class="card">
+          <h3 style="margin:0 0 6px;">Learn</h3>
+          <p style="margin:0;">Textured hair info + tutorials in one place.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin:0 0 6px;">Get inspired</h3>
+          <p style="margin:0;">Browse and save styles you love.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin:0 0 6px;">Buy</h3>
+          <p style="margin:0;">Soft products that match the style or tutorial.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section class="section" id="demo">
+    <div class="wrap">
       <div class="card">
-        <h2>The fix</h2>
-        <p class="muted">
-          MorphyHair is a platform for textured hair that lets people browse a large variety of:
-          <strong>info</strong>, <strong>tutorials</strong>, <strong>inspiration</strong>, and <strong>soft products</strong>.
+        <h2 style="margin:0 0 8px;">Demo</h2>
+        <p style="margin:0 0 12px;">Short demo video goes here (we’ll add later). For now you can open the live Expo demo.</p>
+        <div class="actions">
+          <a class="btn primary" id="openDemoBtn" href="#" target="_blank" rel="noopener">Open live demo (QR)</a>
+          <a class="btn" href="#waitlist">Join waitlist</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAITLIST -->
+  <section class="section" id="waitlist">
+    <div class="wrap">
+      <div class="card">
+        <h2 style="margin:0 0 8px;">Join early access</h2>
+        <p style="margin:0 0 12px;">Get beta access and help shape what we build first.</p>
+
+        <!-- placeholder: keep simple for UI now -->
+        <div class="actions">
+          <a class="btn primary" href="mailto:hello@morphyhair.com?subject=MorphyHair%20Waitlist">Email to join</a>
+          <a class="btn" href="#problem">Back to problem</a>
+        </div>
+
+        <p style="margin:12px 0 0; color:rgba(255,255,255,.55); font-size:13px;">
+          Next: we’ll add the real waitlist form + analytics.
         </p>
-        <p class="muted2" style="font-size:13px; margin-top: 10px;">
-          MVP focus: prove demand for discovery + education + saving (what people click + what they want most).
-        </p>
-
-        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top: 12px;">
-          <a class="btn btn-primary" href="#waitlist" data-track="cta_join_waitlist_problem">Join waitlist</a>
-          <a class="btn" href="#demo" data-track="cta_watch_demo_problem">Watch demo</a>
-          <a class="btn" href="#" id="openAppProblem" data-track="cta_open_app_qr_problem">Open app demo (QR)</a>
-        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- SOLUTION TILES -->
-<section class="section" id="solution">
-  <div class="wrap">
-    <div class="card" style="margin-bottom:14px;">
-      <h2>What you’ll do in MorphyHair</h2>
-      <p class="muted">Three simple pillars. No fluff.</p>
-    </div>
+  <footer>
+    <div class="wrap">© <span id="year"></span> MorphyHair</div>
+  </footer>
 
-    <div class="grid3">
-      <div class="tile">
-        <h3>Learn</h3>
-        <p>Textured hair information + tutorials organized by hair type and goal.</p>
-      </div>
-      <div class="tile">
-        <h3>Get inspired</h3>
-        <p>Browse a big style library and save looks you love.</p>
-      </div>
-      <div class="tile">
-        <h3>Buy</h3>
-        <p>Soft products that match the style and tutorial—without guessing.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DEMO -->
-<section class="section" id="demo">
-  <div class="wrap">
-    <div class="card">
-      <h2>Short demo</h2>
-      <p class="muted">Quick walkthrough. (Tracked: plays + completion.)</p>
-
-      <!-- Replace demo.mp4 with your real short demo file or hosted url -->
-      <video id="demoVideo" controls playsinline preload="metadata">
-        <source src="demo.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-
-      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:12px;">
-        <a class="btn btn-primary" href="#waitlist" data-track="cta_join_waitlist_demo">Join waitlist</a>
-        <a class="btn" href="#" id="openAppDemo" data-track="cta_open_app_qr_demo">Open app demo (QR)</a>
-      </div>
-
-      <p class="muted2" style="font-size:13px; margin-top: 10px;">
-        Tip: If you don’t have a hosted video yet, keep <code>demo.mp4</code> in the same folder as this HTML file.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- WAITLIST -->
-<section class="section" id="waitlist">
-  <div class="wrap">
-    <div class="card">
-      <h2>Join early access</h2>
-      <p class="muted">Help shape the MVP. This takes 15 seconds.</p>
-
-      <form id="waitlistForm" novalidate>
-        <div class="form-grid">
-          <div class="field full">
-            <label for="email">Email (required)</label>
-            <input id="email" name="email" type="email" placeholder="you@example.com" required />
-          </div>
-
-          <div class="field">
-            <label for="hairType">Hair type</label>
-            <select id="hairType" name="hairType" required>
-              <option value="" selected disabled>Select one</option>
-              <option value="2a-2c">Type 2 (2a–2c)</option>
-              <option value="3a-3c">Type 3 (3a–3c)</option>
-              <option value="4a-4c">Type 4 (4a–4c)</option>
-              <option value="locs">Locs</option>
-              <option value="relaxed">Relaxed / chemically treated</option>
-              <option value="transitioning">Transitioning</option>
-              <option value="other">Other / not sure</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="stylist">Are you a stylist?</label>
-            <select id="stylist" name="stylist" required>
-              <option value="" selected disabled>Select one</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="creativeInspo">Do you like creative hair inspo?</label>
-            <select id="creativeInspo" name="creativeInspo" required>
-              <option value="" selected disabled>Select one</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="tutorialWatcher">Do you watch tutorials (wig installs, braids, etc.)?</label>
-            <select id="tutorialWatcher" name="tutorialWatcher" required>
-              <option value="" selected disabled>Select one</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
-          </div>
-
-          <div class="field full">
-            <label for="interestLevel">How interested are you?</label>
-            <select id="interestLevel" name="interestLevel" required>
-              <option value="" selected disabled>Select one</option>
-              <option value="1">1 — Just browsing</option>
-              <option value="2">2 — Interested</option>
-              <option value="3">3 — Very interested</option>
-              <option value="4">4 — I’d use this weekly</option>
-              <option value="5">5 — I need this ASAP</option>
-            </select>
-          </div>
-        </div>
-
-        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:14px; align-items:center;">
-          <button class="btn btn-primary" type="submit" id="submitBtn" data-track="waitlist_submit_click">Join waitlist</button>
-          <a class="btn" href="#" id="openAppWaitlist" data-track="cta_open_app_qr_waitlist">Open app demo (QR)</a>
-        </div>
-
-        <div id="formMsg" class="notice"></div>
-
-        <p class="muted2" style="font-size:13px; margin-top: 10px;">
-          We track anonymous engagement (views, time, demo plays) and form interest to prioritize the MVP.
-        </p>
-      </form>
-
-      <!-- After submit -->
-      <div id="afterSubmit" style="display:none; margin-top:16px;">
-        <div class="notice success" style="display:block;">
-          <strong>You’re on the waitlist.</strong> Want to explore now?
-        </div>
-
-        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:12px;">
-          <a class="btn btn-primary" href="#" id="afterOpenApp" data-track="after_submit_open_app_qr">Open app demo (QR)</a>
-          <a class="btn" href="#demo" data-track="after_submit_watch_demo">Watch demo</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    © <span id="year"></span> MorphyHair — Built for textured hair.
-    <span style="display:inline-block; margin-left:10px;">
-      <a href="#" id="privacyLink" style="color:inherit; text-decoration:underline; text-decoration-color: rgba(255,255,255,0.25);" data-track="footer_privacy">Privacy</a>
-      <span style="opacity:.6;">•</span>
-      <a href="#" id="termsLink" style="color:inherit; text-decoration:underline; text-decoration-color: rgba(255,255,255,0.25);" data-track="footer_terms">Terms</a>
-    </span>
-  </div>
-</footer>
-
-<script>
-  // Year
-  document.getElementById("year").textContent = new Date().getFullYear();
-
-  // Wire tracking clicks
-  document.querySelectorAll("[data-track]").forEach(el => {
-    el.addEventListener("click", () => window.morphyTrack("lp_click", { key: el.getAttribute("data-track") }));
-  });
-
-  // QR wiring (single source of truth)
-  const QR_URL = window.__MORPHY_EXPO_QR_URL__;
-  function wireQR(id){
-    const el = document.getElementById(id);
-    if(!el) return;
-    el.setAttribute("href", QR_URL);
-    el.setAttribute("target","_blank");
-    el.setAttribute("rel","noopener");
-    el.addEventListener("click", () => window.morphyTrack("app_demo_click", { placement: id }));
-  }
-  ["openAppHero","openAppProblem","openAppDemo","openAppWaitlist","afterOpenApp"].forEach(wireQR);
-
-  // Demo video tracking
-  (function(){
-    const v = document.getElementById("demoVideo");
-    if(!v) return;
-
-    let started = false;
-    let lastBucket = 0;
-
-    v.addEventListener("play", () => {
-      if(!started){
-        started = true;
-        window.morphyTrack("demo_video_play", { placement: "landing_demo_section" });
-      }
-    });
-
-    v.addEventListener("timeupdate", () => {
-      if(!v.duration || !isFinite(v.duration)) return;
-      const pct = Math.floor((v.currentTime / v.duration) * 100);
-      const buckets = [25,50,75,100];
-      for(const b of buckets){
-        if(pct >= b && lastBucket < b){
-          lastBucket = b;
-          window.morphyTrack("demo_video_progress", { pct: b });
-        }
-      }
-    });
-
-    v.addEventListener("ended", () => {
-      window.morphyTrack("demo_video_complete", { placement: "landing_demo_section" });
-    });
-  })();
-
-  // Waitlist form (tracks who they are + interest)
-  (function(){
-    const form = document.getElementById("waitlistForm");
-    const msg = document.getElementById("formMsg");
-    const after = document.getElementById("afterSubmit");
-    const submitBtn = document.getElementById("submitBtn");
-
-    function showMsg(type, text){
-      msg.className = "notice " + (type || "");
-      msg.textContent = text;
-      msg.style.display = "block";
-    }
-    function hideMsg(){ msg.style.display = "none"; }
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      hideMsg();
-
-      const payload = {
-        email: (document.getElementById("email").value || "").trim(),
-        hairType: document.getElementById("hairType").value,
-        stylist: document.getElementById("stylist").value,
-        creativeInspo: document.getElementById("creativeInspo").value,
-        tutorialWatcher: document.getElementById("tutorialWatcher").value,
-        interestLevel: document.getElementById("interestLevel").value
-      };
-
-      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email);
-      if(!emailOk){
-        window.morphyTrack("form_submit_error", { reason: "invalid_email" });
-        showMsg("error", "Please enter a valid email address.");
-        return;
-      }
-
-      const required = ["hairType","stylist","creativeInspo","tutorialWatcher","interestLevel"];
-      for(const k of required){
-        if(!payload[k]){
-          window.morphyTrack("form_submit_error", { reason: "missing_field", field: k });
-          showMsg("error", "Please complete all required fields.");
-          return;
-        }
-      }
-
-      // Track form attempt (exclude email from analytics payload)
-      window.morphyTrack("form_submit_attempt", { ...payload, email: undefined });
-
-      submitBtn.disabled = true;
-      submitBtn.setAttribute("aria-disabled","true");
-
-      try{
-        // Optional server save (safe fallback if you don't have backend yet)
-        const ENDPOINT = "/api/waitlist";
-        let serverSaved = false;
-
-        try{
-          const res = await fetch(ENDPOINT, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-          });
-          if(res.ok) serverSaved = true;
-        }catch(_e){}
-
-        window.morphyTrack("waitlist_signup", {
-          hairType: payload.hairType,
-          stylist: payload.stylist,
-          creativeInspo: payload.creativeInspo,
-          tutorialWatcher: payload.tutorialWatcher,
-          interestLevel: payload.interestLevel,
-          server_saved: serverSaved
-        });
-
-        showMsg("success", "✅ You’re on the waitlist.");
-        after.style.display = "block";
-        after.scrollIntoView({ behavior: "smooth", block: "start" });
-
-      }catch(_err){
-        window.morphyTrack("form_submit_error", { reason: "unknown" });
-        showMsg("error", "Something went wrong. Please try again.");
-      }finally{
-        submitBtn.disabled = false;
-        submitBtn.removeAttribute("aria-disabled");
-      }
-    });
-  })();
-
-  // Privacy / Terms placeholders
-  document.getElementById("privacyLink").addEventListener("click", (e) => {
-    e.preventDefault();
-    window.morphyTrack("legal_click", { doc: "privacy" });
-    alert("Privacy Policy placeholder — add your hosted URL here.");
-  });
-  document.getElementById("termsLink").addEventListener("click", (e) => {
-    e.preventDefault();
-    window.morphyTrack("legal_click", { doc: "terms" });
-    alert("Terms placeholder — add your hosted URL here.");
-  });
-</script>
-
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("openDemoBtn").href = window.__MORPHY_QR__;
+  </script>
 </body>
 </html>
 
