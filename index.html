@@ -3,166 +3,230 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MorphyHair — Textured Hair, In One Place</title>
-  <meta name="description" content="MorphyHair brings textured hair info, tutorials, inspiration, and soft products into one platform." />
+  <title>MorphyHair — Textured Hair, in one place</title>
+  <meta name="description" content="MorphyHair brings textured hair info, tutorials, inspiration, and products into one simple platform." />
 
   <style>
     :root{
-      --bg:#0b1220; --card:rgba(255,255,255,.06); --line:rgba(255,255,255,.12);
-      --text:rgba(255,255,255,.92); --muted:rgba(255,255,255,.70);
-      --shadow:0 20px 60px rgba(0,0,0,.45); --r:18px; --max:1080px;
+      --bg:#0b0d12;
+      --card:#121622;
+      --text:#f5f6f8;
+      --muted:#aab2c2;
+      --line:rgba(255,255,255,.10);
+      --btn:#f5f6f8;
+      --btnText:#0b0d12;
+      --radius:16px;
+      --max:980px;
     }
-    *{box-sizing:border-box} html,body{height:100%}
+    *{box-sizing:border-box}
     body{
-      margin:0; color:var(--text); line-height:1.35;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      background:
-        radial-gradient(900px 450px at 15% 0%, rgba(167,139,250,.18), transparent 55%),
-        radial-gradient(800px 450px at 85% 10%, rgba(34,197,94,.14), transparent 55%),
-        var(--bg);
+      margin:0;
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.4;
     }
-    a{color:inherit; text-decoration:none}
-    .wrap{width:min(var(--max), calc(100% - 40px)); margin:0 auto}
-    .topbar{position:sticky; top:0; z-index:10; backdrop-filter: blur(10px);
-      background:rgba(11,18,32,.55); border-bottom:1px solid var(--line);}
-    .topbar-inner{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:14px 0}
-    .brand{display:flex; align-items:center; gap:10px; font-weight:800}
-    .logo{width:34px; height:34px; border-radius:12px; background:linear-gradient(135deg,#a78bfa,#22c55e)}
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+
+    .top{
+      position:sticky;top:0;z-index:10;
+      background:rgba(11,13,18,.9);
+      border-bottom:1px solid var(--line);
+      backdrop-filter:blur(8px);
+    }
+    .top .inner{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 0;gap:12px;
+    }
+    .brand{font-weight:800;letter-spacing:.2px}
+    .nav{display:flex;gap:10px;align-items:center}
+
     .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      padding:10px 14px; border-radius:12px; border:1px solid var(--line);
-      background:rgba(255,255,255,.06); font-weight:650; cursor:pointer;
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 14px;border-radius:12px;
+      border:1px solid var(--line);
+      background:transparent;color:var(--text);
+      font-weight:650;
     }
-    .btn.primary{border:none; color:#071016; background:linear-gradient(135deg,#22c55e,#a78bfa)}
-    .hero{padding:46px 0}
-    .grid{display:grid; grid-template-columns:1.1fr .9fr; gap:18px; align-items:center}
-    h1{margin:0 0 10px; font-size:clamp(32px,4vw,46px)}
-    p{margin:0 0 14px; color:var(--muted); max-width:60ch}
-    .card{border:1px solid var(--line); background:rgba(255,255,255,.05);
-      border-radius:16px; padding:16px}
-    .shot{border-radius:20px; overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow); background:rgba(255,255,255,.04)}
-    .shot img{width:100%; display:block}
-    .section{padding:28px 0}
-    .three{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
-    .pill{display:inline-flex; gap:8px; align-items:center; padding:7px 10px; border-radius:999px;
-      border:1px solid var(--line); background:rgba(255,255,255,.04); color:var(--muted); font-size:13px}
-    .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:6px}
-    footer{border-top:1px solid var(--line); padding:22px 0; color:rgba(255,255,255,.55); font-size:13px; margin-top:12px}
-    .list{margin:10px 0 0; padding-left:18px; color:var(--muted)}
-    .list li{margin:7px 0}
-    @media(max-width:900px){ .grid{grid-template-columns:1fr} .three{grid-template-columns:1fr} }
+    .btn.primary{
+      background:var(--btn);color:var(--btnText);
+      border-color:transparent;
+    }
+
+    header{padding:48px 0 22px}
+    h1{margin:0 0 10px;font-size:clamp(30px,4vw,44px);letter-spacing:-.5px}
+    .sub{margin:0;color:var(--muted);max-width:60ch}
+
+    .section{padding:26px 0}
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:18px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+    }
+    .kicker{font-size:12px;color:var(--muted);margin:10px 0 0}
+    h2{margin:0 0 10px;font-size:18px}
+    ul{margin:10px 0 0;padding-left:18px;color:var(--muted)}
+    li{margin:8px 0}
+
+    form{display:grid;gap:10px;margin-top:12px}
+    input,select{
+      width:100%;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:transparent;
+      color:var(--text);
+      outline:none;
+    }
+    label{font-size:12px;color:var(--muted)}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .notice{font-size:12px;color:var(--muted)}
+    footer{
+      border-top:1px solid var(--line);
+      padding:18px 0;
+      color:var(--muted);
+      font-size:12px;
+      margin-top:18px;
+    }
+
+    @media(max-width:850px){
+      .grid{grid-template-columns:1fr}
+      .row{grid-template-columns:1fr}
+    }
   </style>
 </head>
 
 <body>
-  <!-- set this once and reuse -->
-  <script>
-    window.__MORPHY_QR__ =
-      "https://qr.expo.dev/eas-update?projectId=f2c37089-81c4-4d70-99e9-aa05597e0051&groupId=f04c7020-98ce-46cc-a98d-515116d290d9";
-  </script>
-
-  <div class="topbar">
-    <div class="wrap topbar-inner">
-      <div class="brand"><span class="logo" aria-hidden="true"></span> MorphyHair</div>
-      <div class="actions">
+  <div class="top">
+    <div class="wrap inner">
+      <div class="brand">MorphyHair</div>
+      <div class="nav">
         <a class="btn" href="#problem">Problem</a>
-        <a class="btn" href="#waitlist">Join waitlist</a>
+        <a class="btn" href="#fix">Fix</a>
+        <a class="btn primary" href="#waitlist">Join waitlist</a>
       </div>
     </div>
   </div>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="wrap grid">
-      <div>
-        <div class="pill">Textured hair • early access</div>
-        <h1>Everything for textured hair — in one place.</h1>
-        <p>MorphyHair brings together textured hair info, tutorials, inspiration, and soft products—so you stop searching across 10 apps.</p>
-
-        <div class="actions">
-          <a class="btn primary" href="#waitlist">Join waitlist</a>
-          <a class="btn" href="#demo">Watch demo</a>
-        </div>
+  <header>
+    <div class="wrap">
+      <h1>Everything for textured hair — in one place.</h1>
+      <p class="sub">Info, tutorials, inspiration, and soft products built together so you can find what you need fast.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
+        <a class="btn primary" href="#waitlist">Join waitlist</a>
+        <a class="btn" href="#fix">See how it works</a>
       </div>
-
-      <div class="shot">
-        <img src="IMG_9192 2.PNG" alt="MorphyHair preview" />
-      </div>
+      <p class="kicker">Early access: we’re building the MVP now.</p>
     </div>
   </header>
 
-  <!-- PROBLEM -->
   <section class="section" id="problem">
     <div class="wrap">
       <div class="card">
-        <h2 style="margin:0 0 8px;">The problem</h2>
-        <p style="margin:0;">Textured hair help is scattered across too many places.</p>
-        <ul class="list">
-          <li>Tutorials on TikTok / YouTube</li>
-          <li>Inspiration on Instagram / Pinterest</li>
-          <li>Info spread across random blogs and threads</li>
-          <li>Products sold somewhere else entirely</li>
+        <h2>The problem</h2>
+        <p class="sub" style="margin:0">Textured hair help is scattered across too many places.</p>
+        <ul>
+          <li>Tutorials are on TikTok / YouTube</li>
+          <li>Inspiration is on Instagram / Pinterest</li>
+          <li>Information is buried in blogs and forums</li>
+          <li>Products are sold separately with no context</li>
         </ul>
-        <p style="margin:10px 0 0;">Result: you waste time searching and still aren’t sure what works for your hair.</p>
+        <p class="kicker">Result: you waste time searching and still don’t know what works for your hair.</p>
       </div>
     </div>
   </section>
 
-  <!-- FIX -->
   <section class="section" id="fix">
     <div class="wrap">
-      <div class="card" style="margin-bottom:12px;">
-        <h2 style="margin:0 0 8px;">The fix</h2>
-        <p style="margin:0;">One platform to browse textured hair info, tutorials, inspiration, and soft products.</p>
+      <div class="card" style="margin-bottom:12px">
+        <h2>The fix</h2>
+        <p class="sub" style="margin:0">MorphyHair brings textured hair learning, inspiration, and products into one platform.</p>
       </div>
 
-      <div class="three">
+      <div class="grid">
         <div class="card">
-          <h3 style="margin:0 0 6px;">Learn</h3>
-          <p style="margin:0;">Textured hair info + tutorials in one place.</p>
+          <h2>Learn</h2>
+          <p class="sub" style="margin:0">Browse textured hair info and tutorials by hair type and goal.</p>
         </div>
         <div class="card">
-          <h3 style="margin:0 0 6px;">Get inspired</h3>
-          <p style="margin:0;">Browse and save styles you love.</p>
+          <h2>Get inspired</h2>
+          <p class="sub" style="margin:0">Explore styles and save what you love for later.</p>
         </div>
         <div class="card">
-          <h3 style="margin:0 0 6px;">Buy</h3>
-          <p style="margin:0;">Soft products that match the style or tutorial.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DEMO -->
-  <section class="section" id="demo">
-    <div class="wrap">
-      <div class="card">
-        <h2 style="margin:0 0 8px;">Demo</h2>
-        <p style="margin:0 0 12px;">Short demo video goes here (we’ll add later). For now you can open the live Expo demo.</p>
-        <div class="actions">
-          <a class="btn primary" id="openDemoBtn" href="#" target="_blank" rel="noopener">Open live demo (QR)</a>
-          <a class="btn" href="#waitlist">Join waitlist</a>
+          <h2>Buy</h2>
+          <p class="sub" style="margin:0">Find soft products that match the style or tutorial.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WAITLIST -->
   <section class="section" id="waitlist">
     <div class="wrap">
       <div class="card">
-        <h2 style="margin:0 0 8px;">Join early access</h2>
-        <p style="margin:0 0 12px;">Get beta access and help shape what we build first.</p>
+        <h2>Join early access</h2>
+        <p class="sub" style="margin:0">Help shape the MVP. Quick form — no spam.</p>
 
-        <!-- placeholder: keep simple for UI now -->
-        <div class="actions">
-          <a class="btn primary" href="mailto:hello@morphyhair.com?subject=MorphyHair%20Waitlist">Email to join</a>
-          <a class="btn" href="#problem">Back to problem</a>
-        </div>
+        <form id="waitlistForm">
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+          </div>
 
-        <p style="margin:12px 0 0; color:rgba(255,255,255,.55); font-size:13px;">
-          Next: we’ll add the real waitlist form + analytics.
-        </p>
+          <div class="row">
+            <div>
+              <label for="hairType">Hair type</label>
+              <select id="hairType" name="hairType" required>
+                <option value="" selected disabled>Select</option>
+                <option>Type 2 (2a–2c)</option>
+                <option>Type 3 (3a–3c)</option>
+                <option>Type 4 (4a–4c)</option>
+                <option>Locs</option>
+                <option>Relaxed / chemically treated</option>
+                <option>Transitioning</option>
+                <option>Other / not sure</option>
+              </select>
+            </div>
+            <div>
+              <label for="stylist">Are you a stylist?</label>
+              <select id="stylist" name="stylist" required>
+                <option value="" selected disabled>Select</option>
+                <option>No</option>
+                <option>Yes</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="tutorials">Do you watch hair tutorials?</label>
+              <select id="tutorials" name="tutorials" required>
+                <option value="" selected disabled>Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div>
+              <label for="inspo">Do you like creative hair inspo?</label>
+              <select id="inspo" name="inspo" required>
+                <option value="" selected disabled>Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="btn primary" type="submit">Join waitlist</button>
+          <div class="notice" id="msg" style="display:none"></div>
+        </form>
+
+        <p class="kicker">Next: we’ll add the demo section + tracking once the layout feels right.</p>
       </div>
     </div>
   </section>
@@ -173,8 +237,15 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-    document.getElementById("openDemoBtn").href = window.__MORPHY_QR__;
+
+    // Lightweight placeholder submit (no backend yet)
+    const form = document.getElementById("waitlistForm");
+    const msg = document.getElementById("msg");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      msg.style.display = "block";
+      msg.textContent = "✅ You're on the list. (Form wiring comes next.)";
+    });
   </script>
 </body>
 </html>
-
