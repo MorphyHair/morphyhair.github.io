@@ -1,11 +1,10 @@
-
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MorphyHair — Textured Hair Made Easy</title>
-  <meta name="description" content="MorphyHair helps you discover textured hair styles, bundles, and inspiration — and find trusted salons (coming soon)." />
+  <title>MorphyHair — Textured Hair Discovery</title>
+  <meta name="description" content="Discover textured hair inspiration, understand what works for your hair type, and join the MorphyHair waitlist." />
 
   <style>
     :root{
@@ -20,6 +19,7 @@
       --shadow: 0 20px 60px rgba(0,0,0,0.45);
       --radius: 18px;
       --max: 1100px;
+      --danger: #fb7185;
     }
 
     *{ box-sizing: border-box; }
@@ -82,7 +82,7 @@
       gap:8px;
       cursor:pointer;
       white-space: nowrap;
-      transition: transform .12s ease, background .12s ease;
+      transition: transform .12s ease, background .12s ease, opacity .12s ease;
     }
 
     .btn:hover{ background: rgba(255,255,255,0.10); transform: translateY(-1px); }
@@ -94,21 +94,40 @@
       box-shadow: 0 14px 35px rgba(34,197,94,0.18), 0 14px 35px rgba(167,139,250,0.10);
     }
 
+    .btn:disabled, .btn[aria-disabled="true"]{
+      opacity:.55;
+      cursor:not-allowed;
+      transform:none !important;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
     .hero{ padding:50px 0; }
     .hero-grid{
       display:grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.1fr 0.9fr;
       gap:20px;
       align-items:center;
     }
 
     h1{ font-size: clamp(32px,4vw,48px); margin: 0 0 12px; }
-    .sub{ color:var(--muted); max-width:55ch; margin: 0 0 18px; }
+    .sub{ color:var(--muted); max-width:60ch; margin: 0 0 18px; }
 
     .hero-actions{
       display:flex;
       gap:12px;
       flex-wrap:wrap;
+      align-items:center;
     }
 
     .image-card{
@@ -139,6 +158,90 @@
       background: rgba(255,255,255,0.05);
     }
 
+    .kicker{
+      color: var(--muted2);
+      font-size: 13px;
+      margin: 10px 0 0;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      align-items: start;
+    }
+
+    .card h2{ margin: 0 0 10px; }
+    .card h3{ margin: 0 0 8px; }
+    .card p{ margin: 0 0 10px; color: var(--muted); }
+
+    .problem-list{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    .problem-list li{ margin: 8px 0; }
+
+    details{
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      padding: 12px 12px;
+    }
+    details + details{ margin-top: 10px; }
+    summary{
+      cursor:pointer;
+      font-weight: 700;
+      list-style: none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    .summary-right{ color: var(--muted2); font-size: 12px; font-weight: 600; }
+    .details-body{ padding-top: 10px; color: var(--muted); }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    .field{ display:flex; flex-direction:column; gap:8px; }
+    label{ font-size: 13px; color: var(--muted2); }
+    input, select{
+      width:100%;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      padding: 10px 12px;
+      outline:none;
+    }
+    input::placeholder{ color: rgba(255,255,255,0.40); }
+    .full{ grid-column: 1 / -1; }
+
+    .notice{
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.03);
+      border-radius: 14px;
+      padding: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .success{
+      border-color: rgba(34,197,94,0.35);
+      background: rgba(34,197,94,0.06);
+      color: rgba(255,255,255,0.88);
+    }
+
+    .error{
+      border-color: rgba(251,113,133,0.35);
+      background: rgba(251,113,133,0.06);
+      color: rgba(255,255,255,0.88);
+    }
+
     footer{
       border-top:1px solid var(--line);
       padding:24px 0;
@@ -149,6 +252,9 @@
 
     @media(max-width:900px){
       .hero-grid{ grid-template-columns:1fr; }
+      .two-col{ grid-template-columns:1fr; }
+      .form-grid{ grid-template-columns:1fr; }
+      .full{ grid-column: auto; }
     }
   </style>
 </head>
@@ -161,6 +267,100 @@
     "https://qr.expo.dev/eas-update?projectId=f2c37089-81c4-4d70-99e9-aa05597e0051&groupId=f04c7020-98ce-46cc-a98d-515116d290d9";
 </script>
 
+<!-- ✅ Minimal analytics + event tracking (no external dependencies) -->
+<script>
+  (function(){
+    const KEY = "morphy_anon_id";
+    function getAnonId(){
+      try{
+        let id = localStorage.getItem(KEY);
+        if(!id){
+          id = (crypto && crypto.randomUUID) ? crypto.randomUUID() :
+            ("id_" + Math.random().toString(16).slice(2) + Date.now().toString(16));
+          localStorage.setItem(KEY, id);
+        }
+        return id;
+      }catch(e){
+        return "na";
+      }
+    }
+
+    const ANON_ID = getAnonId();
+    const SESSION_ID = (crypto && crypto.randomUUID) ? crypto.randomUUID() :
+      ("s_" + Math.random().toString(16).slice(2) + Date.now().toString(16));
+
+    const PAGE_ENTER_MS = Date.now();
+    let maxScroll = 0;
+
+    function getUTM(){
+      const p = new URLSearchParams(location.search);
+      const keys = ["utm_source","utm_medium","utm_campaign","utm_content","utm_term"];
+      const out = {};
+      keys.forEach(k => { if(p.get(k)) out[k] = p.get(k); });
+      return out;
+    }
+
+    function postJSON(url, payload){
+      try{
+        // Non-blocking; replace /api/track with your endpoint later
+        // If you don't have an endpoint yet, this safely no-ops.
+        fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          keepalive: true,
+          body: JSON.stringify(payload)
+        }).catch(()=>{});
+      }catch(e){}
+    }
+
+    window.morphyTrack = function(eventName, props){
+      const payload = {
+        event: eventName,
+        ts: new Date().toISOString(),
+        url: location.href,
+        path: location.pathname,
+        referrer: document.referrer || null,
+        anon_id: ANON_ID,
+        session_id: SESSION_ID,
+        ...getUTM(),
+        props: props || {}
+      };
+
+      // ✅ Console for dev visibility
+      // Remove if you want it fully silent.
+      console.log("[morphyTrack]", payload);
+
+      // ✅ Hook: send to your backend later (recommended)
+      // Example: /api/track -> PostHog/GA4 server-side/etc.
+      postJSON("/api/track", payload);
+    };
+
+    // Page view (Landing page visits + uniques via anon_id)
+    window.addEventListener("DOMContentLoaded", () => {
+      window.morphyTrack("lp_view", { page: "landing" });
+    });
+
+    // Scroll depth
+    window.addEventListener("scroll", () => {
+      const doc = document.documentElement;
+      const scrollTop = doc.scrollTop || document.body.scrollTop;
+      const scrollHeight = (doc.scrollHeight || document.body.scrollHeight) - doc.clientHeight;
+      const pct = scrollHeight > 0 ? Math.round((scrollTop / scrollHeight) * 100) : 0;
+      if(pct > maxScroll) maxScroll = pct;
+    }, { passive: true });
+
+    // Time on page
+    function sendTimeOnPage(){
+      const seconds = Math.round((Date.now() - PAGE_ENTER_MS) / 1000);
+      window.morphyTrack("lp_time_on_page", { seconds, max_scroll_pct: maxScroll });
+    }
+    window.addEventListener("beforeunload", sendTimeOnPage);
+    document.addEventListener("visibilitychange", () => {
+      if(document.visibilityState === "hidden") sendTimeOnPage();
+    });
+  })();
+</script>
+
 <div class="topbar">
   <div class="wrap topbar-inner">
     <div class="brand">
@@ -169,14 +369,13 @@
     </div>
 
     <div style="display:flex; gap:10px; align-items:center;">
-      <a class="btn" href="#waitlist">Join Beta</a>
+      <a class="btn" href="#waitlist" data-track="nav_join_beta">Join Waitlist</a>
+      <a class="btn" href="#demo" data-track="nav_view_demo">View Demo</a>
       <a
         class="btn btn-primary"
-        href="https://qr.expo.dev/eas-update?projectId=f2c37089-81c4-4d70-99e9-aa05597e0051&groupId=f04c7020-98ce-46cc-a98d-515116d290d9
-
-"
-        target="_blank"
-        rel="noopener"
+        href="#"
+        id="openAppBtnTop"
+        data-track="nav_open_app_qr"
       >
         Open App (QR)
       </a>
@@ -188,23 +387,29 @@
   <div class="wrap hero-grid">
 
     <div>
-      <h1>Style inspiration, bundles, and salon discovery — built for textured hair.</h1>
+      <div class="pill" id="trafficPill">Built for textured hair • Early access</div>
+
+      <h1>Stop guessing what works for your hair. Discover styles that actually match.</h1>
       <p class="sub">
-        MorphyHair helps you save looks you love, match hair to styles, and discover trusted textured hair-friendly salons.
+        MorphyHair is building a textured hair discovery experience: find looks you love, learn what they require,
+        and save your favorites. Join the waitlist to help shape the MVP.
       </p>
 
       <div class="hero-actions">
-        <a
-          class="btn btn-primary"
-          href="https://qr.expo.dev/eas-update?projectId=f2c37089-81c4-4d70-99e9-aa05597e0051&groupId=f04c7020-98ce-46cc-a98d-515116d290d9"
-          target="_blank"
-          rel="noopener"
-        >
-          Try Live App Demo (QR)
+        <a class="btn btn-primary" href="#waitlist" id="ctaJoinWaitlist" data-track="cta_join_waitlist_hero">
+          Join Waitlist
         </a>
 
-        <a class="btn" href="#features">See Features</a>
+        <a class="btn" href="#demo" id="ctaViewDemo" data-track="cta_view_demo_hero">
+          Watch Demo
+        </a>
+
+        <a class="btn" href="#features" data-track="cta_features_hero">How it Works</a>
       </div>
+
+      <p class="kicker">
+        Investors + users: this page measures interest (views, time, demo plays), and what people want in the MVP.
+      </p>
     </div>
 
     <div class="image-card">
@@ -214,51 +419,237 @@
   </div>
 </header>
 
-<section class="section" id="features">
+<!-- Problem / why now -->
+<section class="section" id="problem">
   <div class="wrap">
-    <div class="grid3">
+    <div class="two-col">
       <div class="card">
-        <h3>Save Styles</h3>
-        <p>Organize inspiration by color, length, and vibe.</p>
+        <h2>The problem</h2>
+        <ul class="problem-list">
+          <li>Textured hair inspo is everywhere — but it’s hard to know what works for <em>your</em> hair type.</li>
+          <li>Style photos don’t tell you the real requirements (hair needed, time, maintenance, skill level).</li>
+          <li>Most discovery tools aren’t built around textured hair realities (protective styles, installs, braids, wigs).</li>
+        </ul>
       </div>
 
       <div class="card">
-        <h3>Match Hair</h3>
-        <p>Find bundles and extensions that fit your style.</p>
-      </div>
-
-      <div class="card">
-        <h3>Salon Discovery</h3>
-        <p>Find trusted textured hair salons near you.</p>
+        <h2>What we’re building</h2>
+        <p>
+          A style discovery + saving experience designed for textured hair:
+          explore grids of looks, filter by vibe, and learn what each style actually needs.
+        </p>
+        <p class="kicker">
+          (Salon discovery and marketplace features can come later — right now we’re validating discovery + saving.)
+        </p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Demo video section (short demo + tracking plays) -->
+<section class="section" id="demo">
+  <div class="wrap">
+    <div class="card">
+      <h2>Short demo</h2>
+      <p>Quick walkthrough of the product direction. (Tracked: plays + completion.)</p>
+
+      <!-- Replace demo.mp4 with your real short demo file or hosted url -->
+      <video
+        id="demoVideo"
+        controls
+        playsinline
+        preload="metadata"
+        style="width:100%; border-radius:14px; border:1px solid var(--line); background: rgba(0,0,0,0.25);"
+        poster=""
+      >
+        <source src="demo.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:12px;">
+        <a class="btn btn-primary" href="#" id="openAppBtnDemo" data-track="demo_open_app_qr">
+          Open Live App Demo (QR)
+        </a>
+        <a class="btn" href="#waitlist" data-track="demo_join_waitlist">Join Waitlist</a>
+      </div>
+
+      <p class="kicker">Tip: If you don’t have a hosted video yet, keep <code>demo.mp4</code> in the same folder as this HTML file.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Features with dropdown explanation cards (tracked) -->
+<section class="section" id="features">
+  <div class="wrap">
+    <div class="card" style="margin-bottom:14px;">
+      <h2>How it works</h2>
+      <p>Tap into the parts you care about. (Tracked: explanation card clicks.)</p>
+    </div>
+
+    <details data-track-open="explain_style_discovery">
+      <summary>
+        <span>Style discovery grid (MVP)</span>
+        <span class="summary-right">Tap to expand</span>
+      </summary>
+      <div class="details-body">
+        Browse a grid of textured-hair looks and quickly filter by category and vibe.
+        We’ll use this to learn what styles people actually want.
+      </div>
+    </details>
+
+    <details data-track-open="explain_filters">
+      <summary>
+        <span>Filters that match your hair reality</span>
+        <span class="summary-right">Tap to expand</span>
+      </summary>
+      <div class="details-body">
+        Track which filters get clicked most — that becomes your feature priority list.
+      </div>
+    </details>
+
+    <details data-track-open="explain_save_like">
+      <summary>
+        <span>Save + like what you love</span>
+        <span class="summary-right">Tap to expand</span>
+      </summary>
+      <div class="details-body">
+        Likes and saves tell us what resonates: categories, lengths, colors, and protective styles.
+      </div>
+    </details>
+
+    <details data-track-open="explain_hair_matching">
+      <summary>
+        <span>Hair matching (later)</span>
+        <span class="summary-right">Tap to expand</span>
+      </summary>
+      <div class="details-body">
+        Once discovery is validated, we can map styles to hair requirements (bundles, closure types, density, length).
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- Screenshots (carousel-like simple strip + click tracking) -->
+<section class="section" id="screenshots">
+  <div class="wrap">
+    <div class="card">
+      <h2>Product snapshots</h2>
+      <p>Early MVP direction. (Tracked: screenshot clicks.)</p>
+
+      <div style="display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:12px;">
+        <a href="IMG_9192 2.PNG" target="_blank" rel="noopener" data-track="screenshot_click_1"
+           style="border:1px solid var(--line); border-radius:14px; overflow:hidden; background: rgba(255,255,255,0.03);">
+          <img src="IMG_9192 2.PNG" alt="Screenshot 1" style="width:100%; display:block;">
+        </a>
+        <!-- Add more screenshots if you have them:
+        <a href="s2.png" target="_blank" rel="noopener" data-track="screenshot_click_2">...</a>
+        -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Waitlist + "Form — who they are" + after submit show demo + landing links -->
 <section class="section" id="waitlist">
   <div class="wrap">
     <div class="card">
-      <h2>Try MorphyHair Beta</h2>
-      <p>Open the live Expo demo (QR) or join the early access list.</p>
+      <h2>Join the MorphyHair waitlist</h2>
+      <p>Help shape the MVP. This takes 15 seconds.</p>
 
-      <div style="display:flex; gap:12px; flex-wrap:wrap;">
-        <a
-          class="btn btn-primary"
-          href="https://qr.expo.dev/eas-update?projectId=f2c37089-81c4-4d70-99e9-aa05597e0051&groupId=f04c7020-98ce-46cc-a98d-515116d290d9"
-          target="_blank"
-          rel="noopener"
-        >
-          Open Live Demo (QR)
-        </a>
+      <form id="waitlistForm" novalidate>
+        <div class="form-grid">
+          <div class="field full">
+            <label for="email">Email (required)</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+          </div>
 
-        <a class="btn" href="mailto:hello@morphyhair.com">
-          Contact Team
-        </a>
+          <div class="field">
+            <label for="hairType">Hair type</label>
+            <select id="hairType" name="hairType" required>
+              <option value="" selected disabled>Select one</option>
+              <option value="2a-2c">Type 2 (2a–2c)</option>
+              <option value="3a-3c">Type 3 (3a–3c)</option>
+              <option value="4a-4c">Type 4 (4a–4c)</option>
+              <option value="locs">Locs</option>
+              <option value="relaxed">Relaxed / chemically treated</option>
+              <option value="transitioning">Transitioning</option>
+              <option value="other">Other / not sure</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="role">Are you a stylist?</label>
+            <select id="role" name="role" required>
+              <option value="" selected disabled>Select one</option>
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="creativeInspo">Do you like creative hair inspo?</label>
+            <select id="creativeInspo" name="creativeInspo" required>
+              <option value="" selected disabled>Select one</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="tutorialWatcher">Do you watch tutorials (wig installs, braids, etc.)?</label>
+            <select id="tutorialWatcher" name="tutorialWatcher" required>
+              <option value="" selected disabled>Select one</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+
+          <div class="field full">
+            <label for="interestLevel">How interested are you?</label>
+            <select id="interestLevel" name="interestLevel" required>
+              <option value="" selected disabled>Select one</option>
+              <option value="1">1 — Just browsing</option>
+              <option value="2">2 — Interested</option>
+              <option value="3">3 — Very interested</option>
+              <option value="4">4 — I’d use this weekly</option>
+              <option value="5">5 — I need this ASAP</option>
+            </select>
+          </div>
+
+          <div class="field full">
+            <label for="note">Optional: What do you want MorphyHair to help you with most?</label>
+            <input id="note" name="note" type="text" placeholder="E.g., protective styles, wig install inspo, finding styles for my face shape…" />
+          </div>
+        </div>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:14px; align-items:center;">
+          <button class="btn btn-primary" type="submit" id="submitBtn" data-track="waitlist_submit_click">
+            Join Waitlist
+          </button>
+          <a class="btn" href="#" id="openAppBtnWaitlist" data-track="waitlist_open_app_qr">Open Live Demo (QR)</a>
+          <a class="btn" href="mailto:hello@morphyhair.com" data-track="waitlist_contact">Contact</a>
+        </div>
+
+        <div id="formMsg" class="notice" style="margin-top:12px; display:none;"></div>
+
+        <p class="kicker">
+          We track anonymous engagement (views/time/demo plays) and form interest to prioritize the MVP.
+          Your email is only for early access updates.
+        </p>
+      </form>
+
+      <!-- After-submit area (matches your roadmap: after submit show demo app + landing links) -->
+      <div id="afterSubmit" style="display:none; margin-top:16px;">
+        <div class="notice success">
+          <strong>You’re on the list.</strong> Want to explore now?
+        </div>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:12px;">
+          <a class="btn btn-primary" href="#" id="afterOpenApp" data-track="after_submit_open_app_qr">Open Live App Demo (QR)</a>
+          <a class="btn" href="#demo" data-track="after_submit_watch_demo">Watch Demo</a>
+          <a class="btn" href="#features" data-track="after_submit_features">See How It Works</a>
+        </div>
       </div>
-
-      <p style="margin-top:12px; color: var(--muted2); font-size: 13px;">
-        Tip: On desktop, this opens a QR code. On mobile, it opens Expo Go (or your dev client, depending on how your app is set up).
-      </p>
     </div>
   </div>
 </section>
@@ -266,12 +657,194 @@
 <footer>
   <div class="wrap">
     © <span id="year"></span> MorphyHair — Built for textured hair.
+    <span style="display:inline-block; margin-left:10px;">
+      <a href="#" id="privacyLink" style="color:inherit; text-decoration:underline; text-decoration-color: rgba(255,255,255,0.25);" data-track="footer_privacy">
+        Privacy
+      </a>
+      <span style="opacity:.6;">•</span>
+      <a href="#" id="termsLink" style="color:inherit; text-decoration:underline; text-decoration-color: rgba(255,255,255,0.25);" data-track="footer_terms">
+        Terms
+      </a>
+    </span>
   </div>
 </footer>
 
 <script>
+  // Year
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Always use the single source of truth for QR URL
+  const QR_URL = window.__MORPHY_EXPO_QR_URL__;
+
+  // Wire QR buttons
+  function wireQR(id){
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.setAttribute("href", QR_URL);
+    el.setAttribute("target","_blank");
+    el.setAttribute("rel","noopener");
+    el.addEventListener("click", () => window.morphyTrack("app_demo_click", { placement: id }));
+  }
+  ["openAppBtnTop","openAppBtnDemo","openAppBtnWaitlist","afterOpenApp"].forEach(wireQR);
+
+  // Track nav + CTA clicks
+  document.querySelectorAll("[data-track]").forEach(el => {
+    el.addEventListener("click", () => window.morphyTrack("lp_click", { key: el.getAttribute("data-track") }));
+  });
+
+  // Track dropdown explanation cards (open events)
+  document.querySelectorAll("details[data-track-open]").forEach(d => {
+    d.addEventListener("toggle", () => {
+      if(d.open){
+        window.morphyTrack("dropdown_card_open", { key: d.getAttribute("data-track-open") });
+      }
+    });
+  });
+
+  // Demo video tracking (plays + completion)
+  (function(){
+    const v = document.getElementById("demoVideo");
+    if(!v) return;
+
+    let started = false;
+    let lastPctBucket = 0;
+
+    v.addEventListener("play", () => {
+      if(!started){
+        started = true;
+        window.morphyTrack("demo_video_play", { placement: "landing_demo_section" });
+      }
+    });
+
+    v.addEventListener("timeupdate", () => {
+      if(!v.duration || !isFinite(v.duration)) return;
+      const pct = Math.floor((v.currentTime / v.duration) * 100);
+
+      // bucketed checkpoints: 25/50/75/100
+      const buckets = [25,50,75,100];
+      for(const b of buckets){
+        if(pct >= b && lastPctBucket < b){
+          lastPctBucket = b;
+          window.morphyTrack("demo_video_progress", { pct: b });
+        }
+      }
+    });
+
+    v.addEventListener("ended", () => {
+      window.morphyTrack("demo_video_complete", { placement: "landing_demo_section" });
+    });
+  })();
+
+  // Waitlist form handling (tracks: submit click, submit success, submit error)
+  (function(){
+    const form = document.getElementById("waitlistForm");
+    const msg = document.getElementById("formMsg");
+    const after = document.getElementById("afterSubmit");
+    const submitBtn = document.getElementById("submitBtn");
+
+    function showMsg(type, html){
+      msg.className = "notice " + (type || "");
+      msg.innerHTML = html;
+      msg.style.display = "block";
+    }
+
+    function hideMsg(){ msg.style.display = "none"; }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      hideMsg();
+
+      const data = {
+        email: (document.getElementById("email").value || "").trim(),
+        hairType: document.getElementById("hairType").value,
+        creativeInspo: document.getElementById("creativeInspo").value,
+        tutorialWatcher: document.getElementById("tutorialWatcher").value,
+        stylist: document.getElementById("role").value,
+        interestLevel: document.getElementById("interestLevel").value,
+        note: (document.getElementById("note").value || "").trim(),
+      };
+
+      // Basic validation
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email);
+      if(!emailOk){
+        window.morphyTrack("form_submit_error", { reason: "invalid_email" });
+        showMsg("error", "Please enter a valid email address.");
+        return;
+      }
+      const requiredKeys = ["hairType","creativeInspo","tutorialWatcher","stylist","interestLevel"];
+      for(const k of requiredKeys){
+        if(!data[k]){
+          window.morphyTrack("form_submit_error", { reason: "missing_field", field: k });
+          showMsg("error", "Please complete all required fields.");
+          return;
+        }
+      }
+
+      // Track submit attempt with responses (Form analytics — who they are)
+      window.morphyTrack("form_submit_attempt", { ...data, email: undefined });
+
+      // Disable button while submitting
+      submitBtn.setAttribute("aria-disabled","true");
+      submitBtn.disabled = true;
+
+      try{
+        // ✅ Replace with your real endpoint. Keeping it optional to avoid breaking the page.
+        // If no backend exists, we still treat it as "success" locally and show the after-submit demo links.
+        const ENDPOINT = "/api/waitlist";
+
+        let submittedToServer = false;
+
+        try{
+          const res = await fetch(ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+          });
+          if(res.ok) submittedToServer = true;
+        }catch(err){
+          // No backend yet — safe fallback
+        }
+
+        window.morphyTrack("waitlist_signup", {
+          hairType: data.hairType,
+          creativeInspo: data.creativeInspo,
+          tutorialWatcher: data.tutorialWatcher,
+          stylist: data.stylist,
+          interestLevel: data.interestLevel,
+          server_saved: submittedToServer
+        });
+
+        showMsg("success", "✅ You’re on the waitlist. Scroll down for the demo links.");
+        after.style.display = "block";
+        form.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        // Optional: clear fields except email so you keep it visible
+        // form.reset();
+
+      }catch(err){
+        window.morphyTrack("form_submit_error", { reason: "unknown" });
+        showMsg("error", "Something went wrong. Please try again or email hello@morphyhair.com.");
+      }finally{
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute("aria-disabled");
+      }
+    });
+  })();
+
+  // Optional Privacy / Terms (placeholders; keep for investor readiness)
+  document.getElementById("privacyLink").addEventListener("click", (e) => {
+    e.preventDefault();
+    window.morphyTrack("legal_click", { doc: "privacy" });
+    alert("Privacy Policy placeholder — add your hosted policy URL here.");
+  });
+
+  document.getElementById("termsLink").addEventListener("click", (e) => {
+    e.preventDefault();
+    window.morphyTrack("legal_click", { doc: "terms" });
+    alert("Terms placeholder — add your hosted terms URL here.");
+  });
 </script>
 
 </body>
 </html>
+
