@@ -6,88 +6,135 @@
   <title>Textured Hair Platform</title>
   <style>
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#fff; }
-    .wrap { max-width: 1200px; margin: 0 auto; padding: 24px; }
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 16px;
-      min-height: 80vh;
+    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#fafafa; color:#111; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+    .boards{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+      height: calc(100vh - 40px);
     }
-    .col {
-      border: 2px solid #e5e7eb;
-      border-radius: 18px;
+
+    .board{
+      background:#fff;
+      border:1px solid #e6e6e6;
+      border-radius: 16px;
       padding: 18px;
+      overflow:auto;            /* scroll inside each board */
+      -webkit-overflow-scrolling: touch;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+    }
+
+    .title{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 14px;
+      position: sticky;         /* keep header visible while scrolling */
+      top: 0;
       background: #fff;
+      z-index: 1;
     }
-    h2 { margin: 0 0 12px; font-size: 22px; }
-    p { margin: 0 0 10px; line-height: 1.5; color: #111; }
-    .card {
-      border: 2px solid #e5e7eb;
-      border-radius: 14px;
-      padding: 14px;
-      margin-top: 12px;
+
+    h2{ margin:0; font-size:18px; letter-spacing: .2px; }
+    .sub{ margin:0; font-size:13px; color:#666; }
+
+    .section{ margin: 14px 0 18px; }
+    .section h3{ margin:0 0 8px; font-size:14px; color:#111; }
+    ul{ margin:0; padding-left: 18px; color:#222; line-height:1.55; }
+    li{ margin:6px 0; }
+
+    .card{
+      border:1px solid #eee;
+      border-radius: 12px;
+      padding: 12px;
+      background:#fff;
+      margin-top: 10px;
     }
-    .btn {
-      display:inline-block; margin-top:10px; padding:10px 12px;
-      border-radius: 10px; border: 0; background:#111; color:#fff; cursor:pointer;
-      width: 100%;
+
+    label{ display:block; font-size:12px; color:#444; margin-top:10px; }
+    input, select{
+      width:100%;
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px solid #e6e6e6;
+      margin-top:6px;
+      background:#fff;
+      font-size:14px;
     }
-    input, select {
-      width: 100%; padding: 10px 12px; border-radius: 10px;
-      border: 2px solid #e5e7eb; margin-top: 8px;
+    .btn{
+      width:100%;
+      margin-top:12px;
+      padding:10px 12px;
+      border-radius:10px;
+      border:0;
+      background:#111;
+      color:#fff;
+      cursor:pointer;
+      font-size:14px;
     }
-    label { display:block; margin-top: 10px; font-size: 14px; color:#111; }
-    img.hero {
-      width: 100%;
-      border-radius: 18px;
-      border: 2px solid #e5e7eb;
-      margin-bottom: 16px;
-      display: block;
-    }
-    @media (max-width: 900px) {
-      .grid { grid-template-columns: 1fr; }
+    .hint{ font-size:12px; color:#666; margin:10px 0 0; }
+
+    @media (max-width: 900px){
+      .boards{ grid-template-columns: 1fr; height: auto; }
+      .board{ max-height: 70vh; } /* still scrollable on mobile */
     }
   </style>
 </head>
 
 <body>
   <div class="wrap">
-    <!-- Put your sketch image in the repo and rename it to: sketch.jpeg (same folder as index.html) -->
-    <img class="hero" src="sketch.jpeg" alt="Landing page sketch" />
+    <div class="boards">
+      <!-- LEFT BOARD: Problem + Fix -->
+      <section class="board">
+        <div class="title">
+          <h2>Problem → Fix</h2>
+          <p class="sub">1 platform for textured hair</p>
+        </div>
 
-    <div class="grid">
-      <!-- Problem -->
-      <section class="col">
-        <h2>Problem</h2>
-        <p>No one place for textured hair:</p>
-        <p>• inspo</p>
-        <p>• tutorials</p>
-        <p>• info</p>
-        <p>• products</p>
-      </section>
+        <div class="section">
+          <h3>Problem</h3>
+          <ul>
+            <li>Inspo is scattered</li>
+            <li>Tutorials aren’t organized by hair type / style</li>
+            <li>Products are hard to match to styles</li>
+          </ul>
+        </div>
 
-      <!-- Fix -->
-      <section class="col">
-        <h2>Fix</h2>
-        <p>One platform for textured hair:</p>
-        <p>• browse inspo</p>
-        <p>• watch tutorials</p>
-        <p>• learn care + styles</p>
-        <p>• discover soft products</p>
+        <div class="section">
+          <h3>Fix</h3>
+          <ul>
+            <li>Browse textured hair inspo</li>
+            <li>Filter by hair type + style</li>
+            <li>Watch tutorials tied to the look</li>
+            <li>Discover “soft” products that fit</li>
+          </ul>
+        </div>
 
-        <div class="card">
-          <p><b>Preview</b> (coming)</p>
-          <p>Grid + filters + like button</p>
+        <div class="section">
+          <h3>What the MVP is</h3>
+          <ul>
+            <li>Grid of looks</li>
+            <li>Filters</li>
+            <li>Like / save</li>
+          </ul>
         </div>
       </section>
 
-      <!-- Forms -->
-      <section class="col">
-        <h2>Forms</h2>
+      <!-- RIGHT BOARD: Forms -->
+      <section class="board">
+        <div class="title">
+          <h2>Forms</h2>
+          <p class="sub">waitlist + signals</p>
+        </div>
 
         <div class="card">
-          <p><b>Waitlist Form</b></p>
+          <h3 style="margin:0 0 6px; font-size:14px;">Waitlist</h3>
+
           <label>Email</label>
           <input type="email" placeholder="you@example.com" />
 
@@ -101,11 +148,13 @@
             <option>Wigs / Extensions</option>
           </select>
 
-          <button class="btn" type="button">Join waitlist</button>
+          <button class="btn" type="button">Join</button>
+          <p class="hint">No spam. Just launch updates.</p>
         </div>
 
         <div class="card">
-          <p><b>Analytics Form</b></p>
+          <h3 style="margin:0 0 6px; font-size:14px;">Quick signals</h3>
+
           <label>Like creative hair inspo?</label>
           <select>
             <option value="">Select</option>
@@ -128,9 +177,20 @@
           </select>
 
           <button class="btn" type="button">Submit</button>
+          <p class="hint">Helps us pick MVP features.</p>
+        </div>
+
+        <div class="section">
+          <h3>Tracking (later)</h3>
+          <ul>
+            <li>Visits → time on board</li>
+            <li>Form starts → submits</li>
+            <li>Clicks on sections</li>
+          </ul>
         </div>
       </section>
     </div>
   </div>
 </body>
 </html>
+
