@@ -6,191 +6,220 @@
   <title>Textured Hair Platform</title>
   <style>
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#fafafa; color:#111; }
-    .wrap { max-width: 1200px; margin: 0 auto; padding: 20px; }
-
-    .boards{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:16px;
-      height: calc(100vh - 40px);
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: #f6f6f6;
+      color: #111;
     }
 
+    /* 2 boards */
+    .page{
+      height: 100vh;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;   /* <-- 2 boards */
+      gap: 16px;
+    }
+
+    /* each board scrolls */
     .board{
-      background:#fff;
-      border:1px solid #e6e6e6;
-      border-radius: 16px;
-      padding: 18px;
-      overflow:auto;            /* scroll inside each board */
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 18px;
+      padding: 16px;
+      overflow-y: auto;                 /* <-- scroll inside board */
       -webkit-overflow-scrolling: touch;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.04);
     }
 
-    .title{
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap:12px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #eee;
-      margin-bottom: 14px;
-      position: sticky;         /* keep header visible while scrolling */
+    /* sticky header inside each board */
+    .head{
+      position: sticky;
       top: 0;
       background: #fff;
-      z-index: 1;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #efefef;
+      z-index: 2;
     }
 
-    h2{ margin:0; font-size:18px; letter-spacing: .2px; }
-    .sub{ margin:0; font-size:13px; color:#666; }
+    h2{ margin: 0; font-size: 18px; }
+    .muted{ margin: 6px 0 0; font-size: 13px; color: #666; }
 
-    .section{ margin: 14px 0 18px; }
-    .section h3{ margin:0 0 8px; font-size:14px; color:#111; }
-    ul{ margin:0; padding-left: 18px; color:#222; line-height:1.55; }
-    li{ margin:6px 0; }
+    .block{ margin: 16px 0; }
+    .block h3{ margin: 0 0 8px; font-size: 13px; color:#333; text-transform: uppercase; letter-spacing: .06em; }
+    ul{ margin: 0; padding-left: 18px; line-height: 1.6; }
+    li{ margin: 6px 0; color:#222; }
 
     .card{
-      border:1px solid #eee;
-      border-radius: 12px;
+      border: 1px solid #efefef;
+      border-radius: 14px;
       padding: 12px;
-      background:#fff;
-      margin-top: 10px;
+      margin-top: 12px;
+      background: #fff;
     }
 
-    label{ display:block; font-size:12px; color:#444; margin-top:10px; }
+    label{ display:block; font-size: 12px; color:#444; margin-top: 10px; }
     input, select{
       width:100%;
-      padding:10px 12px;
-      border-radius:10px;
-      border:1px solid #e6e6e6;
-      margin-top:6px;
+      margin-top: 6px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #e6e6e6;
+      font-size: 14px;
       background:#fff;
-      font-size:14px;
     }
-    .btn{
+    button{
       width:100%;
-      margin-top:12px;
-      padding:10px 12px;
-      border-radius:10px;
-      border:0;
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 0;
       background:#111;
       color:#fff;
-      cursor:pointer;
-      font-size:14px;
+      font-size: 14px;
+      cursor: pointer;
     }
-    .hint{ font-size:12px; color:#666; margin:10px 0 0; }
 
     @media (max-width: 900px){
-      .boards{ grid-template-columns: 1fr; height: auto; }
-      .board{ max-height: 70vh; } /* still scrollable on mobile */
+      .page{ grid-template-columns: 1fr; }
+      .board{ max-height: 70vh; }
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="boards">
-      <!-- LEFT BOARD: Problem + Fix -->
-      <section class="board">
-        <div class="title">
-          <h2>Problem → Fix</h2>
-          <p class="sub">1 platform for textured hair</p>
-        </div>
+  <main class="page">
+    <!-- BOARD 1: Problem + Fix -->
+    <section class="board">
+      <div class="head">
+        <h2>Problem → Fix</h2>
+        <p class="muted">Textured hair, in one place.</p>
+      </div>
 
-        <div class="section">
-          <h3>Problem</h3>
-          <ul>
-            <li>Inspo is scattered</li>
-            <li>Tutorials aren’t organized by hair type / style</li>
-            <li>Products are hard to match to styles</li>
-          </ul>
-        </div>
+      <div class="block">
+        <h3>Problem</h3>
+        <ul>
+          <li>No single platform for textured hair.</li>
+          <li>Inspo, tutorials, info, and products are scattered.</li>
+        </ul>
+      </div>
 
-        <div class="section">
-          <h3>Fix</h3>
-          <ul>
-            <li>Browse textured hair inspo</li>
-            <li>Filter by hair type + style</li>
-            <li>Watch tutorials tied to the look</li>
-            <li>Discover “soft” products that fit</li>
-          </ul>
-        </div>
+      <div class="block">
+        <h3>Fix</h3>
+        <ul>
+          <li>Browse looks.</li>
+          <li>Filter by hair type + style.</li>
+          <li>Tutorials attached to the look.</li>
+          <li>Soft product picks per style.</li>
+        </ul>
+      </div>
 
-        <div class="section">
-          <h3>What the MVP is</h3>
-          <ul>
-            <li>Grid of looks</li>
-            <li>Filters</li>
-            <li>Like / save</li>
-          </ul>
-        </div>
-      </section>
+      <div class="block">
+        <h3>MVP</h3>
+        <ul>
+          <li>Grid</li>
+          <li>Filters</li>
+          <li>Like / save</li>
+        </ul>
+      </div>
 
-      <!-- RIGHT BOARD: Forms -->
-      <section class="board">
-        <div class="title">
-          <h2>Forms</h2>
-          <p class="sub">waitlist + signals</p>
-        </div>
+      <div class="block">
+        <h3>Metrics</h3>
+        <ul>
+          <li>Visits + time on board</li>
+          <li>Demo clicks</li>
+          <li>Waitlist submits</li>
+        </ul>
+      </div>
 
-        <div class="card">
-          <h3 style="margin:0 0 6px; font-size:14px;">Waitlist</h3>
+      <!-- extra content so you can SEE scrolling works -->
+      <div class="block">
+        <h3>More</h3>
+        <ul>
+          <li>Organize by protective styles</li>
+          <li>Wig installs, braids, twists, locs</li>
+          <li>Beginner → advanced</li>
+          <li>Creator + stylist discovery</li>
+        </ul>
+      </div>
+    </section>
 
-          <label>Email</label>
-          <input type="email" placeholder="you@example.com" />
+    <!-- BOARD 2: Forms -->
+    <section class="board">
+      <div class="head">
+        <h2>Forms</h2>
+        <p class="muted">Waitlist + signals.</p>
+      </div>
 
-          <label>Hair type</label>
-          <select>
-            <option value="">Select</option>
-            <option>2A–2C</option>
-            <option>3A–3C</option>
-            <option>4A–4C</option>
-            <option>Locs</option>
-            <option>Wigs / Extensions</option>
-          </select>
+      <div class="card">
+        <h3 style="margin:0 0 8px; font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:#333;">Waitlist</h3>
 
-          <button class="btn" type="button">Join</button>
-          <p class="hint">No spam. Just launch updates.</p>
-        </div>
+        <label>Email</label>
+        <input type="email" placeholder="you@example.com" />
 
-        <div class="card">
-          <h3 style="margin:0 0 6px; font-size:14px;">Quick signals</h3>
+        <label>Hair type</label>
+        <select>
+          <option value="">Select</option>
+          <option>2A–2C</option>
+          <option>3A–3C</option>
+          <option>4A–4C</option>
+          <option>Locs</option>
+          <option>Wigs / Extensions</option>
+        </select>
 
-          <label>Like creative hair inspo?</label>
-          <select>
-            <option value="">Select</option>
-            <option>Yes</option>
-            <option>No</option>
-          </select>
+        <button type="button">Join</button>
+      </div>
 
-          <label>Watch tutorials (wig installs / braids)?</label>
-          <select>
-            <option value="">Select</option>
-            <option>Yes</option>
-            <option>No</option>
-          </select>
+      <div class="card">
+        <h3 style="margin:0 0 8px; font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:#333;">Signals</h3>
 
-          <label>Are you a stylist?</label>
-          <select>
-            <option value="">Select</option>
-            <option>Yes</option>
-            <option>No</option>
-          </select>
+        <label>Like creative hair inspo?</label>
+        <select>
+          <option value="">Select</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
 
-          <button class="btn" type="button">Submit</button>
-          <p class="hint">Helps us pick MVP features.</p>
-        </div>
+        <label>Watch tutorials (wig installs / braids)?</label>
+        <select>
+          <option value="">Select</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
 
-        <div class="section">
-          <h3>Tracking (later)</h3>
-          <ul>
-            <li>Visits → time on board</li>
-            <li>Form starts → submits</li>
-            <li>Clicks on sections</li>
-          </ul>
-        </div>
-      </section>
-    </div>
-  </div>
+        <label>Are you a stylist?</label>
+        <select>
+          <option value="">Select</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+
+        <button type="button">Submit</button>
+      </div>
+
+      <div class="block">
+        <h3>Tracking list</h3>
+        <ul>
+          <li>Form views</li>
+          <li>Form starts</li>
+          <li>Form submits</li>
+          <li>Drop-off per field</li>
+        </ul>
+      </div>
+
+      <!-- extra content so you can SEE scrolling works -->
+      <div class="block">
+        <h3>Later</h3>
+        <ul>
+          <li>Creator upload form</li>
+          <li>Stylist business add form</li>
+          <li>Product submission form</li>
+          <li>Feedback form</li>
+        </ul>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
-
