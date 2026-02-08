@@ -4,143 +4,137 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MorphyHair — Textured hair, in one place</title>
-<meta name="description" content="MorphyHair brings textured hair info, tutorials, inspiration, and soft products into one platform." />
+<meta name="description" content="MorphyHair brings textured hair info, tutorials, inspiration, and products into one platform." />
 
 <style>
   :root{
     --bg:#07070a;
-    --panel:#0c0d12;
-    --panel2:#0f1017;
+    --panel:#0b0c10;
     --text:#f4f5f7;
     --muted:#a3a8b5;
     --line:rgba(255,255,255,.10);
-    --accent:#32ff7a;   /* primary */
-    --accent2:#a78bfa;  /* secondary */
+    --accent:#32ff7a;
     --radius:16px;
     --max:980px;
   }
-
   *{ box-sizing:border-box; }
-  html,body{ height:100%; }
   body{
     margin:0;
     font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial;
-    background: radial-gradient(900px 400px at 15% 0%, rgba(167,139,250,.10), transparent 60%),
-                radial-gradient(900px 500px at 85% 10%, rgba(50,255,122,.08), transparent 60%),
-                var(--bg);
-    color:var(--text);
+    background: var(--bg);
+    color: var(--text);
     line-height:1.45;
   }
-
   a{ color:inherit; text-decoration:none; }
   .wrap{ width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
-  .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
 
-  /* Top nav */
-  .top{
-    position:sticky; top:0; z-index:10;
-    background: rgba(7,7,10,.78);
+  /* Fixed navbar (doesn't push content down) */
+  .nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:1000;
+    background: rgba(7,7,10,.75);
     backdrop-filter: blur(10px);
-    border-bottom:1px solid var(--line);
+    border-bottom: 1px solid var(--line);
   }
-  .top .inner{
-    display:flex; align-items:center; justify-content:space-between;
+  .nav .inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
     padding:14px 0;
     gap:12px;
   }
   .brand{
     display:flex; align-items:center; gap:10px;
-    font-weight:850; letter-spacing:.2px;
+    font-weight:850;
+    letter-spacing:.2px;
   }
   .dot{
     width:10px; height:10px; border-radius:999px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    box-shadow: 0 0 22px rgba(50,255,122,.22);
+    background: var(--accent);
+    box-shadow: 0 0 18px rgba(50,255,122,.22);
   }
-  .nav{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
 
-  .chip{
-    padding:9px 12px;
-    border-radius:999px;
-    border:1px solid var(--line);
-    color:var(--muted);
-    background: rgba(255,255,255,.02);
+  .navlinks{
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .link{
+    color: var(--muted);
     font-weight:650;
     font-size:13px;
+    padding:8px 10px;
+    border-radius:999px;
   }
-  .chip:hover{ color:var(--text); }
+  .link:hover{ color: var(--text); background: rgba(255,255,255,.03); }
 
   .btn{
     padding:10px 14px;
     border-radius:12px;
     border:1px solid var(--line);
     background: rgba(255,255,255,.02);
-    color:var(--text);
+    color: var(--text);
     font-weight:750;
-    display:inline-flex; align-items:center; justify-content:center;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
   }
-  .btn:hover{ border-color: rgba(255,255,255,.18); }
-
   .btn.primary{
     background: var(--accent);
     color:#07130c;
     border-color: transparent;
   }
-  .btn.primary:hover{ filter: brightness(.98); }
 
-  /* Sections */
-  header{ padding:46px 0 18px; }
+  /* Layout spacing (account for fixed nav) */
+  main{ padding-top: 74px; } /* nav height */
+
+  header{ padding:54px 0 22px; }
   h1{
     margin:0 0 10px;
     font-size: clamp(30px, 4vw, 46px);
     letter-spacing: -0.6px;
   }
-  .sub{ margin:0; color:var(--muted); max-width:62ch; }
+  .sub{ margin:0; color: var(--muted); max-width:64ch; }
 
-  .section{ padding:22px 0; }
+  .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:16px; }
+
+  .section{ padding:18px 0; }
   .panel{
-    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+    background: rgba(255,255,255,.02);
     border:1px solid var(--line);
     border-radius: var(--radius);
     padding:18px;
   }
-  .panel + .panel{ margin-top:12px; }
-
   h2{ margin:0 0 10px; font-size:18px; letter-spacing:-.2px; }
-  .kicker{ margin:10px 0 0; color:var(--muted); font-size:12px; }
+  .kicker{ margin:10px 0 0; color: var(--muted); font-size:12px; }
 
   .grid3{
     display:grid;
     grid-template-columns: repeat(3, minmax(0,1fr));
     gap:12px;
+    margin-top:12px;
   }
   .tile{
-    background: rgba(255,255,255,.02);
     border:1px solid var(--line);
     border-radius: 14px;
     padding:14px;
-    min-height: 96px;
+    background: rgba(0,0,0,.20);
+    min-height: 92px;
   }
   .tile b{ display:block; margin-bottom:6px; }
-  .tile p{ margin:0; color:var(--muted); }
+  .tile p{ margin:0; color: var(--muted); }
 
-  .list{
-    margin:10px 0 0;
-    padding-left: 18px;
-    color:var(--muted);
-  }
+  .list{ margin:10px 0 0; padding-left:18px; color: var(--muted); }
   .list li{ margin:8px 0; }
 
-  /* Waitlist form (UI only) */
   form{ display:grid; gap:10px; margin-top:12px; }
-  label{ font-size:12px; color:var(--muted); }
+  label{ font-size:12px; color: var(--muted); }
   input, select{
     width:100%;
     padding:11px 12px;
     border-radius:12px;
     border:1px solid var(--line);
     background: rgba(0,0,0,.25);
-    color:var(--text);
+    color: var(--text);
     outline:none;
   }
   .formgrid{
@@ -150,19 +144,10 @@
   }
   .full{ grid-column: 1 / -1; }
 
-  .note{
-    border:1px dashed rgba(255,255,255,.14);
-    background: rgba(255,255,255,.02);
-    border-radius: 14px;
-    padding:12px;
-    color:var(--muted);
-    font-size:12px;
-  }
-
   footer{
     border-top:1px solid var(--line);
     padding:18px 0;
-    color:var(--muted);
+    color: var(--muted);
     font-size:12px;
     margin-top: 18px;
   }
@@ -171,160 +156,154 @@
     .grid3{ grid-template-columns: 1fr; }
     .formgrid{ grid-template-columns: 1fr; }
     .full{ grid-column:auto; }
+    .navlinks .link{ display:none; } /* ultra minimal on mobile */
   }
 </style>
 </head>
 
 <body>
-  <div class="top">
+  <!-- Fixed top navbar -->
+  <div class="nav">
     <div class="wrap inner">
       <div class="brand">
         <span class="dot" aria-hidden="true"></span>
         MorphyHair
       </div>
-
-      <div class="nav">
-        <a class="chip" href="#problem">Problem</a>
-        <a class="chip" href="#fix">Fix</a>
-        <a class="chip" href="#waitlist">Waitlist</a>
+      <div class="navlinks">
+        <a class="link" href="#problem">Problem</a>
+        <a class="link" href="#fix">Fix</a>
+        <a class="link" href="#waitlist">Waitlist</a>
         <a class="btn primary" href="#waitlist">Join</a>
       </div>
     </div>
   </div>
 
-  <header>
-    <div class="wrap">
-      <h1>Textured hair support is scattered. MorphyHair puts it in one place.</h1>
-      <p class="sub">
-        Instead of jumping between tutorials, inspo, info, and shops — MorphyHair brings everything together
-        so you can find what you need fast.
-      </p>
-
-      <div class="row" style="margin-top:16px;">
-        <a class="btn primary" href="#waitlist">Join waitlist</a>
-        <a class="btn" href="#problem">What problem?</a>
-        <a class="btn" href="#fix">What’s the fix?</a>
-      </div>
-
-      <p class="kicker">Minimal landing page UI — we’ll add demo + tracking after the layout feels right.</p>
-    </div>
-  </header>
-
-  <section class="section" id="problem">
-    <div class="wrap">
-      <div class="panel">
-        <h2>The problem</h2>
-        <p class="sub" style="margin:0;">
-          There isn’t one platform that combines textured hair information, tutorials, inspiration, and shopping.
+  <main>
+    <header>
+      <div class="wrap">
+        <h1>Textured hair info, tutorials, inspo, and products — together.</h1>
+        <p class="sub">
+          MorphyHair is one platform for textured hair so you don’t have to search across 5 different apps to find what you need.
         </p>
 
-        <ul class="list">
-          <li><b>Tutorials</b> live on TikTok / YouTube.</li>
-          <li><b>Inspiration</b> lives on Instagram / Pinterest.</li>
-          <li><b>Information</b> is buried in blogs and forums.</li>
-          <li><b>Products</b> are separate — with no context to the style.</li>
-        </ul>
-
-        <p class="kicker">Result: people waste time searching and still don’t know what works for them.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="fix">
-    <div class="wrap">
-      <div class="panel">
-        <h2>The fix</h2>
-        <p class="sub" style="margin:0;">
-          MorphyHair is a platform for textured hair where people can browse a large variety of:
-          information, tutorials, inspiration, and soft products — together.
-        </p>
-      </div>
-
-      <div class="grid3" style="margin-top:12px;">
-        <div class="tile">
-          <b>Learn</b>
-          <p>Textured hair info + tutorials organized in one place.</p>
+        <div class="row">
+          <a class="btn primary" href="#waitlist">Join waitlist</a>
+          <a class="btn" href="#problem">See the problem</a>
+          <a class="btn" href="#fix">See the fix</a>
         </div>
-        <div class="tile">
-          <b>Get inspired</b>
-          <p>Browse styles and save what you love.</p>
-        </div>
-        <div class="tile">
-          <b>Buy</b>
-          <p>Soft products connected to the style/tutorial.</p>
+
+        <p class="kicker">Minimal UI draft. Next we’ll add demo + tracking after the layout is final.</p>
+      </div>
+    </header>
+
+    <section class="section" id="problem">
+      <div class="wrap">
+        <div class="panel">
+          <h2>The problem</h2>
+          <p class="sub" style="margin:0;">
+            There isn’t one platform that combines textured hair information, tutorials, inspiration, and shopping.
+          </p>
+
+          <ul class="list">
+            <li>Tutorials are on TikTok / YouTube</li>
+            <li>Inspiration is on Instagram / Pinterest</li>
+            <li>Information is buried in blogs and forums</li>
+            <li>Products are separate with no context</li>
+          </ul>
+
+          <p class="kicker">Result: people waste time searching and still don’t know what works for them.</p>
         </div>
       </div>
+    </section>
 
-      <div class="note" style="margin-top:12px;">
-        Accent colors: <span style="color:var(--accent);font-weight:800;">primary</span> and
-        <span style="color:var(--accent2);font-weight:800;">secondary</span>.
-        Want it calmer? We can switch to one accent only.
-      </div>
-    </div>
-  </section>
+    <section class="section" id="fix">
+      <div class="wrap">
+        <div class="panel">
+          <h2>The fix</h2>
+          <p class="sub" style="margin:0;">
+            MorphyHair brings it all into one place: browse info, watch tutorials, save inspiration, and buy soft products.
+          </p>
 
-  <section class="section" id="waitlist">
-    <div class="wrap">
-      <div class="panel">
-        <h2>Join the waitlist</h2>
-        <p class="sub" style="margin:0;">Quick UI-only form. (No backend yet.)</p>
-
-        <form id="waitlistForm">
-          <div class="formgrid">
-            <div class="full">
-              <label for="email">Email</label>
-              <input id="email" type="email" placeholder="you@example.com" required />
+          <div class="grid3">
+            <div class="tile">
+              <b>Learn</b>
+              <p>Textured hair info + tutorials in one platform.</p>
             </div>
-
-            <div>
-              <label for="hairType">Hair type</label>
-              <select id="hairType" required>
-                <option value="" selected disabled>Select</option>
-                <option>Type 2 (2a–2c)</option>
-                <option>Type 3 (3a–3c)</option>
-                <option>Type 4 (4a–4c)</option>
-                <option>Locs</option>
-                <option>Relaxed / chemically treated</option>
-                <option>Transitioning</option>
-                <option>Other / not sure</option>
-              </select>
+            <div class="tile">
+              <b>Get inspired</b>
+              <p>Browse styles and save what you love.</p>
             </div>
-
-            <div>
-              <label for="stylist">Are you a stylist?</label>
-              <select id="stylist" required>
-                <option value="" selected disabled>Select</option>
-                <option>No</option>
-                <option>Yes</option>
-              </select>
+            <div class="tile">
+              <b>Buy</b>
+              <p>Soft products connected to the style/tutorial.</p>
             </div>
           </div>
-
-          <button class="btn primary" type="submit">Join</button>
-          <div id="msg" class="kicker" style="display:none;"></div>
-        </form>
-
-        <p class="kicker">Next: we’ll add “Watch demo” + tracking and keep the layout this simple.</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <div class="wrap">© <span id="year"></span> MorphyHair</div>
-  </footer>
+    <section class="section" id="waitlist">
+      <div class="wrap">
+        <div class="panel">
+          <h2>Join the waitlist</h2>
+          <p class="sub" style="margin:0;">Quick UI-only form (no backend yet).</p>
+
+          <form id="waitlistForm">
+            <div class="formgrid">
+              <div class="full">
+                <label for="email">Email</label>
+                <input id="email" type="email" placeholder="you@example.com" required />
+              </div>
+
+              <div>
+                <label for="hairType">Hair type</label>
+                <select id="hairType" required>
+                  <option value="" selected disabled>Select</option>
+                  <option>Type 2 (2a–2c)</option>
+                  <option>Type 3 (3a–3c)</option>
+                  <option>Type 4 (4a–4c)</option>
+                  <option>Locs</option>
+                  <option>Relaxed / chemically treated</option>
+                  <option>Transitioning</option>
+                  <option>Other / not sure</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="stylist">Are you a stylist?</label>
+                <select id="stylist" required>
+                  <option value="" selected disabled>Select</option>
+                  <option>No</option>
+                  <option>Yes</option>
+                </select>
+              </div>
+            </div>
+
+            <button class="btn primary" type="submit">Join</button>
+            <p id="msg" class="kicker" style="display:none;"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">© <span id="year"></span> MorphyHair</div>
+    </footer>
+  </main>
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  // UI-only submit (so it works when you just open in a browser)
+  // UI-only submit for local browser testing
   const form = document.getElementById("waitlistForm");
   const msg = document.getElementById("msg");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     msg.style.display = "block";
-    msg.textContent = "✅ Saved (UI only). Backend + tracking comes next.";
+    msg.textContent = "✅ Saved (UI only). Backend comes next.";
   });
 </script>
 </body>
 </html>
+
 
