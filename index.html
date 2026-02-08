@@ -1,229 +1,136 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MorphyHair</title>
-
-<style>
-:root{
-  --bg:#07080c;
-  --panel:#0f1117;
-  --text:#f5f6f8;
-  --muted:#9aa3b2;
-  --line:rgba(255,255,255,.10);
-  --accent:#35ff88;
-  --radius:16px;
-  --navH:60px;
-  --max:1200px;
-}
-
-*{box-sizing:border-box}
-html,body{height:100%}
-
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-  background:var(--bg);
-  color:var(--text);
-  overflow:hidden; /* columns scroll, not page */
-}
-
-.wrap{max-width:var(--max);margin:0 auto;padding:0 16px}
-
-/* Top nav */
-.nav{
-  position:fixed;
-  top:0;left:0;right:0;
-  height:var(--navH);
-  background:rgba(7,8,12,.85);
-  border-bottom:1px solid var(--line);
-  backdrop-filter:blur(8px);
-  z-index:10;
-}
-.nav-inner{
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-.brand{font-weight:800}
-.btn{
-  padding:10px 14px;
-  border-radius:12px;
-  border:1px solid var(--line);
-  background:transparent;
-  color:var(--text);
-}
-.btn.primary{
-  background:var(--accent);
-  color:#062012;
-  border:none;
-  font-weight:700;
-}
-
-/* Layout */
-main{
-  height:calc(100vh - var(--navH));
-  padding-top:var(--navH);
-}
-
-.cols{
-  height:100%;
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:12px;
-  padding:12px 0;
-}
-
-/* Column */
-.col{
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  overflow:auto; /* ✅ independent scroll */
-}
-
-.col-head{
-  position:sticky;
-  top:0;
-  background:var(--panel);
-  border-bottom:1px solid var(--line);
-  padding:14px;
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  color:var(--muted);
-}
-
-.col-body{padding:16px}
-
-h2{margin:0 0 10px;font-size:20px}
-p{margin:0;color:var(--muted)}
-ul{margin:12px 0 0;padding-left:18px;color:var(--muted)}
-li{margin:8px 0}
-
-.card{
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:12px;
-  margin-top:12px;
-  background:rgba(255,255,255,.03);
-}
-
-/* Form */
-input,select{
-  width:100%;
-  padding:10px;
-  border-radius:10px;
-  border:1px solid var(--line);
-  background:#0a0c12;
-  color:var(--text);
-  margin-top:8px;
-}
-
-/* Mobile: stack */
-@media(max-width:900px){
-  body{overflow:auto}
-  main{height:auto}
-  .cols{grid-template-columns:1fr}
-  .col{max-height:none}
-  .col-head{position:static}
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Textured Hair Platform</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#fff; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      min-height: 80vh;
+    }
+    .col {
+      border: 2px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 18px;
+      background: #fff;
+    }
+    h2 { margin: 0 0 12px; font-size: 22px; }
+    p { margin: 0 0 10px; line-height: 1.5; color: #111; }
+    .card {
+      border: 2px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+    .btn {
+      display:inline-block; margin-top:10px; padding:10px 12px;
+      border-radius: 10px; border: 0; background:#111; color:#fff; cursor:pointer;
+      width: 100%;
+    }
+    input, select {
+      width: 100%; padding: 10px 12px; border-radius: 10px;
+      border: 2px solid #e5e7eb; margin-top: 8px;
+    }
+    label { display:block; margin-top: 10px; font-size: 14px; color:#111; }
+    img.hero {
+      width: 100%;
+      border-radius: 18px;
+      border: 2px solid #e5e7eb;
+      margin-bottom: 16px;
+      display: block;
+    }
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="wrap">
+    <!-- Put your sketch image in the repo and rename it to: sketch.jpeg (same folder as index.html) -->
+    <img class="hero" src="sketch.jpeg" alt="Landing page sketch" />
 
-<!-- NAV -->
-<div class="nav">
-  <div class="wrap nav-inner">
-    <div class="brand">MorphyHair</div>
-    <button class="btn primary">Join</button>
+    <div class="grid">
+      <!-- Problem -->
+      <section class="col">
+        <h2>Problem</h2>
+        <p>No one place for textured hair:</p>
+        <p>• inspo</p>
+        <p>• tutorials</p>
+        <p>• info</p>
+        <p>• products</p>
+      </section>
+
+      <!-- Fix -->
+      <section class="col">
+        <h2>Fix</h2>
+        <p>One platform for textured hair:</p>
+        <p>• browse inspo</p>
+        <p>• watch tutorials</p>
+        <p>• learn care + styles</p>
+        <p>• discover soft products</p>
+
+        <div class="card">
+          <p><b>Preview</b> (coming)</p>
+          <p>Grid + filters + like button</p>
+        </div>
+      </section>
+
+      <!-- Forms -->
+      <section class="col">
+        <h2>Forms</h2>
+
+        <div class="card">
+          <p><b>Waitlist Form</b></p>
+          <label>Email</label>
+          <input type="email" placeholder="you@example.com" />
+
+          <label>Hair type</label>
+          <select>
+            <option value="">Select</option>
+            <option>2A–2C</option>
+            <option>3A–3C</option>
+            <option>4A–4C</option>
+            <option>Locs</option>
+            <option>Wigs / Extensions</option>
+          </select>
+
+          <button class="btn" type="button">Join waitlist</button>
+        </div>
+
+        <div class="card">
+          <p><b>Analytics Form</b></p>
+          <label>Like creative hair inspo?</label>
+          <select>
+            <option value="">Select</option>
+            <option>Yes</option>
+            <option>No</option>
+          </select>
+
+          <label>Watch tutorials (wig installs / braids)?</label>
+          <select>
+            <option value="">Select</option>
+            <option>Yes</option>
+            <option>No</option>
+          </select>
+
+          <label>Are you a stylist?</label>
+          <select>
+            <option value="">Select</option>
+            <option>Yes</option>
+            <option>No</option>
+          </select>
+
+          <button class="btn" type="button">Submit</button>
+        </div>
+      </section>
+    </div>
   </div>
-</div>
-
-<main>
-  <div class="wrap cols">
-
-    <!-- Column 1 -->
-    <section class="col">
-      <div class="col-head">Problem</div>
-      <div class="col-body">
-        <h2>Textured hair support is scattered.</h2>
-        <p>No single platform combines info, tutorials, inspiration, and products.</p>
-
-        <ul>
-          <li>Tutorials → TikTok / YouTube</li>
-          <li>Inspiration → Instagram / Pinterest</li>
-          <li>Info → blogs & forums</li>
-          <li>Products → separate stores</li>
-        </ul>
-
-        <div class="card">People search everywhere and still lack clarity.</div>
-
-        <!-- filler to show scroll -->
-        <div class="card">More detail</div>
-        <div class="card">More detail</div>
-        <div class="card">More detail</div>
-        <div class="card">More detail</div>
-        <div class="card">More detail</div>
-      </div>
-    </section>
-
-    <!-- Column 2 -->
-    <section class="col">
-      <div class="col-head">Fix</div>
-      <div class="col-body">
-        <h2>One platform for textured hair.</h2>
-        <p>Learn, get inspired, and buy — together.</p>
-
-        <div class="card">
-          <b>Learn</b><br>
-          Tutorials + structured info
-        </div>
-
-        <div class="card">
-          <b>Inspire</b><br>
-          Browse & save styles
-        </div>
-
-        <div class="card">
-          <b>Buy</b><br>
-          Soft products matched to styles
-        </div>
-
-        <div class="card">MVP = discovery + saving first.</div>
-      </div>
-    </section>
-
-    <!-- Column 3 -->
-    <section class="col">
-      <div class="col-head">Forms</div>
-      <div class="col-body">
-        <h2>Waitlist</h2>
-        <p>Early access signup.</p>
-
-        <input placeholder="Email">
-        <select>
-          <option>Hair type</option>
-          <option>Type 2</option>
-          <option>Type 3</option>
-          <option>Type 4</option>
-        </select>
-
-        <button class="btn primary" style="margin-top:10px;width:100%">
-          Join Waitlist
-        </button>
-
-        <div class="card">
-          Analytics form comes next.
-        </div>
-      </div>
-    </section>
-
-  </div>
-</main>
-
 </body>
 </html>
