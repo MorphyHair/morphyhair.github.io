@@ -1,320 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Textured Hair Platform</title>
+  <meta charset="UTF-8" />
+  <title>Textured Hair Platform</title>
 
-<!-- PostHog -->
-<script>
-!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once alias unregister identify set_config reset people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-posthog.init('phc_XZmsD6oJFV4pty5K8HsuTojb1OUesRYGs0UputUrw9Z', {
-    api_host: 'https://us.i.posthog.com',
-    person_profiles: 'identified_only'
-});
-</script>
-<!-- End PostHog -->
+  <!-- PostHog (single install) -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){
+      function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}} 
+      (p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,
+      p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",
+      (r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);
+      var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],
+      u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},
+      u.people.toString=function(){return u.toString(1)+".people (stub)"},
+      o="init rs ls wi ns us ts ss capture calculateEventProperties vs register register_once register_for_session unregister unregister_for_session gs getFeatureFlag getFeatureFlagPayload getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty fs ds createPersonProfile setInternalOrTestUser ps Qr opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing hs debug M cs getPageViewId captureTraceFeedback captureTraceMetric Kr".split(" "),
+      n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_XZmsD6oJFV4pty5K8HsuTojblOUEsRYGs0UputUrW9Z', {
+      api_host: 'https://us.i.posthog.com',
+      person_profiles: 'identified_only'
+    });
+  </script>
+  <!-- End PostHog -->
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #000;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #000;
+    }
 
-/* ---------- LARGE HEADER / HERO NAV ---------- */
+    /* ---------- LARGE HEADER / HERO NAV ---------- */
+    .hero-nav {
+      background: #111;
+      height: 25vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-.hero-nav {
-  background: #111;
-  height: 25vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    .hero-nav-inner {
+      display: flex;
+      gap: 60px;
+    }
 
-.hero-nav-inner {
-  display: flex;
-  gap: 60px;
-}
+    .hero-nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 22px;
+    }
 
-.hero-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 22px;
-}
+    /* ---------- PAGE LAYOUT ---------- */
+    .page {
+      display: none;
+      padding: 60px 40px;
+    }
 
-/* ---------- PAGE LAYOUT ---------- */
+    .page.active {
+      display: block;
+    }
 
-.page {
-  display: none;
-  padding: 60px 40px;
-}
+    /* ---------- PROBLEM PAGE GRID ---------- */
+    .problem-layout {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
 
-.page.active {
-  display: block;
-}
+    .left-panel {
+      background: white;
+      padding: 40px;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
 
-/* ---------- PROBLEM PAGE GRID ---------- */
+    .right-panel img {
+      width: 70%;
+      border-radius: 24px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+      display: block;
+      margin: auto;
+    }
 
-.problem-layout {
-  display: grid;
-  grid-template-columns: 1fr 0.9fr;
-  gap: 40px;
-  max-width: 1200px;
-  margin: auto;
-}
+    /* ---------- TYPOGRAPHY ---------- */
+    h1 {
+      font-size: 34px;
+      text-align: center;
+      margin-top: 0;
+    }
 
-.left-panel {
-  background: white;
-  padding: 40px;
-  border-radius: 18px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-}
+    h2 {
+      font-size: 26px;
+      text-align: center;
+      margin-top: 36px;
+    }
 
-.right-panel img {
-  width: 70%;
-  border-radius: 24px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
-  display: block;
-  margin: auto;
-}
+    p {
+      line-height: 1.6;
+      color: #333;
+    }
 
-/* ---------- TYPOGRAPHY ---------- */
+    /* ---------- FIX IMAGE ---------- */
+    .fix-image {
+      margin-top: 24px;
+      width: 240px;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
 
-h1 {
-  font-size: 34px;
-  text-align: center;
-  margin-top: 0;
-}
+    /* ---------- FORM CARD ---------- */
+    .form-card {
+      background: white;
+      padding: 40px;
+      border-radius: 18px;
+      max-width: 720px;
+      margin: auto;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
 
-h2 {
-  font-size: 26px;
-  text-align: center;
-  margin-top: 36px;
-}
+    .waitlist-form {
+      display: grid;
+      gap: 16px;
+      margin-top: 20px;
+    }
 
-p {
-  line-height: 1.6;
-  color: #333;
-}
+    .waitlist-form label {
+      font-weight: bold;
+      font-size: 14px;
+    }
 
-/* ---------- FIX IMAGE ---------- */
+    .waitlist-form input,
+    .waitlist-form select,
+    .waitlist-form textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      font-size: 15px;
+    }
 
-.fix-image {
-  margin-top: 24px;
-  width: 240px;
-  border-radius: 14px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-}
+    .waitlist-form textarea {
+      min-height: 90px;
+    }
 
-/* ---------- FORM CARD ---------- */
+    .waitlist-form button {
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      background: #111;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-.form-card {
-  background: white;
-  padding: 40px;
-  border-radius: 18px;
-  max-width: 720px;
-  margin: auto;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-}
+    .success-message {
+      display: none;
+      background: #f2f2f2;
+      padding: 14px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
 
-.waitlist-form {
-  display: grid;
-  gap: 16px;
-  margin-top: 20px;
-}
+    .placeholder {
+      background: white;
+      padding: 40px;
+      border-radius: 18px;
+      max-width: 700px;
+      margin: auto;
+    }
+  </style>
 
-.waitlist-form label {
-  font-weight: bold;
-  font-size: 14px;
-}
+  <script>
+    function showPage(id) {
+      document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
 
-.waitlist-form input,
-.waitlist-form select,
-.waitlist-form textarea {
-  width: 100%;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid #ddd;
-  font-size: 15px;
-}
+      // Track nav clicks
+      if (window.posthog) {
+        posthog.capture("nav_click", { page: id });
+      }
+    }
 
-.waitlist-form textarea {
-  min-height: 90px;
-}
+    async function handleWaitlistSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
 
-.waitlist-form button {
-  padding: 14px;
-  border-radius: 12px;
-  border: none;
-  background: #111;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-}
+      // Track submit click
+      if (window.posthog) {
+        posthog.capture("waitlist_form_submit", {
+          hair_type: form.querySelector('[name="hair_type"]')?.value || "",
+          interest: form.querySelector('[name="interest"]')?.value || "",
+          tutorials: form.querySelector('[name="tutorials"]')?.value || "",
+          stylist: form.querySelector('[name="stylist"]')?.value || ""
+        });
+      }
 
-.success-message {
-  display: none;
-  background: #f2f2f2;
-  padding: 14px;
-  border-radius: 12px;
-  text-align: center;
-  font-weight: bold;
-}
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" }
+      });
 
-.placeholder {
-  background: white;
-  padding: 40px;
-  border-radius: 18px;
-  max-width: 700px;
-  margin: auto;
-}
-</style>
+      if (res.ok) {
+        form.reset();
+        document.getElementById("waitlistSuccess").style.display = "block";
 
-<script>
-function showPage(id) {
-  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-}
+        if (window.posthog) {
+          posthog.capture("waitlist_form_success");
+        }
+      } else {
+        alert("Submission failed — try again.");
 
-async function handleWaitlistSubmit(e) {
-  e.preventDefault();
-  const form = e.target;
-  const data = new FormData(form);
-
-  if (window.posthog) {
-    posthog.capture('waitlist_form_submit');
-  }
-
-  const res = await fetch(form.action, {
-    method: "POST",
-    body: data,
-    headers: { Accept: "application/json" }
-  });
-
-  if (res.ok) {
-    form.reset();
-    document.getElementById("waitlistSuccess").style.display = "block";
-  } else {
-    alert("Submission failed — try again.");
-  }
-}
-</script>
-
+        if (window.posthog) {
+          posthog.capture("waitlist_form_error");
+        }
+      }
+    }
+  </script>
 </head>
+
 <body>
-
-<div class="hero-nav">
-  <div class="hero-nav-inner">
-    <a href="#" onclick="showPage('problem')">The Problem</a>
-    <a href="#" onclick="showPage('forms')">Forms</a>
-    <a href="#" onclick="showPage('terms')">Terms of Service</a>
-  </div>
-</div>
-
-<div id="problem" class="page active">
-  <div class="problem-layout">
-    <div class="left-panel">
-      <h1>The Problem</h1>
-      <p>
-        There is no single platform dedicated to textured hair that brings together
-        inspiration, tutorials, education, and product discovery in one place.
-      </p>
-      <p>
-        Users must jump between social media, blogs, marketplaces, and video platforms.
-        The experience is fragmented and inefficient.
-      </p>
-
-      <h2>The Fix</h2>
-
-      <p>
-        A dedicated textured hair platform combining inspiration, tutorials, knowledge,
-        and product discovery in one structured environment.
-      </p>
-
-      <img src="images/IMG_9454.jpg" class="fix-image">
-    </div>
-
-    <div class="right-panel">
-      <img src="images/IMG_9453.jpg">
+  <div class="hero-nav">
+    <div class="hero-nav-inner">
+      <a href="#" onclick="showPage('problem'); return false;">The Problem</a>
+      <a href="#" onclick="showPage('forms'); return false;">Forms</a>
+      <a href="#" onclick="showPage('terms'); return false;">Terms of Service</a>
     </div>
   </div>
-</div>
 
-<div id="forms" class="page">
-  <div class="form-card">
+  <div id="problem" class="page active">
+    <div class="problem-layout">
+      <div class="left-panel">
+        <h1>The Problem</h1>
+        <p>
+          There is no single platform dedicated to textured hair that brings together
+          inspiration, tutorials, education, and product discovery in one place.
+        </p>
+        <p>
+          Users must jump between social media, blogs, marketplaces, and video platforms.
+          The experience is fragmented and inefficient.
+        </p>
 
-    <h1>Join the Waitlist</h1>
-    <p>Early access for the textured hair inspiration + tutorial platform.</p>
+        <h2>The Fix</h2>
+        <p>
+          A dedicated textured hair platform combining inspiration, tutorials, knowledge,
+          and product discovery in one structured environment.
+        </p>
 
-    <form action="https://formspree.io/f/mbdajnrw"
-          method="POST"
-          class="waitlist-form"
-          onsubmit="handleWaitlistSubmit(event)">
-
-      <label>Email *</label>
-      <input type="email" name="email" required>
-
-      <label>First name</label>
-      <input type="text" name="first_name">
-
-      <label>Hair type *</label>
-      <select name="hair_type" required>
-        <option value="">Select</option>
-        <option>2A–2C</option>
-        <option>3A–3C</option>
-        <option>4A–4C</option>
-        <option>Mixed</option>
-        <option>Not sure</option>
-      </select>
-
-      <label>Main interest *</label>
-      <select name="interest" required>
-        <option value="">Select</option>
-        <option>Inspiration</option>
-        <option>Tutorials</option>
-        <option>Products</option>
-        <option>Learning</option>
-        <option>Finding stylists</option>
-        <option>Selling</option>
-      </select>
-
-      <label>Watch tutorials?</label>
-      <select name="tutorials">
-        <option>Yes</option>
-        <option>Sometimes</option>
-        <option>No</option>
-      </select>
-
-      <label>Are you a stylist?</label>
-      <select name="stylist">
-        <option>No</option>
-        <option>Stylist</option>
-        <option>Seller</option>
-      </select>
-
-      <label>Pain point</label>
-      <textarea name="pain_point"></textarea>
-
-      <button type="submit">Join Waitlist</button>
-
-      <div id="waitlistSuccess" class="success-message">
-        ✅ You’re on the list!
+        <img src="images/IMG_9454.jpg" class="fix-image" alt="Fix" />
       </div>
 
-    </form>
-
+      <div class="right-panel">
+        <img src="images/IMG_9453.jpg" alt="Problem visual" />
+      </div>
+    </div>
   </div>
-</div>
 
-<div id="terms" class="page">
-  <div class="placeholder">
-    <h1>Terms of Service</h1>
-    <p>Terms content will go here.</p>
+  <div id="forms" class="page">
+    <div class="form-card">
+      <h1>Join the Waitlist</h1>
+      <p>Early access for the textured hair inspiration + tutorial platform.</p>
+
+      <form
+        action="https://formspree.io/f/mbdajnrw"
+        method="POST"
+        class="waitlist-form"
+        onsubmit="handleWaitlistSubmit(event)"
+      >
+        <label>Email *</label>
+        <input type="email" name="email" required />
+
+        <label>First name</label>
+        <input type="text" name="first_name" />
+
+        <label>Hair type *</label>
+        <select name="hair_type" required>
+          <option value="">Select</option>
+          <option>2A–2C</option>
+          <option>3A–3C</option>
+          <option>4A–4C</option>
+          <option>Mixed</option>
+          <option>Not sure</option>
+        </select>
+
+        <label>Main interest *</label>
+        <select name="interest" required>
+          <option value="">Select</option>
+          <option>Inspiration</option>
+          <option>Tutorials</option>
+          <option>Products</option>
+          <option>Learning</option>
+          <option>Finding stylists</option>
+          <option>Selling</option>
+        </select>
+
+        <label>Watch tutorials?</label>
+        <select name="tutorials">
+          <option>Yes</option>
+          <option>Sometimes</option>
+          <option>No</option>
+        </select>
+
+        <label>Are you a stylist?</label>
+        <select name="stylist">
+          <option>No</option>
+          <option>Stylist</option>
+          <option>Seller</option>
+        </select>
+
+        <label>Pain point</label>
+        <textarea name="pain_point"></textarea>
+
+        <button type="submit">Join Waitlist</button>
+
+        <div id="waitlistSuccess" class="success-message">
+          ✅ You’re on the list!
+        </div>
+      </form>
+    </div>
   </div>
-</div>
 
+  <div id="terms" class="page">
+    <div class="placeholder">
+      <h1>Terms of Service</h1>
+      <p>Terms content will go here.</p>
+    </div>
+  </div>
 </body>
 </html>
 
