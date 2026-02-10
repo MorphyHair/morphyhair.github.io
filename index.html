@@ -4,14 +4,15 @@
 <meta charset="UTF-8">
 <title>Textured Hair Platform</title>
 
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JEPRPV67ZK"></script>
+<!-- PostHog -->
 <script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-JEPRPV67ZK');
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once alias unregister identify set_config reset people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_XZmsD6oJFV4pty5K8HsuTojb1OUesRYGs0UputUrw9Z', {
+    api_host: 'https://us.i.posthog.com',
+    person_profiles: 'identified_only'
+});
 </script>
+<!-- End PostHog -->
 
 <style>
 body {
@@ -182,6 +183,10 @@ async function handleWaitlistSubmit(e) {
   const form = e.target;
   const data = new FormData(form);
 
+  if (window.posthog) {
+    posthog.capture('waitlist_form_submit');
+  }
+
   const res = await fetch(form.action, {
     method: "POST",
     body: data,
@@ -212,12 +217,10 @@ async function handleWaitlistSubmit(e) {
   <div class="problem-layout">
     <div class="left-panel">
       <h1>The Problem</h1>
-
       <p>
         There is no single platform dedicated to textured hair that brings together
         inspiration, tutorials, education, and product discovery in one place.
       </p>
-
       <p>
         Users must jump between social media, blogs, marketplaces, and video platforms.
         The experience is fragmented and inefficient.
@@ -241,6 +244,7 @@ async function handleWaitlistSubmit(e) {
 
 <div id="forms" class="page">
   <div class="form-card">
+
     <h1>Join the Waitlist</h1>
     <p>Early access for the textured hair inspiration + tutorial platform.</p>
 
@@ -298,7 +302,9 @@ async function handleWaitlistSubmit(e) {
       <div id="waitlistSuccess" class="success-message">
         ✅ You’re on the list!
       </div>
+
     </form>
+
   </div>
 </div>
 
@@ -311,4 +317,5 @@ async function handleWaitlistSubmit(e) {
 
 </body>
 </html>
+
 
