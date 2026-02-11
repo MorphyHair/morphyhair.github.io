@@ -6,113 +6,199 @@
 
   <!-- PostHog -->
   <script>
-    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){
-      function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}} 
-      (p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,
-      p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",
-      (r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);
-      var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],
-      o="capture identify".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-    posthog.init('phc_XZmsD6oJFV4pty5K8HsuTojblOUEsRYGs0UputUrW9Z', {
-      api_host: 'https://us.i.posthog.com'
-    });
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog&&window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){
+    function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}
+    (p=t.createElement("script")).type="text/javascript",p.async=!0,p.crossOrigin="anonymous",
+    p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",
+    (r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);
+    var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],
+    o=["capture","identify"],n=0;n<o.length;n++)g(u,o[n]);
+    e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_XZmsD6oJFV4pty5K8HsuTojblOUEsRYGs0UputUrW9Z',{api_host:'https://us.i.posthog.com'});
   </script>
 
-<style>
-body{margin:0;font-family:Arial;background:#000}
-.hero-nav{background:#111;height:25vh;display:flex;align-items:center;justify-content:center}
-.hero-nav-inner{display:flex;gap:60px}
-.hero-nav a{color:white;text-decoration:none;font-weight:bold;font-size:22px}
-.page{display:none;padding:60px 40px}
-.page.active{display:block}
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #000;
+    }
 
-.problem-layout{display:grid;grid-template-columns:1fr .9fr;gap:40px;max-width:1200px;margin:auto}
-.left-panel{background:white;padding:40px;border-radius:18px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
-.right-panel img{width:70%;border-radius:24px;box-shadow:0 12px 30px rgba(0,0,0,.4);display:block;margin:auto}
+    .hero-nav {
+      background: #111;
+      height: 25vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-h1{font-size:34px;text-align:center;margin-top:0}
-h2{font-size:26px;text-align:center;margin-top:36px}
-p{line-height:1.6;color:#333}
+    .hero-nav-inner {
+      display: flex;
+      gap: 60px;
+    }
 
-.fix-image{margin-top:24px;width:240px;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+    .hero-nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 22px;
+    }
 
-.form-card{background:white;padding:40px;border-radius:18px;max-width:720px;margin:auto;box-shadow:0 8px 24px rgba(0,0,0,.25)}
-.waitlist-form{display:grid;gap:16px;margin-top:20px}
-.waitlist-form label{font-weight:bold;font-size:14px}
-.waitlist-form input,.waitlist-form select,.waitlist-form textarea{
-width:100%;padding:12px;border-radius:12px;border:1px solid #ddd;font-size:15px}
-.waitlist-form textarea{min-height:90px}
-.waitlist-form button{
-padding:14px;border-radius:12px;border:none;background:#111;color:white;
-font-size:16px;font-weight:bold;cursor:pointer}
+    .page {
+      display: none;
+      padding: 60px 40px;
+    }
 
-.placeholder{background:white;padding:40px;border-radius:18px;max-width:700px;margin:auto}
-</style>
+    .page.active {
+      display: block;
+    }
 
-<script>
-function showPage(id){
- document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
- document.getElementById(id).classList.add("active");
- posthog.capture("nav_click",{page:id});
-}
+    .problem-layout {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
 
-function goToGoogleForm(){
- posthog.capture("waitlist_google_form_click");
- window.open("YOUR_GOOGLE_FORM_URL","_blank");
-}
-</script>
+    .left-panel {
+      background: white;
+      padding: 40px;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+
+    .right-panel img {
+      width: 70%;
+      border-radius: 24px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+      display: block;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 34px;
+      text-align: center;
+      margin-top: 0;
+    }
+
+    h2 {
+      font-size: 26px;
+      text-align: center;
+      margin-top: 36px;
+    }
+
+    p {
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .fix-image {
+      margin-top: 24px;
+      width: 240px;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
+
+    .form-card {
+      background: white;
+      padding: 40px;
+      border-radius: 18px;
+      max-width: 720px;
+      margin: auto;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+
+    .placeholder {
+      background: white;
+      padding: 40px;
+      border-radius: 18px;
+      max-width: 700px;
+      margin: auto;
+    }
+  </style>
+
+  <script>
+    function showPage(id) {
+      document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+      if (window.posthog) posthog.capture("nav_click", { page: id });
+    }
+  </script>
 </head>
 
 <body>
 
 <div class="hero-nav">
-<div class="hero-nav-inner">
-<a href="#" onclick="showPage('problem');return false;">The Problem</a>
-<a href="#" onclick="showPage('forms');return false;">Forms</a>
-<a href="#" onclick="showPage('terms');return false;">Terms</a>
-</div>
+  <div class="hero-nav-inner">
+    <a href="#" onclick="showPage('problem'); return false;">The Problem</a>
+    <a href="#" onclick="showPage('forms'); return false;">Forms</a>
+    <a href="#" onclick="showPage('terms'); return false;">Terms of Service</a>
+  </div>
 </div>
 
+<!-- PROBLEM PAGE -->
 <div id="problem" class="page active">
-<div class="problem-layout">
-<div class="left-panel">
-<h1>The Problem</h1>
-<p>There is no single platform dedicated to textured hair that brings together inspiration, tutorials, education, and product discovery in one place.</p>
-<p>Users jump between social media, blogs, marketplaces, and videos. The experience is fragmented.</p>
+  <div class="problem-layout">
+    <div class="left-panel">
+      <h1>The Problem</h1>
+      <p>
+        There is no single platform dedicated to textured hair that brings together
+        inspiration, tutorials, education, and product discovery in one place.
+      </p>
+      <p>
+        Users must jump between social media, blogs, marketplaces, and video platforms.
+        The experience is fragmented and inefficient.
+      </p>
 
-<h2>The Fix</h2>
-<p>A dedicated textured hair platform combining inspiration, tutorials, knowledge, and product discovery in one structured environment.</p>
-<img src="IMG_9454.jpg" class="fix-image">
+      <h2>The Fix</h2>
+      <p>
+        A dedicated textured hair platform combining inspiration, tutorials, knowledge,
+        and product discovery in one structured environment.
+      </p>
+
+      <img src="IMG_9454.jpg" class="fix-image" alt="Fix">
+    </div>
+
+    <div class="right-panel">
+      <img src="IMG_9453.jpg" alt="Problem visual">
+    </div>
+  </div>
 </div>
 
-<div class="right-panel">
-<img src="IMG_9453.jpg">
-</div>
-</div>
-</div>
-
+<!-- FORMS PAGE -->
 <div id="forms" class="page">
-<div class="form-card">
-<h1>Join the Waitlist</h1>
-<p>We’re collecting early users through our secure Google Form.</p>
+  <div class="form-card">
+    <h1>Join the Waitlist</h1>
+    <p>Early access for the textured hair inspiration + tutorial platform.</p>
 
-<button onclick="goToGoogleForm()">Open Secure Waitlist Form</button>
+    <script>
+      if (window.posthog) posthog.capture("waitlist_form_viewed");
+    </script>
 
-<p style="margin-top:20px;font-size:14px;color:#666;text-align:center">
-Powered by Google Forms for data security
-</p>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdVCMyKqGMd8aL-WuJb_qJofGbnKxsqbWNTWk7eG9V4TEHZig/viewform?embedded=true"
+      width="100%"
+      height="1890"
+      frameborder="0"
+      marginheight="0"
+      marginwidth="0">
+      Loading…
+    </iframe>
+
+  </div>
 </div>
-</div>
 
+<!-- TERMS PAGE -->
 <div id="terms" class="page">
-<div class="placeholder">
-<h1>Terms of Service</h1>
-<p>Terms content will go here.</p>
-</div>
+  <div class="placeholder">
+    <h1>Terms of Service</h1>
+    <p>Terms content will go here.</p>
+  </div>
 </div>
 
 </body>
 </html>
+
 
 
 
