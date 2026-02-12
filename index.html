@@ -18,177 +18,131 @@
   </script>
 
   <style>
-    :root{
-      --bg:#000;
-      --panel:#0b0b0b;
-      --text:#fff;
-      --muted:rgba(255,255,255,0.75);
-      --hairline:rgba(255,255,255,0.12);
-    }
-
-    * { box-sizing: border-box; }
-
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      background: #000;
+      color: #fff;
     }
 
-    /* NAV */
     .hero-nav {
-      background: rgba(0,0,0,0.75);
-      border-bottom: 1px solid var(--hairline);
-      height: 18vh;
-      min-height: 110px;
+      background: #111;
+      height: 25vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: sticky;
-      top: 0;
-      backdrop-filter: blur(8px);
-      z-index: 10;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .hero-nav-inner {
       display: flex;
-      gap: 48px;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 0 18px;
+      gap: 60px;
     }
 
     .hero-nav a {
       color: white;
       text-decoration: none;
-      font-weight: 700;
-      font-size: 18px;
-      letter-spacing: 0.2px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      transition: 0.2s ease;
+      font-weight: bold;
+      font-size: 22px;
+      opacity: 0.9;
     }
-
     .hero-nav a:hover {
-      border-color: var(--hairline);
-      background: rgba(255,255,255,0.06);
+      opacity: 1;
+      text-decoration: underline;
+      text-underline-offset: 8px;
     }
 
-    /* PAGES */
     .page {
       display: none;
-      padding: 56px 24px;
+      padding: 70px 40px;
     }
 
     .page.active {
       display: block;
     }
 
-    /* PROBLEM LAYOUT */
     .problem-layout {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
+      grid-template-columns: 1fr 0.9fr;
       gap: 48px;
       max-width: 1200px;
-      margin: 0 auto;
-      align-items: start;
+      margin: auto;
+      align-items: center;
     }
 
-    @media (max-width: 900px) {
-      .problem-layout { grid-template-columns: 1fr; }
-    }
-
-    /* TEXT BLOCKS (no white cards) */
+    /* removed white card backgrounds */
     .left-panel {
       padding: 0;
       background: transparent;
+      border-radius: 0;
+      box-shadow: none;
     }
 
-    .kicker {
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 12px;
-      margin: 0 0 14px 0;
+    .right-panel img {
+      width: 49%; /* was 70% -> reduced by 30% */
+      border-radius: 24px;
+      box-shadow: none;
+      display: block;
+      margin: auto;
     }
 
     h1 {
-      font-size: clamp(40px, 5vw, 64px);
-      line-height: 1.05;
-      margin: 0 0 18px 0;
+      font-size: 52px;
       text-align: left;
-      color: var(--text);
+      margin: 0 0 18px 0;
+      letter-spacing: -0.5px;
     }
 
     h2 {
-      font-size: clamp(28px, 3.2vw, 40px);
-      line-height: 1.1;
-      margin: 38px 0 14px 0;
+      font-size: 44px;
       text-align: left;
-      color: var(--text);
+      margin: 42px 0 16px 0;
+      letter-spacing: -0.3px;
     }
 
     p {
       line-height: 1.7;
-      color: var(--muted);
+      color: rgba(255,255,255,0.85);
       font-size: 18px;
+      max-width: 58ch;
       margin: 0 0 14px 0;
-      max-width: 60ch;
-    }
-
-    .divider {
-      height: 1px;
-      background: var(--hairline);
-      margin: 24px 0;
-      width: 100%;
-    }
-
-    /* IMAGES ON BLACK */
-    .right-panel img {
-      width: 100%;
-      border-radius: 22px;
-      display: block;
-      background: #000;
-      border: 1px solid var(--hairline);
     }
 
     .fix-image {
-      margin-top: 18px;
-      width: min(320px, 90%);
-      border-radius: 18px;
+      margin-top: 26px;
+      width: 168px; /* was 240px -> reduced by 30% */
+      border-radius: 14px;
+      box-shadow: none;
       display: block;
-      background: #000;
-      border: 1px solid var(--hairline);
     }
 
-    /* FORMS + TERMS (no white cards) */
+    /* FORMS + TERMS: remove white background cards */
     .form-card,
     .placeholder {
       background: transparent;
       padding: 0;
       border-radius: 0;
       max-width: 900px;
-      margin: 0 auto;
+      margin: auto;
       box-shadow: none;
     }
 
-    .form-card h1,
-    .placeholder h1 {
-      text-align: left;
-    }
-
-    .form-card p,
-    .placeholder p {
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    /* Optional: give iframe a subtle border so it feels intentional on black */
+    /* make iframe look clean on black */
     iframe {
       border-radius: 16px;
-      border: 1px solid var(--hairline);
-      background: #000;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: #0b0b0b;
+    }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .hero-nav { height: auto; padding: 22px 14px; }
+      .hero-nav-inner { gap: 22px; flex-wrap: wrap; justify-content: center; }
+      .page { padding: 44px 18px; }
+      .problem-layout { grid-template-columns: 1fr; gap: 28px; }
+      h1 { font-size: 42px; text-align: left; }
+      h2 { font-size: 36px; }
+      .right-panel img { width: 70%; } /* still smaller overall on mobile */
     }
   </style>
 
@@ -197,7 +151,6 @@
       document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
       document.getElementById(id).classList.add("active");
       if (window.posthog) posthog.capture("nav_click", { page: id });
-      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   </script>
 </head>
@@ -216,7 +169,6 @@
 <div id="problem" class="page active">
   <div class="problem-layout">
     <div class="left-panel">
-      <div class="kicker">Textured hair, all-in-one</div>
       <h1>The Problem</h1>
       <p>
         There is no single platform dedicated to textured hair that brings together
@@ -226,8 +178,6 @@
         Users must jump between social media, blogs, marketplaces, and video platforms.
         The experience is fragmented and inefficient.
       </p>
-
-      <div class="divider"></div>
 
       <h2>The Fix</h2>
       <p>
@@ -247,7 +197,6 @@
 <!-- FORMS PAGE -->
 <div id="forms" class="page">
   <div class="form-card">
-    <div class="kicker">Early access</div>
     <h1>Join the Waitlist</h1>
     <p>Early access for the textured hair inspiration + tutorial platform.</p>
 
@@ -255,8 +204,7 @@
       if (window.posthog) posthog.capture("waitlist_form_viewed");
     </script>
 
-    <iframe
-      src="https://docs.google.com/forms/d/e/1FAIpQLSdVCMyKqGMd8aL-WuJb_qJofGbnKxsqbWNTWk7eG9V4TEHZig/viewform?embedded=true"
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdVCMyKqGMd8aL-WuJb_qJofGbnKxsqbWNTWk7eG9V4TEHZig/viewform?embedded=true"
       width="100%"
       height="1890"
       frameborder="0"
@@ -264,13 +212,13 @@
       marginwidth="0">
       Loading…
     </iframe>
+
   </div>
 </div>
 
 <!-- TERMS PAGE -->
 <div id="terms" class="page">
   <div class="placeholder">
-    <div class="kicker">Legal</div>
     <h1>Terms of Service</h1>
     <p>Terms content will go here.</p>
   </div>
@@ -278,7 +226,6 @@
 
 </body>
 </html>
-
 
 
 
