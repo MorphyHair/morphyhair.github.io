@@ -33,12 +33,12 @@ posthog.init('phc_XZmsD6oJFV4pty5K8HsuTojblOUEsRYGs0UputUrW9Z',{api_host:'https:
 
 body{
 margin:0;
-font-family: Arial, Helvetica, sans-serif;
+font-family:Arial, Helvetica, sans-serif;
 background:#000;
 color:#fff;
 }
 
-/* TOP NAV BIGGER */
+/* TOP NAV — bigger */
 .topbar{padding:24px;}
 .topbar-inner{
 max-width:1200px;
@@ -55,29 +55,29 @@ font-size:20px;
 padding:12px 14px;
 }
 
-/* PAGE */
-.page{display:none;padding:20px;}
+/* Pages */
+.page{display:none;padding:30px 22px 60px;}
 .page.active{display:block;}
 .wrap{max-width:1200px;margin:auto;}
 
-/* CAROUSEL */
+/* Carousel */
 .carousel{
-margin-top:20px;
+margin-top:10px;
+margin-bottom:60px; /* PUSH EVERYTHING DOWN */
 overflow:hidden;
-padding-bottom:20px;
 }
 .track{
 display:flex;
 gap:14px;
-width:max-content;
 animation:scroll 18s linear infinite;
+width:max-content;
 }
 @keyframes scroll{
 0%{transform:translateX(0);}
 100%{transform:translateX(-50%);}
 }
 .pill{
-padding:14px 20px;
+padding:12px 18px;
 border-radius:999px;
 font-weight:900;
 font-size:16px;
@@ -91,25 +91,25 @@ white-space:nowrap;
 .p5{background:var(--pop5);}
 .p6{background:var(--pop6);}
 
-/* HERO — PUSHED DOWN */
+/* HERO */
 .hero{
 display:grid;
 grid-template-columns:1fr 520px;
 gap:60px;
-margin-top:80px;
+margin-top:40px; /* PUSH DOWN */
 }
 
 .title{
 font-size:76px;
-margin:0 0 16px 0;
+margin:0 0 18px;
 font-weight:900;
 }
 
 .lead{
 font-size:22px;
-color:var(--muted);
 font-weight:700;
-margin-bottom:20px;
+color:var(--muted);
+margin-bottom:18px;
 }
 
 .big-bullets{
@@ -123,26 +123,26 @@ gap:14px;
 .big-bullets li{
 font-size:22px;
 font-weight:900;
-padding-left:26px;
+padding-left:24px;
 position:relative;
 }
 .big-bullets li:before{
 content:"•";
 position:absolute;
 left:0;
-font-size:26px;
 }
 
-/* CTA — BIGGER + LOWER + RIGHT */
+/* BIGGER BUTTON — down + right */
 .cta-row{
-margin-top:50px;
-margin-left:40px;
+margin-top:60px;
+margin-left:80px;
 }
+
 .btn.primary{
 background:#fff;
 color:#000;
 border-radius:999px;
-padding:22px 34px;
+padding:22px 38px;
 font-size:22px;
 font-weight:900;
 text-decoration:none;
@@ -155,18 +155,22 @@ width:100%;
 height:520px;
 object-fit:contain;
 display:block;
-}
-
-/* FORMS / TERMS BIGGER */
-.form-card, .placeholder{
-max-width:900px;
-margin:auto;
-}
-iframe{
-width:100%;
+background:#000;
 border:none;
 }
 
+/* Forms */
+iframe{
+width:100%;
+border-radius:14px;
+border:1px solid rgba(255,255,255,0.15);
+}
+
+/* Responsive */
+@media(max-width:980px){
+.hero{grid-template-columns:1fr;}
+.title{font-size:56px;}
+}
 </style>
 
 <script>
@@ -214,14 +218,14 @@ document.getElementById(id).classList.add("active");
 <h1 class="title">Morphy Hair</h1>
 
 <p class="lead">
-All-in-one textured hair platform.
+All-in-one textured hair inspo + tutorial platform.
 </p>
 
 <ul class="big-bullets">
-<li>Hair inspo, wigs, colours</li>
-<li>Tutorials + installs</li>
-<li>Tools + prices + shops</li>
-<li>Natural hair + DIY masks</li>
+<li>Styles, wigs, colours.</li>
+<li>Tutorials installs + braids.</li>
+<li>Tools + price ranges.</li>
+<li>Natural hair + DIY masks.</li>
 </ul>
 
 <div class="cta-row">
@@ -231,8 +235,9 @@ Join the waitlist
 </div>
 </div>
 
+<!-- IMAGE — no container -->
 <div class="hero-image">
-<img src="IMG_9453.jpg">
+<img src="IMG_9453.jpg" alt="preview">
 </div>
 
 </div>
@@ -241,27 +246,16 @@ Join the waitlist
 
 <!-- FORMS -->
 <div id="forms" class="page">
-<div class="form-card">
 <h1 style="font-size:48px;">Join the Waitlist</h1>
-<p style="font-size:22px;color:#ccc;">
-Early access.
-</p>
-
-<iframe
-src="https://docs.google.com/forms/d/e/1FAIpQLSdVCMyKqGMd8aL-WuJb_qJofGbnKxsqbWNTWk7eG9V4TEHZig/viewform?embedded=true"
-height="1890">
-</iframe>
-</div>
+<iframe src="YOUR_GOOGLE_FORM_LINK" height="1890"></iframe>
 </div>
 
 <!-- TERMS -->
 <div id="terms" class="page">
-<div class="placeholder">
-<h1 style="font-size:48px;">Terms</h1>
-<p style="font-size:22px;color:#ccc;">
-Terms text here.
+<h1 style="font-size:48px;">Terms of Service</h1>
+<p style="font-size:20px;color:rgba(255,255,255,0.8);">
+Terms here.
 </p>
-</div>
 </div>
 
 </body>
