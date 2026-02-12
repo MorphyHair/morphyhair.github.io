@@ -48,18 +48,12 @@
       font-weight: bold;
       font-size: 22px;
       opacity: 0.9;
-      transition: opacity 0.15s ease, transform 0.15s ease;
-    }
-
-    .hero-nav a:hover {
-      opacity: 1;
-      transform: translateY(-1px);
     }
 
     .page {
       display: none;
       padding: 70px 40px;
-      background: #000; /* ensure page stays black */
+      background: #000;
     }
 
     .page.active {
@@ -70,32 +64,24 @@
       display: grid;
       grid-template-columns: 1fr 0.9fr;
       gap: 40px;
-      max-width: 1200px;
+      max-width: 1100px;
       margin: auto;
       align-items: start;
     }
 
-    /* REMOVE WHITE CARD LOOK */
     .left-panel {
       background: transparent;
       padding: 0;
-      border-radius: 0;
-      box-shadow: none;
     }
 
-    /* Make statements BIG + WHITE */
     h1 {
       font-size: 56px;
-      line-height: 1.05;
-      letter-spacing: -0.5px;
       margin: 0 0 18px 0;
       color: #fff;
     }
 
     h2 {
       font-size: 44px;
-      line-height: 1.1;
-      letter-spacing: -0.3px;
       margin: 42px 0 14px 0;
       color: #fff;
     }
@@ -104,60 +90,55 @@
       line-height: 1.7;
       font-size: 18px;
       color: rgba(255,255,255,0.88);
-      margin: 0 0 16px 0;
       max-width: 62ch;
     }
 
-    /* Images sit on black; remove heavy shadows; reduce size by 30% */
+    /* 🔻 MUCH SMALLER IMAGES */
     .right-panel img {
-      width: 49%; /* was 70% -> reduced by 30% */
-      border-radius: 18px;
-      box-shadow: none;
+      width: 260px;
+      max-width: 260px;
+      height: auto;
+      border-radius: 16px;
       display: block;
       margin: 0 auto;
-      border: 1px solid rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.12);
     }
 
     .fix-image {
       margin-top: 18px;
-      width: 168px; /* was 240px -> reduced by 30% */
-      border-radius: 14px;
-      box-shadow: none;
-      border: 1px solid rgba(255,255,255,0.10);
-      display: inline-block;
+      width: 120px;
+      max-width: 120px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
     }
 
-    /* Forms + terms containers also on black (no white cards) */
     .form-card,
     .placeholder {
       background: transparent;
       padding: 0;
-      border-radius: 0;
       max-width: 900px;
       margin: auto;
-      box-shadow: none;
     }
 
-    /* Make iframe look nicer on black */
     iframe {
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.12);
       background: #000;
     }
 
-    /* Responsive */
     @media (max-width: 900px) {
       .problem-layout {
         grid-template-columns: 1fr;
       }
 
       .right-panel img {
-        width: 70%; /* keep reasonable on small screens */
-        margin-top: 18px;
+        width: 200px;
+        max-width: 200px;
+        margin-top: 20px;
       }
 
-      h1 { font-size: 44px; }
-      h2 { font-size: 34px; }
+      h1 { font-size: 42px; }
+      h2 { font-size: 32px; }
     }
   </style>
 
@@ -180,7 +161,6 @@
   </div>
 </div>
 
-<!-- PROBLEM PAGE -->
 <div id="problem" class="page active">
   <div class="problem-layout">
     <div class="left-panel">
@@ -209,7 +189,6 @@
   </div>
 </div>
 
-<!-- FORMS PAGE -->
 <div id="forms" class="page">
   <div class="form-card">
     <h1>Join the Waitlist</h1>
@@ -221,17 +200,10 @@
 
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdVCMyKqGMd8aL-WuJb_qJofGbnKxsqbWNTWk7eG9V4TEHZig/viewform?embedded=true"
       width="100%"
-      height="1890"
-      frameborder="0"
-      marginheight="0"
-      marginwidth="0">
-      Loading…
-    </iframe>
-
+      height="1890"></iframe>
   </div>
 </div>
 
-<!-- TERMS PAGE -->
 <div id="terms" class="page">
   <div class="placeholder">
     <h1>Terms of Service</h1>
@@ -241,7 +213,3 @@
 
 </body>
 </html>
-
-
-
-
