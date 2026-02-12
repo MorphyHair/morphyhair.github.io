@@ -18,103 +18,177 @@
   </script>
 
   <style>
+    :root{
+      --bg:#000;
+      --panel:#0b0b0b;
+      --text:#fff;
+      --muted:rgba(255,255,255,0.75);
+      --hairline:rgba(255,255,255,0.12);
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: #000;
+      background: var(--bg);
+      color: var(--text);
     }
 
+    /* NAV */
     .hero-nav {
-      background: #111;
-      height: 25vh;
+      background: rgba(0,0,0,0.75);
+      border-bottom: 1px solid var(--hairline);
+      height: 18vh;
+      min-height: 110px;
       display: flex;
       align-items: center;
       justify-content: center;
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(8px);
+      z-index: 10;
     }
 
     .hero-nav-inner {
       display: flex;
-      gap: 60px;
+      gap: 48px;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0 18px;
     }
 
     .hero-nav a {
       color: white;
       text-decoration: none;
-      font-weight: bold;
-      font-size: 22px;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.2px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: 0.2s ease;
     }
 
+    .hero-nav a:hover {
+      border-color: var(--hairline);
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* PAGES */
     .page {
       display: none;
-      padding: 60px 40px;
+      padding: 56px 24px;
     }
 
     .page.active {
       display: block;
     }
 
+    /* PROBLEM LAYOUT */
     .problem-layout {
       display: grid;
-      grid-template-columns: 1fr 0.9fr;
-      gap: 40px;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 48px;
       max-width: 1200px;
-      margin: auto;
+      margin: 0 auto;
+      align-items: start;
     }
 
+    @media (max-width: 900px) {
+      .problem-layout { grid-template-columns: 1fr; }
+    }
+
+    /* TEXT BLOCKS (no white cards) */
     .left-panel {
-      background: white;
-      padding: 40px;
-      border-radius: 18px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      padding: 0;
+      background: transparent;
     }
 
-    .right-panel img {
-      width: 70%;
-      border-radius: 24px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
-      display: block;
-      margin: auto;
+    .kicker {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      margin: 0 0 14px 0;
     }
 
     h1 {
-      font-size: 34px;
-      text-align: center;
-      margin-top: 0;
+      font-size: clamp(40px, 5vw, 64px);
+      line-height: 1.05;
+      margin: 0 0 18px 0;
+      text-align: left;
+      color: var(--text);
     }
 
     h2 {
-      font-size: 26px;
-      text-align: center;
-      margin-top: 36px;
+      font-size: clamp(28px, 3.2vw, 40px);
+      line-height: 1.1;
+      margin: 38px 0 14px 0;
+      text-align: left;
+      color: var(--text);
     }
 
     p {
-      line-height: 1.6;
-      color: #333;
+      line-height: 1.7;
+      color: var(--muted);
+      font-size: 18px;
+      margin: 0 0 14px 0;
+      max-width: 60ch;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--hairline);
+      margin: 24px 0;
+      width: 100%;
+    }
+
+    /* IMAGES ON BLACK */
+    .right-panel img {
+      width: 100%;
+      border-radius: 22px;
+      display: block;
+      background: #000;
+      border: 1px solid var(--hairline);
     }
 
     .fix-image {
-      margin-top: 24px;
-      width: 240px;
-      border-radius: 14px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-    }
-
-    .form-card {
-      background: white;
-      padding: 40px;
+      margin-top: 18px;
+      width: min(320px, 90%);
       border-radius: 18px;
-      max-width: 720px;
-      margin: auto;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      display: block;
+      background: #000;
+      border: 1px solid var(--hairline);
     }
 
+    /* FORMS + TERMS (no white cards) */
+    .form-card,
     .placeholder {
-      background: white;
-      padding: 40px;
-      border-radius: 18px;
-      max-width: 700px;
-      margin: auto;
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+      max-width: 900px;
+      margin: 0 auto;
+      box-shadow: none;
+    }
+
+    .form-card h1,
+    .placeholder h1 {
+      text-align: left;
+    }
+
+    .form-card p,
+    .placeholder p {
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    /* Optional: give iframe a subtle border so it feels intentional on black */
+    iframe {
+      border-radius: 16px;
+      border: 1px solid var(--hairline);
+      background: #000;
     }
   </style>
 
@@ -123,6 +197,7 @@
       document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
       document.getElementById(id).classList.add("active");
       if (window.posthog) posthog.capture("nav_click", { page: id });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   </script>
 </head>
@@ -141,6 +216,7 @@
 <div id="problem" class="page active">
   <div class="problem-layout">
     <div class="left-panel">
+      <div class="kicker">Textured hair, all-in-one</div>
       <h1>The Problem</h1>
       <p>
         There is no single platform dedicated to textured hair that brings together
@@ -150,6 +226,8 @@
         Users must jump between social media, blogs, marketplaces, and video platforms.
         The experience is fragmented and inefficient.
       </p>
+
+      <div class="divider"></div>
 
       <h2>The Fix</h2>
       <p>
@@ -169,6 +247,7 @@
 <!-- FORMS PAGE -->
 <div id="forms" class="page">
   <div class="form-card">
+    <div class="kicker">Early access</div>
     <h1>Join the Waitlist</h1>
     <p>Early access for the textured hair inspiration + tutorial platform.</p>
 
@@ -176,7 +255,8 @@
       if (window.posthog) posthog.capture("waitlist_form_viewed");
     </script>
 
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdVCMyKqGMd8aL-WuJb_qJofGbnKxsqbWNTWk7eG9V4TEHZig/viewform?embedded=true"
+    <iframe
+      src="https://docs.google.com/forms/d/e/1FAIpQLSdVCMyKqGMd8aL-WuJb_qJofGbnKxsqbWNTWk7eG9V4TEHZig/viewform?embedded=true"
       width="100%"
       height="1890"
       frameborder="0"
@@ -184,13 +264,13 @@
       marginwidth="0">
       Loading…
     </iframe>
-
   </div>
 </div>
 
 <!-- TERMS PAGE -->
 <div id="terms" class="page">
   <div class="placeholder">
+    <div class="kicker">Legal</div>
     <h1>Terms of Service</h1>
     <p>Terms content will go here.</p>
   </div>
