@@ -1,361 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Morphy Hair</title>
+<meta charset="UTF-8" />
+<title>Morphy Hair</title>
 
-  <!-- PostHog -->
-  <script>
-    !function(t,e){var o,n,p,r;e.__SV||(window.posthog&&window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){
-    function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}
-    (p=t.createElement("script")).type="text/javascript",p.async=!0,p.crossOrigin="anonymous",
-    p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",
-    (r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);
-    var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],
-    o=["capture","identify"],n=0;n<o.length;n++)g(u,o[n]);
-    e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-    posthog.init('phc_XZmsD6oJFV4pty5K8HsuTojblOUEsRYGs0UputUrW9Z',{api_host:'https://us.i.posthog.com'});
-  </script>
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog&&window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){
+function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}
+(p=t.createElement("script")).type="text/javascript",p.async=!0,p.crossOrigin="anonymous",
+p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",
+(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);
+var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],
+o=["capture","identify"],n=0;n<o.length;n++)g(u,o[n]);
+e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_XZmsD6oJFV4pty5K8HsuTojblOUEsRYGs0UputUrW9Z',{api_host:'https://us.i.posthog.com'});
+</script>
 
-  <style>
-    :root{
-      --bg:#000;
-      --text:#fff;
-      --muted:rgba(255,255,255,0.78);
-      --line:rgba(255,255,255,0.12);
+<style>
+:root{
+--bg:#000;
+--text:#fff;
+--muted:rgba(255,255,255,0.78);
+--pop1:#ff3bd4;
+--pop2:#3dffb5;
+--pop3:#5aa6ff;
+--pop4:#ffe14a;
+--pop5:#ff6b3d;
+--pop6:#b86bff;
+}
 
-      /* art-pop accents for pills */
-      --pop1:#ff3bd4;
-      --pop2:#3dffb5;
-      --pop3:#5aa6ff;
-      --pop4:#ffe14a;
-      --pop5:#ff6b3d;
-      --pop6:#b86bff;
-    }
+*{box-sizing:border-box;}
 
-    *{ box-sizing:border-box; }
+body{
+margin:0;
+font-family: Arial, Helvetica, sans-serif;
+background:#000;
+color:#fff;
+}
 
-    body{
-      margin:0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
+/* TOP NAV BIGGER */
+.topbar{padding:24px;}
+.topbar-inner{
+max-width:1200px;
+margin:auto;
+display:flex;
+justify-content:flex-end;
+gap:22px;
+}
+.navlink{
+color:#fff;
+text-decoration:none;
+font-weight:900;
+font-size:20px;
+padding:12px 14px;
+}
 
-    /* Top right nav */
-    .topbar{ padding: 20px 22px 0 22px; }
-    .topbar-inner{
-      max-width: 1200px;
-      margin: 0 auto;
-      display:flex;
-      justify-content:flex-end;
-      gap: 18px;
-      align-items:center;
-    }
-    .navlink{
-      color: rgba(255,255,255,0.85);
-      text-decoration:none;
-      font-weight: 800;
-      font-size: 16px;
-      padding: 10px 10px;
-      border-radius: 999px;
-    }
-    .navlink:hover{ background: rgba(255,255,255,0.06); }
+/* PAGE */
+.page{display:none;padding:20px;}
+.page.active{display:block;}
+.wrap{max-width:1200px;margin:auto;}
 
-    /* Pages */
-    .page{ display:none; padding: 18px 22px 50px 22px; }
-    .page.active{ display:block; }
+/* CAROUSEL */
+.carousel{
+margin-top:20px;
+overflow:hidden;
+padding-bottom:20px;
+}
+.track{
+display:flex;
+gap:14px;
+width:max-content;
+animation:scroll 18s linear infinite;
+}
+@keyframes scroll{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
+}
+.pill{
+padding:14px 20px;
+border-radius:999px;
+font-weight:900;
+font-size:16px;
+color:#000;
+white-space:nowrap;
+}
+.p1{background:var(--pop1);}
+.p2{background:var(--pop2);}
+.p3{background:var(--pop3);}
+.p4{background:var(--pop4);}
+.p5{background:var(--pop5);}
+.p6{background:var(--pop6);}
 
-    .wrap{
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+/* HERO — PUSHED DOWN */
+.hero{
+display:grid;
+grid-template-columns:1fr 520px;
+gap:60px;
+margin-top:80px;
+}
 
-    /* Carousel at top (on pure black, no box) */
-    .carousel{
-      margin-top: 12px;
-      overflow: hidden;
-      position: relative;
-      padding: 10px 0 18px 0;
-    }
-    .track{
-      display:flex;
-      gap: 14px;
-      width: max-content;
-      animation: scroll 18s linear infinite;
-      padding: 6px 0;
-    }
-    @keyframes scroll{
-      0%{ transform: translateX(0); }
-      100%{ transform: translateX(-50%); }
-    }
-    .pill{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 12px 18px;
-      border-radius: 999px;
-      font-weight: 900;
-      font-size: 16px;
-      color: #000;
-      white-space: nowrap;
-      border: 1px solid rgba(0,0,0,0.12);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-    }
-    .p1{ background: var(--pop1); }
-    .p2{ background: var(--pop2); }
-    .p3{ background: var(--pop3); }
-    .p4{ background: var(--pop4); }
-    .p5{ background: var(--pop5); }
-    .p6{ background: var(--pop6); }
+.title{
+font-size:76px;
+margin:0 0 16px 0;
+font-weight:900;
+}
 
-    /* fade edges */
-    .carousel:before,
-    .carousel:after{
-      content:"";
-      position:absolute;
-      top:0; bottom:0;
-      width: 80px;
-      pointer-events:none;
-      z-index: 2;
-    }
-    .carousel:before{
-      left:0;
-      background: linear-gradient(to right, #000 10%, rgba(0,0,0,0));
-    }
-    .carousel:after{
-      right:0;
-      background: linear-gradient(to left, #000 10%, rgba(0,0,0,0));
-    }
+.lead{
+font-size:22px;
+color:var(--muted);
+font-weight:700;
+margin-bottom:20px;
+}
 
-    /* HERO (left text, right single image) */
-    .hero{
-      display:grid;
-      grid-template-columns: 1fr 520px;
-      gap: 46px;
-      align-items:start;
-      margin-top: 10px;
-    }
+.big-bullets{
+list-style:none;
+padding:0;
+margin:0;
+display:flex;
+flex-direction:column;
+gap:14px;
+}
+.big-bullets li{
+font-size:22px;
+font-weight:900;
+padding-left:26px;
+position:relative;
+}
+.big-bullets li:before{
+content:"•";
+position:absolute;
+left:0;
+font-size:26px;
+}
 
-    .title{
-      font-size: 76px;
-      line-height: 0.95;
-      letter-spacing: -1px;
-      margin: 0 0 14px 0;
-      font-weight: 900;
-    }
+/* CTA — BIGGER + LOWER + RIGHT */
+.cta-row{
+margin-top:50px;
+margin-left:40px;
+}
+.btn.primary{
+background:#fff;
+color:#000;
+border-radius:999px;
+padding:22px 34px;
+font-size:22px;
+font-weight:900;
+text-decoration:none;
+display:inline-block;
+}
 
-    .lead{
-      margin: 0 0 18px 0;
-      font-size: 22px;
-      line-height: 1.6;
-      color: var(--muted);
-      max-width: 60ch;
-      font-weight: 700;
-    }
+/* IMAGE — NO CONTAINER */
+.hero-image img{
+width:100%;
+height:520px;
+object-fit:contain;
+display:block;
+}
 
-    /* Big bullets */
-    .big-bullets{
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display:flex;
-      flex-direction:column;
-      gap: 14px;
-      max-width: 62ch;
-    }
-    .big-bullets li{
-      font-size: 22px;
-      line-height: 1.35;
-      font-weight: 900;
-      color: rgba(255,255,255,0.92);
-      padding-left: 26px;
-      position: relative;
-    }
-    .big-bullets li:before{
-      content:"•";
-      position:absolute;
-      left:0;
-      top:-1px;
-      color: rgba(255,255,255,0.85);
-      font-size: 26px;
-      line-height: 1;
-    }
+/* FORMS / TERMS BIGGER */
+.form-card, .placeholder{
+max-width:900px;
+margin:auto;
+}
+iframe{
+width:100%;
+border:none;
+}
 
-    /* Big waitlist button */
-    .cta-row{
-      margin-top: 22px;
-      display:flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items:center;
-    }
-    .btn{
-      cursor:pointer;
-      border-radius: 999px;
-      padding: 14px 18px;
-      font-weight: 900;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.08);
-      color: #fff;
-      text-decoration:none;
-      display:inline-block;
-    }
-    .btn:hover{ background: rgba(255,255,255,0.12); }
-    .btn.primary{
-      background:#fff;
-      color:#000;
-      border: 1px solid rgba(255,255,255,0.12);
-      padding: 16px 22px;
-      font-size: 18px;
-    }
-    .btn.primary:hover{ opacity:0.92; }
+</style>
 
-    /* Right image: full image visible, not too tall */
-    .hero-image{
-      width: 100%;
-      border-radius: 26px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      padding: 12px;
-    }
-    .hero-image img{
-      width: 100%;
-      height: 520px;         /* controls tallness */
-      max-height: 520px;
-      object-fit: contain;   /* shows FULL image */
-      display:block;
-      border-radius: 18px;
-      background: #000;
-    }
-
-    /* Forms + Terms */
-    .form-card, .placeholder{
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    iframe{
-      width:100%;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: #000;
-    }
-
-    /* Responsive */
-    @media (max-width: 980px){
-      .hero{ grid-template-columns: 1fr; }
-      .title{ font-size: 56px; }
-      .hero-image img{ height: 420px; max-height: 420px; }
-      .big-bullets li{ font-size: 20px; }
-    }
-  </style>
-
-  <script>
-    function showPage(id) {
-      document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
-      if (window.posthog) posthog.capture("nav_click", { page: id });
-    }
-  </script>
+<script>
+function showPage(id){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+}
+</script>
 </head>
 
 <body>
 
-  <div class="topbar">
-    <div class="topbar-inner">
-      <a class="navlink" href="#" onclick="showPage('terms'); return false;">Terms</a>
-      <a class="navlink" href="mailto:hello@morphyhair.com" onclick="if(window.posthog) posthog.capture('contact_click');">Contact</a>
-    </div>
-  </div>
+<div class="topbar">
+<div class="topbar-inner">
+<a class="navlink" href="#" onclick="showPage('terms');return false;">Terms</a>
+<a class="navlink" href="mailto:hello@morphyhair.com">Contact</a>
+</div>
+</div>
 
-  <!-- HOME -->
-  <div id="home" class="page active">
-    <div class="wrap">
+<!-- HOME -->
+<div id="home" class="page active">
+<div class="wrap">
 
-      <!-- Carousel at TOP -->
-      <div class="carousel" aria-label="Feature pills carousel">
-        <div class="track">
-          <div class="pill p1">Discover tutorials</div>
-          <div class="pill p2">Find unique blends</div>
-          <div class="pill p3">See tools used</div>
-          <div class="pill p4">Know price ranges</div>
-          <div class="pill p5">Shop where to buy</div>
-          <div class="pill p6">Build wash-day routines</div>
+<div class="carousel">
+<div class="track">
+<div class="pill p1">Discover tutorials</div>
+<div class="pill p2">Find unique blends</div>
+<div class="pill p3">See tools used</div>
+<div class="pill p4">Know price ranges</div>
+<div class="pill p5">Shop where to buy</div>
+<div class="pill p6">Build wash-day routines</div>
 
-          <!-- duplicate for seamless loop -->
-          <div class="pill p1">Discover tutorials</div>
-          <div class="pill p2">Find unique blends</div>
-          <div class="pill p3">See tools used</div>
-          <div class="pill p4">Know price ranges</div>
-          <div class="pill p5">Shop where to buy</div>
-          <div class="pill p6">Build wash-day routines</div>
-        </div>
-      </div>
+<div class="pill p1">Discover tutorials</div>
+<div class="pill p2">Find unique blends</div>
+<div class="pill p3">See tools used</div>
+<div class="pill p4">Know price ranges</div>
+<div class="pill p5">Shop where to buy</div>
+<div class="pill p6">Build wash-day routines</div>
+</div>
+</div>
 
-      <div class="hero">
-        <!-- LEFT: solution text -->
-        <div>
-          <h1 class="title">Morphy Hair</h1>
+<div class="hero">
 
-          <p class="lead">
-            Morphy Hair is a small all-in-one platform/app that lets users:
-          </p>
+<div>
+<h1 class="title">Morphy Hair</h1>
 
-          <ul class="big-bullets">
-            <li>Find textured hair inspo (styles, wigs, colours).</li>
-            <li>Watch tutorials (installs, braids, weave, crochet).</li>
-            <li>See tools, price ranges, and where to buy.</li>
-            <li>Follow natural hair routines + DIY hair masks.</li>
-          </ul>
+<p class="lead">
+All-in-one textured hair platform.
+</p>
 
-          <div class="cta-row">
-            <a class="btn primary" href="#" onclick="showPage('forms'); return false;">Join the waitlist</a>
-          </div>
-        </div>
+<ul class="big-bullets">
+<li>Hair inspo, wigs, colours</li>
+<li>Tutorials + installs</li>
+<li>Tools + prices + shops</li>
+<li>Natural hair + DIY masks</li>
+</ul>
 
-        <!-- RIGHT: single big image (full visible) -->
-        <div class="hero-image">
-          <img src="IMG_9453.jpg" alt="Morphy Hair preview">
-        </div>
-      </div>
+<div class="cta-row">
+<a class="btn primary" href="#" onclick="showPage('forms');return false;">
+Join the waitlist
+</a>
+</div>
+</div>
 
-    </div>
-  </div>
+<div class="hero-image">
+<img src="IMG_9453.jpg">
+</div>
 
-  <!-- FORMS -->
-  <div id="forms" class="page">
-    <div class="form-card">
-      <h1 style="margin:0 0 10px 0; font-size:44px;">Join the Waitlist</h1>
-      <p style="margin:0 0 18px 0; color:rgba(255,255,255,0.78); font-size:18px;">
-        Early access for the textured hair inspiration + tutorial platform.
-      </p>
+</div>
+</div>
+</div>
 
-      <script>
-        if (window.posthog) posthog.capture("waitlist_form_viewed");
-      </script>
+<!-- FORMS -->
+<div id="forms" class="page">
+<div class="form-card">
+<h1 style="font-size:48px;">Join the Waitlist</h1>
+<p style="font-size:22px;color:#ccc;">
+Early access.
+</p>
 
-      <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSdVCMyKqGMd8aL-WuJb_qJofGbnKxsqbWNTWk7eG9V4TEHZig/viewform?embedded=true"
-        height="1890"
-        frameborder="0"
-        marginheight="0"
-        marginwidth="0"
-      >Loading…</iframe>
-    </div>
-  </div>
+<iframe
+src="https://docs.google.com/forms/d/e/1FAIpQLSdVCMyKqGMd8aL-WuJb_qJofGbnKxsqbWNTWk7eG9V4TEHZig/viewform?embedded=true"
+height="1890">
+</iframe>
+</div>
+</div>
 
-  <!-- TERMS -->
-  <div id="terms" class="page">
-    <div class="placeholder">
-      <h1 style="margin:0 0 10px 0; font-size:44px;">Terms of Service</h1>
-      <p style="margin:0; color:rgba(255,255,255,0.78); font-size:18px;">
-        Terms content will go here.
-      </p>
-    </div>
-  </div>
+<!-- TERMS -->
+<div id="terms" class="page">
+<div class="placeholder">
+<h1 style="font-size:48px;">Terms</h1>
+<p style="font-size:22px;color:#ccc;">
+Terms text here.
+</p>
+</div>
+</div>
 
 </body>
 </html>
+
 
 
 
