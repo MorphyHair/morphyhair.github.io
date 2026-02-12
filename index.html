@@ -37,6 +37,9 @@
     .hero-nav-inner {
       display: flex;
       gap: 60px;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0 16px;
     }
 
     .hero-nav a {
@@ -45,16 +48,18 @@
       font-weight: bold;
       font-size: 22px;
       opacity: 0.9;
+      transition: opacity 0.15s ease, transform 0.15s ease;
     }
+
     .hero-nav a:hover {
       opacity: 1;
-      text-decoration: underline;
-      text-underline-offset: 8px;
+      transform: translateY(-1px);
     }
 
     .page {
       display: none;
       padding: 70px 40px;
+      background: #000; /* ensure page stays black */
     }
 
     .page.active {
@@ -64,59 +69,65 @@
     .problem-layout {
       display: grid;
       grid-template-columns: 1fr 0.9fr;
-      gap: 48px;
+      gap: 40px;
       max-width: 1200px;
       margin: auto;
-      align-items: center;
+      align-items: start;
     }
 
-    /* removed white card backgrounds */
+    /* REMOVE WHITE CARD LOOK */
     .left-panel {
-      padding: 0;
       background: transparent;
+      padding: 0;
       border-radius: 0;
       box-shadow: none;
     }
 
-    .right-panel img {
-      width: 49%; /* was 70% -> reduced by 30% */
-      border-radius: 24px;
-      box-shadow: none;
-      display: block;
-      margin: auto;
-    }
-
+    /* Make statements BIG + WHITE */
     h1 {
-      font-size: 52px;
-      text-align: left;
-      margin: 0 0 18px 0;
+      font-size: 56px;
+      line-height: 1.05;
       letter-spacing: -0.5px;
+      margin: 0 0 18px 0;
+      color: #fff;
     }
 
     h2 {
       font-size: 44px;
-      text-align: left;
-      margin: 42px 0 16px 0;
+      line-height: 1.1;
       letter-spacing: -0.3px;
+      margin: 42px 0 14px 0;
+      color: #fff;
     }
 
     p {
       line-height: 1.7;
-      color: rgba(255,255,255,0.85);
       font-size: 18px;
-      max-width: 58ch;
-      margin: 0 0 14px 0;
+      color: rgba(255,255,255,0.88);
+      margin: 0 0 16px 0;
+      max-width: 62ch;
+    }
+
+    /* Images sit on black; remove heavy shadows; reduce size by 30% */
+    .right-panel img {
+      width: 49%; /* was 70% -> reduced by 30% */
+      border-radius: 18px;
+      box-shadow: none;
+      display: block;
+      margin: 0 auto;
+      border: 1px solid rgba(255,255,255,0.10);
     }
 
     .fix-image {
-      margin-top: 26px;
+      margin-top: 18px;
       width: 168px; /* was 240px -> reduced by 30% */
       border-radius: 14px;
       box-shadow: none;
-      display: block;
+      border: 1px solid rgba(255,255,255,0.10);
+      display: inline-block;
     }
 
-    /* FORMS + TERMS: remove white background cards */
+    /* Forms + terms containers also on black (no white cards) */
     .form-card,
     .placeholder {
       background: transparent;
@@ -127,22 +138,26 @@
       box-shadow: none;
     }
 
-    /* make iframe look clean on black */
+    /* Make iframe look nicer on black */
     iframe {
-      border-radius: 16px;
+      border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.12);
-      background: #0b0b0b;
+      background: #000;
     }
 
-    /* responsive */
+    /* Responsive */
     @media (max-width: 900px) {
-      .hero-nav { height: auto; padding: 22px 14px; }
-      .hero-nav-inner { gap: 22px; flex-wrap: wrap; justify-content: center; }
-      .page { padding: 44px 18px; }
-      .problem-layout { grid-template-columns: 1fr; gap: 28px; }
-      h1 { font-size: 42px; text-align: left; }
-      h2 { font-size: 36px; }
-      .right-panel img { width: 70%; } /* still smaller overall on mobile */
+      .problem-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .right-panel img {
+        width: 70%; /* keep reasonable on small screens */
+        margin-top: 18px;
+      }
+
+      h1 { font-size: 44px; }
+      h2 { font-size: 34px; }
     }
   </style>
 
@@ -226,6 +241,7 @@
 
 </body>
 </html>
+
 
 
 
