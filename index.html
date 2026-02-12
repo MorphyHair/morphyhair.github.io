@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Textured Hair Platform</title>
+  <title>Morph Hair</title>
 
   <!-- PostHog -->
   <script>
@@ -18,127 +18,257 @@
   </script>
 
   <style>
-    body {
-      margin: 0;
+    :root{
+      --bg:#000;
+      --bg2:#0b0b0b;
+      --text:#fff;
+      --muted:rgba(255,255,255,0.78);
+      --line:rgba(255,255,255,0.10);
+      --chip:rgba(255,255,255,0.06);
+      --chip2:rgba(255,255,255,0.08);
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
       font-family: Arial, Helvetica, sans-serif;
-      background: #000;
-      color: #fff;
+      background: var(--bg);
+      color: var(--text);
     }
 
-    .hero-nav {
-      background: #111;
-      height: 25vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+    /* NAV */
+    .hero-nav{
+      background: #0a0a0a;
+      min-height: 90px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-bottom: 1px solid var(--line);
+      padding: 12px 18px;
     }
-
-    .hero-nav-inner {
-      display: flex;
-      gap: 60px;
+    .hero-nav-inner{
+      width: 100%;
+      max-width: 1200px;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap: 18px;
       flex-wrap: wrap;
-      justify-content: center;
-      padding: 0 16px;
     }
-
-    .hero-nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 22px;
-      opacity: 0.9;
-    }
-
-    .page {
-      display: none;
-      padding: 70px 40px;
-      background: #000;
-    }
-
-    .page.active {
-      display: block;
-    }
-
-    .problem-layout {
-      display: grid;
-      grid-template-columns: 1fr 0.9fr;
-      gap: 40px;
-      max-width: 1100px;
-      margin: auto;
-      align-items: start;
-    }
-
-    .left-panel {
-      background: transparent;
-      padding: 0;
-    }
-
-    h1 {
-      font-size: 56px;
-      margin: 0 0 18px 0;
-      color: #fff;
-    }
-
-    h2 {
-      font-size: 44px;
-      margin: 42px 0 14px 0;
-      color: #fff;
-    }
-
-    p {
-      line-height: 1.7;
-      font-size: 18px;
+    .nav-link{
       color: rgba(255,255,255,0.88);
-      max-width: 62ch;
+      text-decoration:none;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 10px 10px;
+      border-radius: 999px;
     }
+    .nav-link:hover{ background: var(--chip); }
 
-    /* 🔻 MUCH SMALLER IMAGES */
-    .right-panel img {
-      width: 260px;
-      max-width: 260px;
-      height: auto;
-      border-radius: 16px;
-      display: block;
+    .nav-cta{
+      color:#000;
+      background:#fff;
+      text-decoration:none;
+      font-weight: 800;
+      font-size: 16px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .nav-cta:hover{ opacity: 0.92; }
+
+    /* PAGES */
+    .page{
+      display:none;
+      padding: 60px 22px;
+      background: var(--bg);
+    }
+    .page.active{ display:block; }
+
+    /* HERO LAYOUT (grid left, text right) */
+    .home-wrap{
+      max-width: 1200px;
       margin: 0 auto;
-      border: 1px solid rgba(255,255,255,0.12);
     }
 
-    .fix-image {
+    .home-top{
+      display:grid;
+      grid-template-columns: 420px 1fr;
+      gap: 40px;
+      align-items:start;
+    }
+
+    /* Left grid (inspo tiles) */
+    .inspo-grid{
+      width: 100%;
+      max-width: 420px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .tile{
+      aspect-ratio: 1 / 1;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: var(--bg2);
+      overflow:hidden;
+      position:relative;
+    }
+
+    .tile img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      opacity: 0.95;
+      transform: scale(1.02);
+    }
+
+    /* Right text */
+    .hero-copy h1{
+      margin: 0 0 12px 0;
+      font-size: 64px;
+      letter-spacing: -1px;
+      line-height: 1.02;
+    }
+    .hero-copy .sub{
+      margin: 0 0 18px 0;
+      font-size: 20px;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    .bullets{
       margin-top: 18px;
-      width: 120px;
-      max-width: 120px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.12);
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      max-width: 64ch;
+    }
+    .bullet{
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+      color: rgba(255,255,255,0.9);
+      font-size: 16px;
+      line-height: 1.4;
     }
 
-    .form-card,
-    .placeholder {
+    .hero-actions{
+      margin-top: 18px;
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items:center;
+    }
+
+    .btn{
+      cursor:pointer;
+      border-radius: 999px;
+      padding: 12px 16px;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      text-decoration:none;
+      display:inline-block;
+    }
+    .btn:hover{ background: rgba(255,255,255,0.12); }
+
+    .btn.primary{
+      background:#fff;
+      color:#000;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .btn.primary:hover{ opacity:0.92; }
+
+    /* Carousel (moving mini cards) */
+    .carousel-wrap{
+      margin-top: 34px;
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+    }
+
+    .carousel-title{
+      font-size: 18px;
+      font-weight: 800;
+      margin: 0 0 14px 0;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .marquee{
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .marquee-track{
+      display:flex;
+      gap: 14px;
+      padding: 16px;
+      width: max-content;
+      animation: scroll 22s linear infinite;
+    }
+
+    .mini-card{
+      min-width: 220px;
+      padding: 14px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.92);
+      font-weight: 800;
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+    }
+
+    .mini-card small{
+      font-weight: 700;
+      color: rgba(255,255,255,0.70);
+      line-height: 1.35;
+    }
+
+    @keyframes scroll{
+      0%{ transform: translateX(0); }
+      100%{ transform: translateX(-50%); }
+    }
+
+    /* Forms/Terms */
+    .form-card, .placeholder{
       background: transparent;
       padding: 0;
       max-width: 900px;
       margin: auto;
     }
 
-    iframe {
+    iframe{
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.12);
       background: #000;
     }
 
-    @media (max-width: 900px) {
-      .problem-layout {
+    /* Responsive */
+    @media (max-width: 980px){
+      .home-top{
         grid-template-columns: 1fr;
       }
-
-      .right-panel img {
-        width: 200px;
-        max-width: 200px;
-        margin-top: 20px;
+      .inspo-grid{
+        max-width: 520px;
       }
-
-      h1 { font-size: 42px; }
-      h2 { font-size: 32px; }
+      .hero-copy h1{
+        font-size: 46px;
+      }
     }
   </style>
 
@@ -153,63 +283,150 @@
 
 <body>
 
-<div class="hero-nav">
-  <div class="hero-nav-inner">
-    <a href="#" onclick="showPage('problem'); return false;">The Problem</a>
-    <a href="#" onclick="showPage('forms'); return false;">Forms</a>
-    <a href="#" onclick="showPage('terms'); return false;">Terms of Service</a>
-  </div>
-</div>
-
-<div id="problem" class="page active">
-  <div class="problem-layout">
-    <div class="left-panel">
-      <h1>The Problem</h1>
-      <p>
-        There is no single platform dedicated to textured hair that brings together
-        inspiration, tutorials, education, and product discovery in one place.
-      </p>
-      <p>
-        Users must jump between social media, blogs, marketplaces, and video platforms.
-        The experience is fragmented and inefficient.
-      </p>
-
-      <h2>The Fix</h2>
-      <p>
-        A dedicated textured hair platform combining inspiration, tutorials, knowledge,
-        and product discovery in one structured environment.
-      </p>
-
-      <img src="IMG_9454.jpg" class="fix-image" alt="Fix">
-    </div>
-
-    <div class="right-panel">
-      <img src="IMG_9453.jpg" alt="Problem visual">
+  <div class="hero-nav">
+    <div class="hero-nav-inner">
+      <a class="nav-cta" href="#" onclick="showPage('forms'); return false;">Join waitlist</a>
+      <a class="nav-link" href="#" onclick="showPage('terms'); return false;">Terms</a>
+      <a class="nav-link" href="mailto:hello@morphhair.com" onclick="if(window.posthog) posthog.capture('contact_click');">Contact</a>
     </div>
   </div>
-</div>
 
-<div id="forms" class="page">
-  <div class="form-card">
-    <h1>Join the Waitlist</h1>
-    <p>Early access for the textured hair inspiration + tutorial platform.</p>
+  <!-- HOME / FIRST PAGE (uses id="problem" so your old nav logic still works if needed) -->
+  <div id="problem" class="page active">
+    <div class="home-wrap">
 
-    <script>
-      if (window.posthog) posthog.capture("waitlist_form_viewed");
-    </script>
+      <div class="home-top">
+        <!-- LEFT GRID -->
+        <div class="inspo-grid" aria-label="Inspiration grid">
+          <!-- Using your existing images as placeholders -->
+          <div class="tile"><img src="IMG_9453.jpg" alt="Inspo tile"></div>
+          <div class="tile"><img src="IMG_9454.jpg" alt="Inspo tile"></div>
+          <div class="tile"><img src="IMG_9453.jpg" alt="Inspo tile"></div>
+          <div class="tile"><img src="IMG_9454.jpg" alt="Inspo tile"></div>
+          <div class="tile"><img src="IMG_9453.jpg" alt="Inspo tile"></div>
+          <div class="tile"><img src="IMG_9454.jpg" alt="Inspo tile"></div>
+          <div class="tile"><img src="IMG_9453.jpg" alt="Inspo tile"></div>
+          <div class="tile"><img src="IMG_9454.jpg" alt="Inspo tile"></div>
+          <div class="tile"><img src="IMG_9453.jpg" alt="Inspo tile"></div>
+        </div>
 
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdVCMyKqGMd8aL-WuJb_qJofGbnKxsqbWNTWk7eG9V4TEHZig/viewform?embedded=true"
-      width="100%"
-      height="1890"></iframe>
+        <!-- RIGHT COPY -->
+        <div class="hero-copy">
+          <h1>Morph Hair</h1>
+          <p class="sub">
+            One place for textured hair: inspo, tutorials, product info, tools, prices, and where to buy.
+          </p>
+
+          <div class="bullets">
+            <div class="bullet">Save styles and wigs you actually want to try.</div>
+            <div class="bullet">Learn installs + natural hair routines step-by-step.</div>
+            <div class="bullet">See tools used, shades, cost ranges, and where to buy.</div>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#" onclick="showPage('forms'); return false;">Join the waitlist</a>
+            <a class="btn" href="#" onclick="showPage('terms'); return false;">Read terms</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOVING CAROUSEL -->
+      <div class="carousel-wrap">
+        <p class="carousel-title">What you can do on Morph Hair</p>
+
+        <div class="marquee" role="region" aria-label="Feature carousel">
+          <!-- Track duplicated for seamless loop -->
+          <div class="marquee-track">
+            <div class="mini-card">
+              Discover tutorials
+              <small>Wig installs, braids, weave, crochet, glue-on.</small>
+            </div>
+            <div class="mini-card">
+              Find unique blends
+              <small>Colour mixes, bundles, wig specs, tones.</small>
+            </div>
+            <div class="mini-card">
+              Shop with context
+              <small>Tools used, where to buy, price ranges.</small>
+            </div>
+            <div class="mini-card">
+              Natural hair routines
+              <small>Wash day, cornrows, relaxer, take out.</small>
+            </div>
+            <div class="mini-card">
+              DIY hair masks
+              <small>Ingredients, benefits, what it helps.</small>
+            </div>
+            <div class="mini-card">
+              Accessories + products
+              <small>Gel, oils, haircare, add-ons.</small>
+            </div>
+
+            <!-- duplicate set for smooth infinite scroll -->
+            <div class="mini-card">
+              Discover tutorials
+              <small>Wig installs, braids, weave, crochet, glue-on.</small>
+            </div>
+            <div class="mini-card">
+              Find unique blends
+              <small>Colour mixes, bundles, wig specs, tones.</small>
+            </div>
+            <div class="mini-card">
+              Shop with context
+              <small>Tools used, where to buy, price ranges.</small>
+            </div>
+            <div class="mini-card">
+              Natural hair routines
+              <small>Wash day, cornrows, relaxer, take out.</small>
+            </div>
+            <div class="mini-card">
+              DIY hair masks
+              <small>Ingredients, benefits, what it helps.</small>
+            </div>
+            <div class="mini-card">
+              Accessories + products
+              <small>Gel, oils, haircare, add-ons.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
-</div>
 
-<div id="terms" class="page">
-  <div class="placeholder">
-    <h1>Terms of Service</h1>
-    <p>Terms content will go here.</p>
+  <!-- FORMS PAGE -->
+  <div id="forms" class="page">
+    <div class="form-card">
+      <h1 style="margin:0 0 10px 0; font-size:44px;">Join the Waitlist</h1>
+      <p style="margin:0 0 18px 0; color:rgba(255,255,255,0.78); font-size:18px;">
+        Early access for the textured hair inspiration + tutorial platform.
+      </p>
+
+      <script>
+        if (window.posthog) posthog.capture("waitlist_form_viewed");
+      </script>
+
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSdVCMyKqGMd8aL-WuJb_qJofGbnKxsqbWNTWk7eG9V4TEHZig/viewform?embedded=true"
+        width="100%"
+        height="1890"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+      >Loading…</iframe>
+    </div>
   </div>
-</div>
+
+  <!-- TERMS PAGE -->
+  <div id="terms" class="page">
+    <div class="placeholder">
+      <h1 style="margin:0 0 10px 0; font-size:44px;">Terms of Service</h1>
+      <p style="margin:0; color:rgba(255,255,255,0.78); font-size:18px;">
+        Terms content will go here.
+      </p>
+    </div>
+  </div>
 
 </body>
 </html>
+
