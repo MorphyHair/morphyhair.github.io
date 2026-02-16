@@ -28,149 +28,32 @@ posthog.init('phc_XZmsD6oJFV4pty5K8HsuTojblOUEsRYGs0UputUrW9Z',{api_host:'https:
 --pop5:#ff6b3d;
 --pop6:#b86bff;
 }
-
 *{box-sizing:border-box;}
-
-body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background:#000;
-color:#fff;
-}
-
-/* TOP NAV — bigger */
+body{margin:0;font-family:Arial, Helvetica, sans-serif;background:#000;color:#fff;}
 .topbar{padding:24px;}
-.topbar-inner{
-max-width:1200px;
-margin:auto;
-display:flex;
-justify-content:flex-end;
-gap:22px;
-}
-.navlink{
-color:#fff;
-text-decoration:none;
-font-weight:900;
-font-size:20px;
-padding:12px 14px;
-}
-
-/* Pages */
+.topbar-inner{max-width:1200px;margin:auto;display:flex;justify-content:flex-end;gap:22px;}
+.navlink{color:#fff;text-decoration:none;font-weight:900;font-size:20px;padding:12px 14px;}
 .page{display:none;padding:30px 22px 60px;}
 .page.active{display:block;}
 .wrap{max-width:1200px;margin:auto;}
-
-/* Carousel */
-.carousel{
-margin-top:10px;
-margin-bottom:60px; /* PUSH EVERYTHING DOWN */
-overflow:hidden;
-}
-.track{
-display:flex;
-gap:14px;
-animation:scroll 18s linear infinite;
-width:max-content;
-}
-@keyframes scroll{
-0%{transform:translateX(0);}
-100%{transform:translateX(-50%);}
-}
-.pill{
-padding:12px 18px;
-border-radius:999px;
-font-weight:900;
-font-size:16px;
-color:#000;
-white-space:nowrap;
-}
-.p1{background:var(--pop1);}
-.p2{background:var(--pop2);}
-.p3{background:var(--pop3);}
-.p4{background:var(--pop4);}
-.p5{background:var(--pop5);}
-.p6{background:var(--pop6);}
-
-/* HERO */
-.hero{
-display:grid;
-grid-template-columns:1fr 520px;
-gap:60px;
-margin-top:40px; /* PUSH DOWN */
-}
-
-.title{
-font-size:76px;
-margin:0 0 18px;
-font-weight:900;
-}
-
-.lead{
-font-size:22px;
-font-weight:700;
-color:var(--muted);
-margin-bottom:18px;
-}
-
-.big-bullets{
-list-style:none;
-padding:0;
-margin:0;
-display:flex;
-flex-direction:column;
-gap:14px;
-}
-.big-bullets li{
-font-size:22px;
-font-weight:900;
-padding-left:24px;
-position:relative;
-}
-.big-bullets li:before{
-content:"•";
-position:absolute;
-left:0;
-}
-
-/* BIGGER BUTTON — down + right */
-.cta-row{
-margin-top:60px;
-margin-left:80px;
-}
-
-.btn.primary{
-background:#fff;
-color:#000;
-border-radius:999px;
-padding:22px 38px;
-font-size:22px;
-font-weight:900;
-text-decoration:none;
-display:inline-block;
-}
-
-/* IMAGE — NO CONTAINER */
-.hero-image img{
-width:100%;
-height:520px;
-object-fit:contain;
-display:block;
-background:#000;
-border:none;
-}
-
-/* Forms */
-iframe{
-width:100%;
-border-radius:14px;
-border:1px solid rgba(255,255,255,0.15);
-}
-
-/* Responsive */
-@media(max-width:980px){
-.hero{grid-template-columns:1fr;}
-.title{font-size:56px;}
-}
+.carousel{margin-top:10px;margin-bottom:60px;overflow:hidden;}
+.track{display:flex;gap:14px;animation:scroll 18s linear infinite;width:max-content;}
+@keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.pill{padding:12px 18px;border-radius:999px;font-weight:900;font-size:16px;color:#000;white-space:nowrap;}
+.p1{background:var(--pop1);} .p2{background:var(--pop2);}
+.p3{background:var(--pop3);} .p4{background:var(--pop4);}
+.p5{background:var(--pop5);} .p6{background:var(--pop6);}
+.hero{display:grid;grid-template-columns:1fr 520px;gap:60px;margin-top:40px;}
+.title{font-size:76px;margin:0 0 18px;font-weight:900;}
+.lead{font-size:22px;font-weight:700;color:var(--muted);margin-bottom:18px;}
+.big-bullets{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px;}
+.big-bullets li{font-size:22px;font-weight:900;padding-left:24px;position:relative;}
+.big-bullets li:before{content:"•";position:absolute;left:0;}
+.cta-row{margin-top:60px;margin-left:80px;}
+.btn.primary{background:#fff;color:#000;border-radius:999px;padding:22px 38px;font-size:22px;font-weight:900;text-decoration:none;display:inline-block;}
+.hero-image img{width:100%;height:520px;object-fit:contain;display:block;background:#000;border:none;}
+iframe{width:100%;border-radius:14px;border:1px solid rgba(255,255,255,0.15);}
+@media(max-width:980px){.hero{grid-template-columns:1fr;}.title{font-size:56px;}}
 </style>
 
 <script>
@@ -202,7 +85,6 @@ document.getElementById(id).classList.add("active");
 <div class="pill p4">Know price ranges</div>
 <div class="pill p5">Shop where to buy</div>
 <div class="pill p6">Build wash-day routines</div>
-
 <div class="pill p1">Discover tutorials</div>
 <div class="pill p2">Find unique blends</div>
 <div class="pill p3">See tools used</div>
@@ -216,14 +98,11 @@ document.getElementById(id).classList.add("active");
 
 <div>
 <h1 class="title">Morphy Hair</h1>
-
-<p class="lead">
-All-in-one textured hair inspo + tutorial platform.
-</p>
+<p class="lead">All-in-one textured hair inspo + tutorial platform.</p>
 
 <ul class="big-bullets">
 <li>Styles, wigs, colours.</li>
-<li>Tutorials installs + braids.</li>
+<li>Tutorial installs + braids.</li>
 <li>Tools + price ranges.</li>
 <li>Natural hair + DIY masks.</li>
 </ul>
@@ -235,7 +114,6 @@ Join the waitlist
 </div>
 </div>
 
-<!-- IMAGE — no container -->
 <div class="hero-image">
 <img src="IMG_9453.jpg" alt="preview">
 </div>
@@ -247,7 +125,16 @@ Join the waitlist
 <!-- FORMS -->
 <div id="forms" class="page">
 <h1 style="font-size:48px;">Join the Waitlist</h1>
-<iframe src="YOUR_GOOGLE_FORM_LINK" height="1890"></iframe>
+
+<iframe 
+src="https://docs.google.com/forms/d/e/1FAIpQLSdVCMyKqGMd8aL-WuJb_qJofGbnKxsqbWNTWk7eG9V4TEHZig/viewform?embedded=true" 
+height="2090" 
+frameborder="0" 
+marginheight="0" 
+marginwidth="0">
+Loading…
+</iframe>
+
 </div>
 
 <!-- TERMS -->
@@ -260,8 +147,6 @@ Terms here.
 
 </body>
 </html>
-
-
 
 
 
