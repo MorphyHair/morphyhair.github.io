@@ -27,6 +27,12 @@ posthog.init('phc_XZmsD6oJFV4pty5K8HsuTojblOUEsRYGs0UputUrW9Z',{api_host:'https:
 --pop4:#ffe14a;
 --pop5:#ff6b3d;
 --pop6:#b86bff;
+
+/* Terms modal colors (like your screenshot) */
+--terms-bg:#fbf4e6;
+--terms-text:#6a3f1a;
+--terms-link:#b07a57;
+--terms-btn:#6a3f1a;
 }
 
 *{box-sizing:border-box;}
@@ -38,6 +44,7 @@ background:#000;
 color:#fff;
 }
 
+/* TOP NAV */
 .topbar{padding:24px;}
 .topbar-inner{
 max-width:1200px;
@@ -52,10 +59,12 @@ font-weight:900;
 font-size:20px;
 }
 
+/* Pages */
 .page{display:none;padding:30px 22px 60px;}
 .page.active{display:block;}
 .wrap{max-width:1200px;margin:auto;}
 
+/* Carousel */
 .carousel{
 margin-top:10px;
 margin-bottom:60px;
@@ -86,7 +95,7 @@ white-space:nowrap;
 .p5{background:var(--pop5);}
 .p6{background:var(--pop6);}
 
-/* HERO LAYOUT */
+/* HERO */
 .hero{
 display:grid;
 grid-template-columns:1fr 1fr;
@@ -168,7 +177,7 @@ border-radius:18px;
 border:1px solid rgba(255,255,255,0.2);
 }
 
-/* IMAGE GRID PREVIEW */
+/* IMAGE */
 .hero-image img{
 width:100%;
 height:520px;
@@ -178,12 +187,14 @@ background:#000;
 border:none;
 }
 
+/* Form iframe */
 iframe{
 width:100%;
 border-radius:14px;
 border:1px solid rgba(255,255,255,0.15);
 }
 
+/* About page text */
 .about p, .about li{
 font-size:18px;
 color:rgba(255,255,255,0.82);
@@ -193,11 +204,105 @@ line-height:1.55;
 margin-top:28px;
 font-size:28px;
 }
+.about a{color:#fff;}
 
+/* TERMS POPUP (full-screen overlay) */
+.terms-overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.65);
+display:none;
+align-items:flex-end;
+justify-content:center;
+padding:26px;
+z-index:9999;
+}
+
+.terms-box{
+width:min(1100px, 100%);
+background:var(--terms-bg);
+color:var(--terms-text);
+border-radius:18px;
+padding:26px 26px 22px;
+box-shadow:0 18px 60px rgba(0,0,0,0.55);
+}
+
+.terms-row{
+display:flex;
+align-items:flex-end;
+justify-content:space-between;
+gap:22px;
+flex-wrap:wrap;
+}
+
+.terms-text{
+font-size:18px;
+line-height:1.55;
+max-width:760px;
+}
+
+.terms-links{
+margin-top:14px;
+display:flex;
+gap:18px;
+flex-wrap:wrap;
+}
+
+.terms-link{
+color:var(--terms-link);
+text-decoration:underline;
+font-weight:900;
+cursor:pointer;
+}
+
+.terms-actions{
+display:flex;
+gap:16px;
+margin-left:auto;
+}
+
+.terms-btn{
+border:none;
+border-radius:10px;
+padding:16px 28px;
+font-weight:900;
+font-size:18px;
+cursor:pointer;
+min-width:160px;
+}
+
+.terms-btn.decline{
+background:var(--terms-btn);
+color:#fff;
+opacity:0.95;
+}
+.terms-btn.accept{
+background:var(--terms-btn);
+color:#fff;
+}
+
+.terms-note{
+margin-top:12px;
+font-size:16px;
+color:rgba(106,63,26,0.85);
+display:none;
+}
+
+/* Optional: blur page while modal is open */
+body.terms-locked .page,
+body.terms-locked .topbar{
+filter:blur(2px);
+pointer-events:none;
+user-select:none;
+}
+
+/* Responsive */
 @media(max-width:980px){
 .hero{grid-template-columns:1fr;}
 .title{font-size:56px;}
 .cta-row{flex-direction:column;align-items:flex-start;}
+.terms-actions{width:100%;justify-content:flex-start;}
+.terms-btn{flex:1;min-width:140px;}
 }
 </style>
 
@@ -206,115 +311,186 @@ function showPage(id){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById(id).classList.add("active");
 }
+
+function openAboutToTerms(){
+showPage('about');
+setTimeout(()=>{
+  const el = document.getElementById('tos');
+  if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}, 50);
+}
+
+function lockForTerms(){
+document.body.classList.add('terms-locked');
+document.getElementById('termsOverlay').style.display = 'flex';
+}
+
+function unlockForTerms(){
+document.body.classList.remove('terms-locked');
+document.getElementById('termsOverlay').style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const accepted = localStorage.getItem('mh_terms_accepted');
+  if(accepted !== 'yes'){
+    lockForTerms();
+  }
+});
+
+function acceptTerms(){
+localStorage.setItem('mh_terms_accepted','yes');
+unlockForTerms();
+}
+
+function declineTerms(){
+localStorage.setItem('mh_terms_accepted','no');
+document.getElementById('termsNote').style.display = 'block';
+lockForTerms(); // keep it locked unless they accept
+}
 </script>
 </head>
 
 <body>
 
-<div class="topbar">
-<div class="topbar-inner">
-<a class="navlink" href="#" onclick="showPage('about');return false;">About Us</a>
+<!-- TERMS POPUP -->
+<div id="termsOverlay" class="terms-overlay" aria-modal="true" role="dialog">
+  <div class="terms-box">
+    <div class="terms-row">
+      <div class="terms-text">
+        By using Morphy Hair, you agree to our <b>Terms of Service</b> and <b>Privacy Policy</b>.
+        This is an MVP demo and we use analytics (including PostHog) to improve the product.
+        You can review the full Terms/Privacy in our About page.
+        <div class="terms-links">
+          <span class="terms-link" onclick="openAboutToTerms()">Read Terms of Service</span>
+          <span class="terms-link" onclick="openAboutToTerms()">Read Privacy Policy</span>
+          <span class="terms-link" onclick="openAboutToTerms()">About Us</span>
+        </div>
+      </div>
+
+      <div class="terms-actions">
+        <button class="terms-btn decline" onclick="declineTerms()">DECLINE</button>
+        <button class="terms-btn accept" onclick="acceptTerms()">ACCEPT</button>
+      </div>
+    </div>
+
+    <div id="termsNote" class="terms-note">
+      You must accept the Terms to continue using this site.
+    </div>
+  </div>
 </div>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="navlink" href="#" onclick="showPage('about');return false;">About Us</a>
+  </div>
 </div>
 
 <!-- HOME -->
 <div id="home" class="page active">
-<div class="wrap">
+  <div class="wrap">
 
-<div class="carousel">
-<div class="track">
-<div class="pill p1">Discover tutorials</div>
-<div class="pill p2">Find unique blends</div>
-<div class="pill p3">See tools used</div>
-<div class="pill p4">Know price ranges</div>
-<div class="pill p5">Shop where to buy</div>
-<div class="pill p6">Build wash-day routines</div>
-<div class="pill p1">Discover tutorials</div>
-<div class="pill p2">Find unique blends</div>
-<div class="pill p3">See tools used</div>
-<div class="pill p4">Know price ranges</div>
-<div class="pill p5">Shop where to buy</div>
-<div class="pill p6">Build wash-day routines</div>
-</div>
-</div>
+    <div class="carousel">
+      <div class="track">
+        <div class="pill p1">Discover tutorials</div>
+        <div class="pill p2">Find unique blends</div>
+        <div class="pill p3">See tools used</div>
+        <div class="pill p4">Know price ranges</div>
+        <div class="pill p5">Shop where to buy</div>
+        <div class="pill p6">Build wash-day routines</div>
 
-<div class="hero">
+        <div class="pill p1">Discover tutorials</div>
+        <div class="pill p2">Find unique blends</div>
+        <div class="pill p3">See tools used</div>
+        <div class="pill p4">Know price ranges</div>
+        <div class="pill p5">Shop where to buy</div>
+        <div class="pill p6">Build wash-day routines</div>
+      </div>
+    </div>
 
-<div>
-<h1 class="title">Morphy Hair</h1>
+    <div class="hero">
+      <div>
+        <h1 class="title">Morphy Hair</h1>
 
-<p class="lead">
-All-in-one textured hair inspo + tutorial platform.
-</p>
+        <p class="lead">
+          All-in-one textured hair inspo + tutorial platform.
+        </p>
 
-<ul class="big-bullets">
-<li>Styles, wigs, colours.</li>
-<li>Tutorial installs + braids.</li>
-<li>Tools + price ranges.</li>
-<li>Natural hair + DIY masks.</li>
-</ul>
+        <ul class="big-bullets">
+          <li>Styles, wigs, colours.</li>
+          <li>Tutorial installs + braids.</li>
+          <li>Tools + price ranges.</li>
+          <li>Natural hair + DIY masks.</li>
+        </ul>
 
-<div class="cta-row">
-<a class="btn primary" href="#" onclick="showPage('forms');return false;">
-Join the waitlist
-</a>
+        <div class="cta-row">
+          <a class="btn primary" href="#" onclick="showPage('forms');return false;">
+            Join the waitlist
+          </a>
 
-<div class="qr-box">
-<p class="qr-title">Try demo app</p>
-<img
-src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=exp%3A%2F%2F7ayy__s-morphyhair-8090.exp.direct"
-alt="Expo QR"
-/>
-</div>
+          <div class="qr-box">
+            <p class="qr-title">Try demo app</p>
+            <img
+              src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=exp%3A%2F%2F7ayy__s-morphyhair-8090.exp.direct"
+              alt="Expo QR"
+            />
+          </div>
+        </div>
+      </div>
 
-</div>
-</div>
+      <div class="hero-image">
+        <img src="IMG_9453.jpg" alt="preview">
+      </div>
+    </div>
 
-<div class="hero-image">
-<img src="IMG_9453.jpg" alt="preview">
-</div>
-
-</div>
-</div>
+  </div>
 </div>
 
 <!-- FORMS -->
 <div id="forms" class="page">
-<h1 style="font-size:48px;">Join the Waitlist</h1>
-<iframe
-src="https://docs.google.com/forms/d/e/1FAIpQLSdVCMyKqGMd8aL-WuJb_qJofGbnKxsqbWNTWk7eG9V4TEHZig/viewform?embedded=true"
-height="2090"
-frameborder="0"
-marginheight="0"
-marginwidth="0">
-Loading…
-</iframe>
+  <h1 style="font-size:48px;">Join the Waitlist</h1>
+  <iframe
+    src="https://docs.google.com/forms/d/e/1FAIpQLSdVCMyKqGMd8aL-WuJb_qJofGbnKxsqbWNTWk7eG9V4TEHZig/viewform?embedded=true"
+    height="2090"
+    frameborder="0"
+    marginheight="0"
+    marginwidth="0"
+  >Loading…</iframe>
 </div>
 
 <!-- ABOUT -->
 <div id="about" class="page about">
-<div class="wrap">
-<h1 style="font-size:48px;">About Us</h1>
+  <div class="wrap">
+    <h1 style="font-size:48px;">About Us</h1>
 
-<p>Morphy Hair is an all-in-one platform for textured hair inspiration, tutorials, and product discovery.</p>
+    <p>Morphy Hair is an all-in-one platform for textured hair inspiration, tutorials, and product discovery.</p>
 
-<h2>Terms</h2>
-<ul>
-<li>Users must own or have permission to post shared content.</li>
-<li>No harmful, illegal, or unsafe content.</li>
-<li>We are not responsible for third-party purchases.</li>
-<li>This is an early MVP and features may change.</li>
-</ul>
+    <h2 id="tos">Terms of Service & Privacy Policy</h2>
 
-<h2>Contact</h2>
-<p>Email: morphyhair@gmail.com</p>
-<p>TikTok: @morphyhair<br>Instagram: @morphyhair</p>
+    <p><b>Last Updated:</b> [Insert Date]</p>
 
-<p style="margin-top:20px;">
-<a class="navlink" href="#" onclick="showPage('home');return false;">← Back to Home</a>
-</p>
+    <ul>
+      <li><b>MVP demo:</b> Morphy Hair is a prototype. Features may change or be discontinued at any time.</li>
+      <li><b>No accounts / no uploads:</b> Users cannot upload content or create public profiles in this demo.</li>
+      <li><b>Waitlist data:</b> We collect info you submit (e.g., name, email, hair preferences, opinions) via Google Forms.</li>
+      <li><b>Analytics:</b> We use PostHog to understand usage (e.g., clicks, scrolling, feature usage, device/browser info) to improve the product.</li>
+      <li><b>Advertising:</b> We advertise and measure performance on Instagram (Meta) and TikTok. Those platforms may process data under their own policies.</li>
+      <li><b>Third-party services:</b> Google Forms, PostHog, Instagram (Meta), and TikTok may collect/handle data under their own terms.</li>
+      <li><b>No professional advice:</b> Content is informational only and not medical/dermatology advice.</li>
+      <li><b>Third-party links:</b> We may link to external products/services. We’re not responsible for third-party purchases or outcomes.</li>
+      <li><b>No warranties:</b> Service is provided “as is.” We do not guarantee availability, accuracy, or performance.</li>
+      <li><b>Liability:</b> To the fullest extent permitted by law, Morphy Hair is not liable for indirect or consequential damages from use of the site/app.</li>
+      <li><b>Your rights:</b> You may request access or deletion of your submitted waitlist info by emailing morphyhair@gmail.com.</li>
+      <li><b>Updates:</b> We may update these terms at any time. Continued use means you accept the updated terms.</li>
+    </ul>
 
-</div>
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:morphyhair@gmail.com">morphyhair@gmail.com</a></p>
+    <p>TikTok: @morphyhair<br>Instagram: @morphyhair</p>
+
+    <p style="margin-top:20px;">
+      <a class="navlink" href="#" onclick="showPage('home');return false;">← Back to Home</a>
+    </p>
+  </div>
 </div>
 
 </body>
