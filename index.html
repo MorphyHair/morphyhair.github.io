@@ -116,7 +116,7 @@ body{
   font-size:22px;
   font-weight:700;
   color:var(--muted);
-  margin-bottom:18px;
+  margin:0;
 }
 
 /* QR moved up near "tutorial platform" line */
@@ -125,9 +125,6 @@ body{
   align-items:flex-start;
   justify-content:space-between;
   gap:24px;
-}
-.lead-row .lead{
-  margin:0;
 }
 .qr-box{
   display:flex;
@@ -149,6 +146,14 @@ body{
   border:1px solid rgba(255,255,255,0.2);
 }
 
+/* Button under QR */
+.qr-box .btn.primary{
+  margin-top:14px;
+  padding:16px 22px;
+  font-size:18px;
+}
+
+/* BULLETS */
 .big-bullets{
   list-style:none;
   padding:0;
@@ -170,12 +175,6 @@ body{
 }
 
 /* BUTTON */
-.cta-row{
-  margin-top:60px;
-  display:flex;
-  align-items:center;
-  gap:60px;
-}
 .btn.primary{
   background:#fff;
   color:#000;
@@ -371,7 +370,6 @@ body.terms-locked .topbar{
 @media(max-width:980px){
   .hero{grid-template-columns:1fr;}
   .title{font-size:56px;}
-  .cta-row{flex-direction:column;align-items:flex-start;}
   .lead-row{flex-direction:column;align-items:flex-start;}
   .qr-box img{width:200px;}
 }
@@ -505,6 +503,9 @@ function goToAbout(){
               src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=exp%3A%2F%2F7ayy__s-morphyhair-8090.exp.direct"
               alt="Expo QR"
             />
+            <a class="btn primary" href="#" onclick="showPage('forms');return false;">
+              Join the waitlist
+            </a>
           </div>
         </div>
 
@@ -514,12 +515,6 @@ function goToAbout(){
           <li>Tools + price ranges.</li>
           <li>Natural hair + DIY masks.</li>
         </ul>
-
-        <div class="cta-row">
-          <a class="btn primary" href="#" onclick="showPage('forms');return false;">
-            Join the waitlist
-          </a>
-        </div>
       </div>
 
       <div class="hero-image">
@@ -542,10 +537,10 @@ function goToAbout(){
   >Loading…</iframe>
 </div>
 
-<!-- ABOUT -->
+<!-- ABOUT (now titled Terms of Service) -->
 <div id="about" class="page about">
   <div class="wrap">
-    <h1 style="font-size:48px;">About Us</h1>
+    <h1 style="font-size:48px;">Terms of Service</h1>
 
     <p>Morphy Hair is an all-in-one platform for textured hair inspiration, tutorials, and product discovery.</p>
 
