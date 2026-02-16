@@ -379,6 +379,14 @@ body.terms-locked .topbar{
 function showPage(id){
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
+
+  // PostHog: track "page views" inside this single-page layout
+  if(id === 'home'){
+    try { posthog.capture('landing_page_viewed'); } catch(e) {}
+  }
+  if(id === 'forms'){
+    try { posthog.capture('waitlist_page_viewed'); } catch(e) {}
+  }
 }
 
 function openAboutToTerms(){
@@ -400,6 +408,9 @@ function unlockForTerms(){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // PostHog: count visitors (landing page view)
+  try { posthog.capture('landing_page_viewed'); } catch(e) {}
+
   // show every time they open the website
   lockForTerms();
   try { posthog.capture('consent_form_popup_shown'); } catch(e) {}
@@ -503,7 +514,8 @@ function goToAbout(){
               src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=exp%3A%2F%2F7ayy__s-morphyhair-8090.exp.direct"
               alt="Expo QR"
             />
-            <a class="btn primary" href="#" onclick="showPage('forms');return false;">
+            <a class="btn primary" href="#"
+               onclick="try{posthog.capture('waitlist_signup_clicked');}catch(e){} showPage('forms');return false;">
               Join the waitlist
             </a>
           </div>
