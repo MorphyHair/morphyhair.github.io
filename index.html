@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <title>Morphy Hair</title>
 
-<!-- PostHog -->
 <script>
 !function(t,e){var o,n,p,r;e.__SV||(window.posthog&&window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){
 function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}
@@ -19,45 +18,45 @@ posthog.init('phc_XZmsD6oJFV4pty5K8HsuTojblOUEsRYGs0UputUrW9Z',{api_host:'https:
 
 <style>
 :root{
-  --bg:#000;
-  --text:#fff;
-  --muted:rgba(255,255,255,0.78);
-  --pop1:#ff3bd4;
-  --pop2:#3dffb5;
-  --pop3:#5aa6ff;
-  --pop4:#ffe14a;
-  --pop5:#ff6b3d;
-  --pop6:#b86bff;
+--bg:#000;
+--text:#fff;
+--muted:rgba(255,255,255,0.78);
+--pop1:#ff3bd4;
+--pop2:#3dffb5;
+--pop3:#5aa6ff;
+--pop4:#ffe14a;
+--pop5:#ff6b3d;
+--pop6:#b86bff;
 
-  /* Terms modal colors */
-  --terms-bg:#fbf4e6;
-  --terms-text:#6a3f1a;
-  --terms-link:#b07a57;
-  --terms-btn:#6a3f1a;
+/* Terms modal colors */
+--terms-bg:#fbf4e6;
+--terms-text:#6a3f1a;
+--terms-link:#b07a57;
+--terms-btn:#6a3f1a;
 }
 
 *{box-sizing:border-box;}
 
 body{
-  margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  background:#000;
-  color:#fff;
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#000;
+color:#fff;
 }
 
 /* TOP NAV */
 .topbar{padding:24px;}
 .topbar-inner{
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-  justify-content:flex-end;
+max-width:1200px;
+margin:auto;
+display:flex;
+justify-content:flex-end;
 }
 .navlink{
-  color:#fff;
-  text-decoration:none;
-  font-weight:900;
-  font-size:20px;
+color:#fff;
+text-decoration:none;
+font-weight:900;
+font-size:20px;
 }
 
 /* Pages */
@@ -67,27 +66,27 @@ body{
 
 /* Carousel */
 .carousel{
-  margin-top:10px;
-  margin-bottom:60px;
-  overflow:hidden;
+margin-top:10px;
+margin-bottom:60px;
+overflow:hidden;
 }
 .track{
-  display:flex;
-  gap:14px;
-  animation:scroll 18s linear infinite;
-  width:max-content;
+display:flex;
+gap:14px;
+animation:scroll 18s linear infinite;
+width:max-content;
 }
 @keyframes scroll{
-  0%{transform:translateX(0);}
-  100%{transform:translateX(-50%);}
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
 }
 .pill{
-  padding:12px 18px;
-  border-radius:999px;
-  font-weight:900;
-  font-size:16px;
-  color:#000;
-  white-space:nowrap;
+padding:12px 18px;
+border-radius:999px;
+font-weight:900;
+font-size:16px;
+color:#000;
+white-space:nowrap;
 }
 .p1{background:var(--pop1);}
 .p2{background:var(--pop2);}
@@ -98,240 +97,212 @@ body{
 
 /* HERO */
 .hero{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:100px;
-  margin-top:40px;
-  align-items:center;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:100px;
+margin-top:40px;
+align-items:center;
 }
 
 .title{
-  font-size:76px;
-  margin:0 0 18px;
-  font-weight:900;
+font-size:76px;
+margin:0 0 18px;
+font-weight:900;
 }
 
 .lead{
-  font-size:22px;
-  font-weight:700;
-  color:var(--muted);
-  margin-bottom:18px;
+font-size:22px;
+font-weight:700;
+color:var(--muted);
+margin-bottom:18px;
 }
 
 .big-bullets{
-  list-style:none;
-  padding:0;
-  margin:0;
-  display:flex;
-  flex-direction:column;
-  gap:14px;
+list-style:none;
+padding:0;
+margin:0;
+display:flex;
+flex-direction:column;
+gap:14px;
 }
 .big-bullets li{
-  font-size:22px;
-  font-weight:900;
-  padding-left:24px;
-  position:relative;
+font-size:22px;
+font-weight:900;
+padding-left:24px;
+position:relative;
 }
 .big-bullets li:before{
-  content:"•";
-  position:absolute;
-  left:0;
+content:"•";
+position:absolute;
+left:0;
 }
 
 /* BUTTON + QR */
 .cta-row{
-  margin-top:60px;
-  display:flex;
-  align-items:center;
-  gap:60px;
+margin-top:60px;
+display:flex;
+align-items:center;
+gap:60px;
 }
 
 .btn.primary{
-  background:#fff;
-  color:#000;
-  border-radius:999px;
-  padding:22px 38px;
-  font-size:22px;
-  font-weight:900;
-  text-decoration:none;
-  display:inline-block;
+background:#fff;
+color:#000;
+border-radius:999px;
+padding:22px 38px;
+font-size:22px;
+font-weight:900;
+text-decoration:none;
+display:inline-block;
 }
 
 .qr-box{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
 }
 
 .qr-title{
-  font-size:16px;
-  font-weight:900;
-  margin-bottom:12px;
-  text-align:center;
-  color:rgba(255,255,255,0.85);
+font-size:16px;
+font-weight:900;
+margin-bottom:12px;
+text-align:center;
+color:rgba(255,255,255,0.85);
 }
 
 .qr-box img{
-  width:240px;
-  border-radius:18px;
-  border:1px solid rgba(255,255,255,0.2);
+width:240px;
+border-radius:18px;
+border:1px solid rgba(255,255,255,0.2);
 }
 
 /* IMAGE */
 .hero-image img{
-  width:100%;
-  height:520px;
-  object-fit:contain;
-  display:block;
-  background:#000;
-  border:none;
+width:100%;
+height:520px;
+object-fit:contain;
+display:block;
+background:#000;
+border:none;
 }
 
 /* Form iframe */
 iframe{
-  width:100%;
-  border-radius:14px;
-  border:1px solid rgba(255,255,255,0.15);
+width:100%;
+border-radius:14px;
+border:1px solid rgba(255,255,255,0.15);
 }
 
 /* About page text */
 .about p, .about li{
-  font-size:18px;
-  color:rgba(255,255,255,0.82);
-  line-height:1.55;
+font-size:18px;
+color:rgba(255,255,255,0.82);
+line-height:1.55;
 }
 .about h2{
-  margin-top:28px;
-  font-size:28px;
+margin-top:28px;
+font-size:28px;
 }
 .about a{color:#fff;}
 
 /* TERMS POPUP (full-screen overlay) */
 .terms-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.65);
-  display:none;
-  align-items:flex-end;
-  justify-content:center;
-  padding:26px;
-  z-index:9999;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.65);
+display:none;
+align-items:flex-end;
+justify-content:center;
+padding:26px;
+z-index:9999;
 }
 
 .terms-box{
-  width:min(1100px, 100%);
-  background:var(--terms-bg);
-  color:var(--terms-text);
-  border-radius:18px;
-  padding:22px 22px 18px;
-  box-shadow:0 18px 60px rgba(0,0,0,0.55);
+width:min(1100px, 100%);
+background:var(--terms-bg);
+color:var(--terms-text);
+border-radius:18px;
+padding:22px 22px 18px;
+box-shadow:0 18px 60px rgba(0,0,0,0.55);
 }
 
-.terms-head{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:16px;
-  flex-wrap:wrap;
-  margin-bottom:12px;
+.terms-top{
+display:flex;
+align-items:flex-start;
+justify-content:space-between;
+gap:18px;
+flex-wrap:wrap;
+margin-bottom:14px;
 }
 
-.terms-title{
-  font-size:22px;
-  font-weight:900;
-  margin:0;
-}
-
-.terms-sub{
-  margin:8px 0 0;
-  font-size:16px;
-  line-height:1.5;
-  color:rgba(106,63,26,0.9);
-  max-width:820px;
+.terms-text{
+font-size:18px;
+line-height:1.55;
+max-width:760px;
 }
 
 .terms-links{
-  margin-top:10px;
-  display:flex;
-  gap:18px;
-  flex-wrap:wrap;
+margin-top:10px;
+display:flex;
+gap:18px;
+flex-wrap:wrap;
 }
 
 .terms-link{
-  color:var(--terms-link);
-  text-decoration:underline;
-  font-weight:900;
-  cursor:pointer;
+color:var(--terms-link);
+text-decoration:underline;
+font-weight:900;
+cursor:pointer;
 }
 
 .terms-actions{
-  display:flex;
-  gap:12px;
-  margin-left:auto;
-  align-items:center;
+display:flex;
+gap:12px;
+margin-left:auto;
+align-items:flex-start;
 }
 
 .terms-btn{
-  border:none;
-  border-radius:10px;
-  padding:14px 18px;
-  font-weight:900;
-  font-size:16px;
-  cursor:pointer;
-  min-width:140px;
+border:none;
+border-radius:10px;
+padding:14px 22px;
+font-weight:900;
+font-size:16px;
+cursor:pointer;
+min-width:160px;
+background:var(--terms-btn);
+color:#fff;
 }
 
-.terms-btn.decline{
-  background:var(--terms-btn);
-  color:#fff;
-  opacity:0.95;
-}
-.terms-btn.accept{
-  background:var(--terms-btn);
-  color:#fff;
+.terms-iframe-wrap{
+margin-top:10px;
 }
 
-.terms-note{
-  margin-top:10px;
-  font-size:15px;
-  color:rgba(106,63,26,0.85);
-  display:none;
+/* Make the popup form look nicer */
+.terms-iframe{
+width:100%;
+height:min(70vh, 760px);
+border-radius:14px;
+border:1px solid rgba(106,63,26,0.25);
+background:#fff;
 }
 
-/* Terms form container */
-.terms-form{
-  margin-top:12px;
-  border-radius:14px;
-  overflow:hidden;
-  border:1px solid rgba(106,63,26,0.25);
-  background:#fff;
-}
-
-/* Keep the embedded form readable */
-.terms-form iframe{
-  border:none;
-  border-radius:0;
-  width:100%;
-  height:560px; /* adjust if you want */
-}
-
-/* Optional: blur page while modal is open */
+/* Blur/lock page while modal is open */
 body.terms-locked .page,
 body.terms-locked .topbar{
-  filter:blur(2px);
-  pointer-events:none;
-  user-select:none;
+filter:blur(2px);
+pointer-events:none;
+user-select:none;
 }
 
 /* Responsive */
 @media(max-width:980px){
-  .hero{grid-template-columns:1fr;}
-  .title{font-size:56px;}
-  .cta-row{flex-direction:column;align-items:flex-start;}
-  .terms-actions{width:100%;justify-content:flex-start;}
-  .terms-btn{flex:1;min-width:140px;}
-  .terms-form iframe{height:640px;}
+.hero{grid-template-columns:1fr;}
+.title{font-size:56px;}
+.cta-row{flex-direction:column;align-items:flex-start;}
+.terms-actions{width:100%;justify-content:flex-start;}
+.terms-btn{flex:1;min-width:140px;}
 }
 </style>
 
@@ -360,80 +331,46 @@ function unlockForTerms(){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const accepted = localStorage.getItem('mh_terms_accepted');
-  if(accepted !== 'yes'){
-    lockForTerms();
-  }
+  // SHOW THIS POPUP EVERY TIME THE SITE IS OPENED
+  lockForTerms();
+  try { posthog.capture('terms_form_popup_shown'); } catch(e) {}
 });
 
-/*
-  IMPORTANT:
-  Because Google Forms is embedded (cross-domain iframe),
-  your site cannot reliably detect submission.
-  So we provide a "Continue" button that the user clicks AFTER submitting.
-*/
-function continueAfterForm(){
-  localStorage.setItem('mh_terms_accepted','yes');
+function continueToSite(){
+  try { posthog.capture('terms_form_popup_continue_clicked'); } catch(e) {}
   unlockForTerms();
-}
-
-function declineTerms(){
-  localStorage.setItem('mh_terms_accepted','no');
-  document.getElementById('termsNote').style.display = 'block';
-  lockForTerms();
-}
-
-function openConsentFormNewTab(){
-  window.open(
-    "https://docs.google.com/forms/d/e/1FAIpQLSd1MIPOzKVominUoPEk3kbbPH6vKmzX42NYUc_Fh5Uztuzomw/viewform",
-    "_blank",
-    "noopener,noreferrer"
-  );
 }
 </script>
 </head>
 
 <body>
 
-<!-- TERMS + PRIVACY CONSENT POPUP (GOOGLE FORM) -->
+<!-- TERMS / CONSENT POPUP (GOOGLE FORM) -->
 <div id="termsOverlay" class="terms-overlay" aria-modal="true" role="dialog">
   <div class="terms-box">
-    <div class="terms-head">
-      <div>
-        <p class="terms-title">Before you continue</p>
-        <p class="terms-sub">
-          Please review and accept our <b>Terms of Service</b> and <b>Privacy Policy</b>.
-          This is an MVP demo and we use analytics (including PostHog).
-          Submit the form below, then click <b>Continue</b>.
-        </p>
+    <div class="terms-top">
+      <div class="terms-text">
+        Please review and accept our <b>Terms of Service</b> and <b>Privacy Policy</b> before continuing.
         <div class="terms-links">
           <span class="terms-link" onclick="openAboutToTerms()">Read Terms of Service</span>
           <span class="terms-link" onclick="openAboutToTerms()">Read Privacy Policy</span>
-          <span class="terms-link" onclick="openConsentFormNewTab()">Open form in new tab</span>
+          <span class="terms-link" onclick="openAboutToTerms()">About Us</span>
         </div>
       </div>
 
       <div class="terms-actions">
-        <button class="terms-btn decline" onclick="declineTerms()">DECLINE</button>
-        <button class="terms-btn accept" onclick="continueAfterForm()">CONTINUE</button>
+        <button class="terms-btn" onclick="continueToSite()">CONTINUE</button>
       </div>
     </div>
 
-    <div class="terms-form">
-      <!-- Your Google Form embed -->
+    <div class="terms-iframe-wrap">
       <iframe
+        class="terms-iframe"
         src="https://docs.google.com/forms/d/e/1FAIpQLSd1MIPOzKVominUoPEk3kbbPH6vKmzX42NYUc_Fh5Uztuzomw/viewform?embedded=true"
-        width="640"
-        height="934"
         frameborder="0"
         marginheight="0"
         marginwidth="0"
-        title="Terms & Privacy Consent Form"
       >Loading…</iframe>
-    </div>
-
-    <div id="termsNote" class="terms-note">
-      You must accept the Terms to continue using this site.
     </div>
   </div>
 </div>
@@ -554,5 +491,4 @@ function openConsentFormNewTab(){
 
 </body>
 </html>
-
 
