@@ -18,45 +18,48 @@ posthog.init('phc_XZmsD6oJFV4pty5K8HsuTojblOUEsRYGs0UputUrW9Z',{api_host:'https:
 
 <style>
 :root{
---bg:#000;
---text:#fff;
---muted:rgba(255,255,255,0.78);
---pop1:#ff3bd4;
---pop2:#3dffb5;
---pop3:#5aa6ff;
---pop4:#ffe14a;
---pop5:#ff6b3d;
---pop6:#b86bff;
+  --bg:#000;
+  --text:#fff;
+  --muted:rgba(255,255,255,0.78);
+  --pop1:#ff3bd4;
+  --pop2:#3dffb5;
+  --pop3:#5aa6ff;
+  --pop4:#ffe14a;
+  --pop5:#ff6b3d;
+  --pop6:#b86bff;
 
-/* Terms modal colors */
---terms-bg:#fbf4e6;
---terms-text:#6a3f1a;
---terms-link:#b07a57;
---terms-btn:#6a3f1a;
+  /* Modal / Artpop accents */
+  --card:#0b0b0f;
+  --card2:#0f0f16;
+  --stroke:rgba(255,255,255,0.14);
+  --soft:rgba(255,255,255,0.08);
+  --accentA: var(--pop1);
+  --accentB: var(--pop3);
+  --accentC: var(--pop2);
 }
 
 *{box-sizing:border-box;}
 
 body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background:#000;
-color:#fff;
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#000;
+  color:#fff;
 }
 
 /* TOP NAV */
 .topbar{padding:24px;}
 .topbar-inner{
-max-width:1200px;
-margin:auto;
-display:flex;
-justify-content:flex-end;
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:flex-end;
 }
 .navlink{
-color:#fff;
-text-decoration:none;
-font-weight:900;
-font-size:20px;
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+  font-size:20px;
 }
 
 /* Pages */
@@ -66,27 +69,27 @@ font-size:20px;
 
 /* Carousel */
 .carousel{
-margin-top:10px;
-margin-bottom:60px;
-overflow:hidden;
+  margin-top:10px;
+  margin-bottom:60px;
+  overflow:hidden;
 }
 .track{
-display:flex;
-gap:14px;
-animation:scroll 18s linear infinite;
-width:max-content;
+  display:flex;
+  gap:14px;
+  animation:scroll 18s linear infinite;
+  width:max-content;
 }
 @keyframes scroll{
-0%{transform:translateX(0);}
-100%{transform:translateX(-50%);}
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-50%);}
 }
 .pill{
-padding:12px 18px;
-border-radius:999px;
-font-weight:900;
-font-size:16px;
-color:#000;
-white-space:nowrap;
+  padding:12px 18px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:16px;
+  color:#000;
+  white-space:nowrap;
 }
 .p1{background:var(--pop1);}
 .p2{background:var(--pop2);}
@@ -97,212 +100,264 @@ white-space:nowrap;
 
 /* HERO */
 .hero{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:100px;
-margin-top:40px;
-align-items:center;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:100px;
+  margin-top:40px;
+  align-items:center;
 }
-
 .title{
-font-size:76px;
-margin:0 0 18px;
-font-weight:900;
+  font-size:76px;
+  margin:0 0 18px;
+  font-weight:900;
 }
-
 .lead{
-font-size:22px;
-font-weight:700;
-color:var(--muted);
-margin-bottom:18px;
+  font-size:22px;
+  font-weight:700;
+  color:var(--muted);
+  margin-bottom:18px;
 }
-
 .big-bullets{
-list-style:none;
-padding:0;
-margin:0;
-display:flex;
-flex-direction:column;
-gap:14px;
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
 }
 .big-bullets li{
-font-size:22px;
-font-weight:900;
-padding-left:24px;
-position:relative;
+  font-size:22px;
+  font-weight:900;
+  padding-left:24px;
+  position:relative;
 }
 .big-bullets li:before{
-content:"•";
-position:absolute;
-left:0;
+  content:"•";
+  position:absolute;
+  left:0;
 }
 
 /* BUTTON + QR */
 .cta-row{
-margin-top:60px;
-display:flex;
-align-items:center;
-gap:60px;
+  margin-top:60px;
+  display:flex;
+  align-items:center;
+  gap:60px;
 }
-
 .btn.primary{
-background:#fff;
-color:#000;
-border-radius:999px;
-padding:22px 38px;
-font-size:22px;
-font-weight:900;
-text-decoration:none;
-display:inline-block;
+  background:#fff;
+  color:#000;
+  border-radius:999px;
+  padding:22px 38px;
+  font-size:22px;
+  font-weight:900;
+  text-decoration:none;
+  display:inline-block;
 }
-
 .qr-box{
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 }
-
 .qr-title{
-font-size:16px;
-font-weight:900;
-margin-bottom:12px;
-text-align:center;
-color:rgba(255,255,255,0.85);
+  font-size:16px;
+  font-weight:900;
+  margin-bottom:12px;
+  text-align:center;
+  color:rgba(255,255,255,0.85);
 }
-
 .qr-box img{
-width:240px;
-border-radius:18px;
-border:1px solid rgba(255,255,255,0.2);
+  width:240px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,0.2);
 }
 
 /* IMAGE */
 .hero-image img{
-width:100%;
-height:520px;
-object-fit:contain;
-display:block;
-background:#000;
-border:none;
+  width:100%;
+  height:520px;
+  object-fit:contain;
+  display:block;
+  background:#000;
+  border:none;
 }
 
-/* Form iframe */
+/* Form iframe (general site iframes) */
 iframe{
-width:100%;
-border-radius:14px;
-border:1px solid rgba(255,255,255,0.15);
+  width:100%;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.15);
 }
 
 /* About page text */
 .about p, .about li{
-font-size:18px;
-color:rgba(255,255,255,0.82);
-line-height:1.55;
+  font-size:18px;
+  color:rgba(255,255,255,0.82);
+  line-height:1.55;
 }
 .about h2{
-margin-top:28px;
-font-size:28px;
+  margin-top:28px;
+  font-size:28px;
 }
 .about a{color:#fff;}
 
-/* TERMS POPUP (full-screen overlay) */
+/* ===== TERMS / CONSENT POPUP (smaller, black, artpop) ===== */
 .terms-overlay{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.65);
-display:none;
-align-items:flex-end;
-justify-content:center;
-padding:26px;
-z-index:9999;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.78);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  z-index:9999;
 }
 
+/* smaller card */
 .terms-box{
-width:min(1100px, 100%);
-background:var(--terms-bg);
-color:var(--terms-text);
-border-radius:18px;
-padding:22px 22px 18px;
-box-shadow:0 18px 60px rgba(0,0,0,0.55);
+  width:min(620px, 94vw);
+  background:linear-gradient(180deg, var(--card), var(--card2));
+  color:#fff;
+  border-radius:18px;
+  border:1px solid var(--stroke);
+  padding:16px 16px 14px;
+  box-shadow:0 22px 70px rgba(0,0,0,0.65);
+  position:relative;
+  overflow:hidden;
 }
 
-.terms-top{
-display:flex;
-align-items:flex-start;
-justify-content:space-between;
-gap:18px;
-flex-wrap:wrap;
-margin-bottom:14px;
+/* subtle artpop glow */
+.terms-box:before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:
+    radial-gradient(1200px 240px at 0% 0%, rgba(255,59,212,0.22), transparent 55%),
+    radial-gradient(900px 220px at 100% 10%, rgba(90,166,255,0.18), transparent 55%),
+    radial-gradient(900px 240px at 30% 120%, rgba(61,255,181,0.14), transparent 55%);
+  pointer-events:none;
 }
 
-.terms-text{
-font-size:18px;
-line-height:1.55;
-max-width:760px;
+.terms-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  position:relative;
+  z-index:1;
+}
+
+.terms-title{
+  font-weight:900;
+  font-size:18px;
+  margin:0;
+  letter-spacing:0.2px;
+}
+
+.terms-sub{
+  margin:8px 0 0;
+  color:rgba(255,255,255,0.82);
+  font-size:14px;
+  line-height:1.45;
+}
+
+.terms-mini{
+  margin-top:10px;
+  padding:10px 12px;
+  border-radius:12px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.10);
+  color:rgba(255,255,255,0.85);
+  font-size:13px;
+  line-height:1.45;
+  position:relative;
+  z-index:1;
 }
 
 .terms-links{
-margin-top:10px;
-display:flex;
-gap:18px;
-flex-wrap:wrap;
+  margin-top:10px;
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  position:relative;
+  z-index:1;
 }
-
 .terms-link{
-color:var(--terms-link);
-text-decoration:underline;
-font-weight:900;
-cursor:pointer;
+  color:rgba(255,255,255,0.9);
+  text-decoration:none;
+  font-weight:900;
+  font-size:13px;
+  border-bottom:2px solid transparent;
+  padding-bottom:2px;
+}
+.terms-link:hover{
+  border-bottom-color: var(--accentA);
+}
+.terms-link.alt:hover{
+  border-bottom-color: var(--accentB);
+}
+.terms-link.alt2:hover{
+  border-bottom-color: var(--accentC);
 }
 
 .terms-actions{
-display:flex;
-gap:12px;
-margin-left:auto;
-align-items:flex-start;
+  margin-top:12px;
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+  position:relative;
+  z-index:1;
 }
 
 .terms-btn{
-border:none;
-border-radius:10px;
-padding:14px 22px;
-font-weight:900;
-font-size:16px;
-cursor:pointer;
-min-width:160px;
-background:var(--terms-btn);
-color:#fff;
+  border:none;
+  border-radius:12px;
+  padding:12px 14px;
+  font-weight:900;
+  font-size:14px;
+  cursor:pointer;
+  min-width:120px;
 }
 
+.terms-btn.continue{
+  background:#fff;
+  color:#000;
+}
+
+.terms-btn.about{
+  background:rgba(255,255,255,0.09);
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.16);
+}
+
+/* embedded google form inside popup (smaller) */
 .terms-iframe-wrap{
-margin-top:10px;
+  margin-top:12px;
+  position:relative;
+  z-index:1;
 }
-
-/* Make the popup form look nicer */
 .terms-iframe{
-width:100%;
-height:min(70vh, 760px);
-border-radius:14px;
-border:1px solid rgba(106,63,26,0.25);
-background:#fff;
+  width:100%;
+  height:min(56vh, 520px);
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.12);
+  background:#fff;
 }
 
-/* Blur/lock page while modal is open */
+/* lock page while open */
 body.terms-locked .page,
 body.terms-locked .topbar{
-filter:blur(2px);
-pointer-events:none;
-user-select:none;
+  filter:blur(2px);
+  pointer-events:none;
+  user-select:none;
 }
 
 /* Responsive */
 @media(max-width:980px){
-.hero{grid-template-columns:1fr;}
-.title{font-size:56px;}
-.cta-row{flex-direction:column;align-items:flex-start;}
-.terms-actions{width:100%;justify-content:flex-start;}
-.terms-btn{flex:1;min-width:140px;}
+  .hero{grid-template-columns:1fr;}
+  .title{font-size:56px;}
+  .cta-row{flex-direction:column;align-items:flex-start;}
 }
 </style>
 
@@ -331,36 +386,46 @@ function unlockForTerms(){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // SHOW THIS POPUP EVERY TIME THE SITE IS OPENED
+  // show every time they open the website
   lockForTerms();
-  try { posthog.capture('terms_form_popup_shown'); } catch(e) {}
+  try { posthog.capture('consent_form_popup_shown'); } catch(e) {}
 });
 
 function continueToSite(){
-  try { posthog.capture('terms_form_popup_continue_clicked'); } catch(e) {}
+  try { posthog.capture('consent_form_popup_continue_clicked'); } catch(e) {}
   unlockForTerms();
+}
+
+function goToAbout(){
+  try { posthog.capture('consent_form_popup_view_terms_clicked'); } catch(e) {}
+  unlockForTerms();
+  openAboutToTerms();
 }
 </script>
 </head>
 
 <body>
 
-<!-- TERMS / CONSENT POPUP (GOOGLE FORM) -->
+<!-- CONSENT POPUP (SMALL + BLACK + ARTPOP) -->
 <div id="termsOverlay" class="terms-overlay" aria-modal="true" role="dialog">
   <div class="terms-box">
-    <div class="terms-top">
-      <div class="terms-text">
-        Please review and accept our <b>Terms of Service</b> and <b>Privacy Policy</b> before continuing.
-        <div class="terms-links">
-          <span class="terms-link" onclick="openAboutToTerms()">Read Terms of Service</span>
-          <span class="terms-link" onclick="openAboutToTerms()">Read Privacy Policy</span>
-          <span class="terms-link" onclick="openAboutToTerms()">About Us</span>
-        </div>
+    <div class="terms-header">
+      <div>
+        <p class="terms-title">Quick Terms</p>
+        <p class="terms-sub">
+          This is an MVP demo. We use analytics (PostHog). If you join the waitlist, we collect what you submit in Google Forms.
+        </p>
       </div>
+    </div>
 
-      <div class="terms-actions">
-        <button class="terms-btn" onclick="continueToSite()">CONTINUE</button>
-      </div>
+    <div class="terms-mini">
+      By continuing, you agree to our <b>Terms</b> + <b>Privacy</b>. You can read the full version anytime.
+    </div>
+
+    <div class="terms-links">
+      <a class="terms-link" href="#" onclick="goToAbout();return false;">View full Terms</a>
+      <a class="terms-link alt" href="#" onclick="goToAbout();return false;">View full Privacy</a>
+      <a class="terms-link alt2" href="#" onclick="goToAbout();return false;">About</a>
     </div>
 
     <div class="terms-iframe-wrap">
@@ -371,6 +436,11 @@ function continueToSite(){
         marginheight="0"
         marginwidth="0"
       >Loading…</iframe>
+    </div>
+
+    <div class="terms-actions">
+      <button class="terms-btn about" onclick="goToAbout()">READ FULL</button>
+      <button class="terms-btn continue" onclick="continueToSite()">CONTINUE</button>
     </div>
   </div>
 </div>
